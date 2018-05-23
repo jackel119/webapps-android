@@ -3,13 +3,13 @@ import React from 'react';
 import { ImageBackground, Text, View } from 'react-native';
 
 //make components
-const HeaderGreeting = (props) => {
+const HeaderGreeting = () => {
 	const { greetingStyle, blankStyle, usernameStyle, spentStyle, imageStyle,
 		containerStyle, white } = styles;
 	return (
 		<ImageBackground
-			//TODO: Remain here in case a picture is used for background.
-			style={imageStyle}
+		source={require('./img/header1.jpg')}
+		style={imageStyle}
 		>
 			<View style={containerStyle}>
 				<Text style={greetingStyle}>Good Morning,</Text>
@@ -26,6 +26,7 @@ const HeaderGreeting = (props) => {
 const styles = {
 	white: {
 		fontFamily: 'AlegreyaSansSC-Regular',
+		fontSize: 20,
 		color: 'white',
 		textAlign: 'right',
 		marginRight: 5
@@ -64,13 +65,13 @@ const styles = {
     color: 'white',
     opacity: 0.9
 	},
+
 	imageStyle: {
 		backgroundColor: '#2a363b',
 		justifyContent: 'center',
 		alignContent: 'space-between',
 		height: 300,
 		width: null //to make sure the img spread across the page
-
 	},
 };
 
