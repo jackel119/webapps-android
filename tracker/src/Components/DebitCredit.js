@@ -4,17 +4,17 @@ import { CardSection } from './Common';
 
 const DebitCredit = () => {
 	const { headerContentStyle, debitStyle, creditStyle, textStyle } = styles;
-
 	return (
 		<CardSection style={headerContentStyle}>
 			<View style={debitStyle}>
 				<Text style={textStyle}>Debit</Text>
+				<Text style={textStyle}>£123</Text>
 			</View>
 
 			<View style={creditStyle}>
 				<Text style={textStyle}>Credit</Text>
+				<Text style={textStyle}>£456</Text>
 			</View>
-
 		</CardSection>
 	);
 };

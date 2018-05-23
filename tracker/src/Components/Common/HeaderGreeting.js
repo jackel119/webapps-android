@@ -11,11 +11,11 @@ const HeaderGreeting = (props) => {
 			source={{ uri: props.img }}
 		>
 			<View style={containerStyle}>
-				<Text style={greetingStyle}>Good Morning. </Text>
-
-				<Text style={white}>You have spent
-					<Text style={spentStyle}>$12345.67</Text>
-					this week.</Text>
+				<Text style={greetingStyle}>Good Morning,</Text>
+				<Text style={greetingStyle}>Jack.</Text>
+				<Text style={white}>You have spent</Text>
+				<Text style={spentStyle}>£12345.67</Text>
+				<Text style={white}>this week.</Text>
 			</View>
 		</ImageBackground>
 	);
@@ -23,13 +23,15 @@ const HeaderGreeting = (props) => {
 
 const styles = {
 	white: {
-		color: 'white'
+		color: 'white',
+		textAlign: 'right',
+		marginRight: 10
 	},
 	containerStyle: {
-		alignContent: 'space-around'
+		top: 0,
+		alignContent: 'space-between',
 	},
 	greetingStyle: {
-    margin: 2,
     fontSize: 36,
     fontWeight: 'bold',
     textAlign: 'left',
@@ -37,7 +39,6 @@ const styles = {
     opacity: 0.9
 	},
 	spentStyle: {
-    margin: 2,
     fontSize: 36,
     fontWeight: 'bold',
     textAlign: 'right',
