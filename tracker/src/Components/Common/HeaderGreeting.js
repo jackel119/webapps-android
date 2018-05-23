@@ -7,8 +7,8 @@ const HeaderGreeting = (props) => {
 	const { greetingStyle, spentStyle, imageStyle, containerStyle, white } = styles;
 	return (
 		<ImageBackground 
+			//TODO: Remain here in case a picture is used for background.
 			style={imageStyle}
-			source={{ uri: props.img }}
 		>
 			<View style={containerStyle}>
 				<Text style={greetingStyle}>Good Morning,</Text>
@@ -46,8 +46,9 @@ const styles = {
     opacity: 0.9
 	},
 	imageStyle: {
+		backgroundColor: '#2a363b',
 		justifyContent: 'center',
-		alignItems: 'center',
+		alignContent: 'space-between',
 		height: 300,
 		width: null //to make sure the img spread across the page
 
