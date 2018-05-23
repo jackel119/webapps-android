@@ -4,15 +4,17 @@ import { ImageBackground, Text, View } from 'react-native';
 
 //make components
 const HeaderGreeting = (props) => {
-	const { greetingStyle, spentStyle, imageStyle, containerStyle, white } = styles;
+	const { greetingStyle, blankStyle, usernameStyle, spentStyle, imageStyle,
+		containerStyle, white } = styles;
 	return (
-		<ImageBackground 
+		<ImageBackground
 			//TODO: Remain here in case a picture is used for background.
 			style={imageStyle}
 		>
 			<View style={containerStyle}>
 				<Text style={greetingStyle}>Good Morning,</Text>
-				<Text style={greetingStyle}>Jack.</Text>
+				<Text style={usernameStyle}>Jack.</Text>
+				<View style={blankStyle} />
 				<Text style={white}>You have spent</Text>
 				<Text style={spentStyle}>£12345.67</Text>
 				<Text style={white}>this week.</Text>
@@ -23,23 +25,40 @@ const HeaderGreeting = (props) => {
 
 const styles = {
 	white: {
+		fontFamily: 'AlegreyaSansSC-Regular',
 		color: 'white',
 		textAlign: 'right',
-		marginRight: 10
+		marginRight: 5
 	},
+
 	containerStyle: {
-		top: 0,
-		alignContent: 'space-between',
+		paddingHorizontal: 20,
+		//top: 10,
 	},
+
+	blankStyle: {
+		height: 45
+	},
+
 	greetingStyle: {
-    fontSize: 36,
-    fontWeight: 'bold',
+		fontFamily: 'Drugs',
+    fontSize: 40,
     textAlign: 'left',
     color: 'white',
     opacity: 0.9
 	},
+
+	usernameStyle: {
+		fontFamily: 'AlegreyaSansSC-Regular',
+    fontSize: 35,
+    textAlign: 'right',
+		right: 30,
+    color: 'white',
+    opacity: 0.9
+	},
+
 	spentStyle: {
-    fontSize: 36,
+    fontSize: 50,
     fontWeight: 'bold',
     textAlign: 'right',
     color: 'white',
