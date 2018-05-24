@@ -34,7 +34,7 @@ const styles = {
 		paddingHorizontal: 20,
 		flexDirection: 'row',
 		height: 70,
-		borderBottomWidth: 0.2,
+		borderBottomWidth: 0.4,
 		borderColor: 'white',
 		backgroundColor: '#000a29'
 	},
