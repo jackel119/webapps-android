@@ -29,4 +29,3 @@ class ExpenseList extends Component {
 }
 
 export default ExpenseList;
-

@@ -32,7 +32,7 @@ const styles = {
 	},
 	debitStyle: {
 		flex: 1,
-		height: 90,
+		height: 85,
 		paddingTop: 5,
 		paddingHorizontal: 20,
 		backgroundColor: '#f9ba32',
@@ -40,7 +40,7 @@ const styles = {
 	},
 	creditStyle: {
 		flex: 1,
-		height: 90,
+		height: 85,
 		paddingTop: 5,
 		paddingHorizontal: 20,
 		backgroundColor: '#ff4e50',
