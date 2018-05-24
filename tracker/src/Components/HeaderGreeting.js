@@ -8,7 +8,7 @@ const HeaderGreeting = () => {
 		containerStyle, white } = styles;
 	return (
 		<ImageBackground
-		source={require('./img/header1.jpg')}
+		source={ require('./Img/header1.jpg') }
 		style={imageStyle}
 		>
 			<View style={containerStyle}>

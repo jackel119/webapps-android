@@ -1,10 +1,11 @@
 /* Import libraries */
 import React from 'react';
-import { AppRegistry, View, Text } from 'react-native';
+import { AppRegistry, View} from 'react-native';
 /* Import locals */
 import { CardSection } from './src/Components/Common';
 import DebitCredit from './src/Components/DebitCredit';
-import HeaderGreeting from './src/Components/Common/HeaderGreeting';
+import HeaderGreeting from './src/Components/HeaderGreeting';
+import ExpenseList from './src/Components/ExpenseList';
 
 /* Create components */
 const App = () => (
@@ -13,7 +14,7 @@ const App = () => (
 		<DebitCredit />
 
 		<CardSection>
-		<Text>TODO</Text>
+			<ExpenseList />
 		</CardSection>
 
 	</View>
