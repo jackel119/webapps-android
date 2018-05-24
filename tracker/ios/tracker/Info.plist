@@ -39,9 +39,8 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSAppTransportSecurity</key>
-	<!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
@@ -52,5 +51,34 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AlegreyaSansSC-Black.ttf</string>
+		<string>AlegreyaSansSC-BlackItalic.ttf</string>
+		<string>AlegreyaSansSC-Bold.ttf</string>
+		<string>AlegreyaSansSC-BoldItalic.ttf</string>
+		<string>AlegreyaSansSC-ExtraBold.ttf</string>
+		<string>AlegreyaSansSC-ExtraBoldItalic.ttf</string>
+		<string>AlegreyaSansSC-Italic.ttf</string>
+		<string>AlegreyaSansSC-Light.ttf</string>
+		<string>AlegreyaSansSC-LightItalic.ttf</string>
+		<string>AlegreyaSansSC-Medium.ttf</string>
+		<string>AlegreyaSansSC-MediumItalic.ttf</string>
+		<string>AlegreyaSansSC-Regular.ttf</string>
+		<string>AlegreyaSansSC-Thin.ttf</string>
+		<string>AlegreyaSansSC-ThinItalic.ttf</string>
+		<string>Drugs.otf</string>
+		<string>TitilliumWeb-Black.ttf</string>
+		<string>TitilliumWeb-Bold.ttf</string>
+		<string>TitilliumWeb-BoldItalic.ttf</string>
+		<string>TitilliumWeb-ExtraLight.ttf</string>
+		<string>TitilliumWeb-ExtraLightItalic.ttf</string>
+		<string>TitilliumWeb-Italic.ttf</string>
+		<string>TitilliumWeb-Light.ttf</string>
+		<string>TitilliumWeb-LightItalic.ttf</string>
+		<string>TitilliumWeb-Regular.ttf</string>
+		<string>TitilliumWeb-SemiBold.ttf</string>
+		<string>TitilliumWeb-SemiBoldItalic.ttf</string>
+	</array>
 </dict>
 </plist>

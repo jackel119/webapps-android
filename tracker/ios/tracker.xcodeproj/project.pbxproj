@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -38,6 +37,32 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		D9B41455B9EF4F3BBBB7FD2C /* AlegreyaSansSC-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73D0F38E590A4CF280A37E96 /* AlegreyaSansSC-Black.ttf */; };
+		9720E68EB1EB4950AEBE0A17 /* AlegreyaSansSC-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 893D3EA9DB044DEEBFC36A02 /* AlegreyaSansSC-BlackItalic.ttf */; };
+		716358F080244B2191E0E38E /* AlegreyaSansSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BB65DDE786244CF978ACE67 /* AlegreyaSansSC-Bold.ttf */; };
+		718957D53FA54AAB964BB590 /* AlegreyaSansSC-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D9E67BC343146469EACD537 /* AlegreyaSansSC-BoldItalic.ttf */; };
+		2C5323349E544EBFA8AC9168 /* AlegreyaSansSC-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1FDFEF274574A6A871A8A46 /* AlegreyaSansSC-ExtraBold.ttf */; };
+		63F59051B4AD4A5CA5FACB9F /* AlegreyaSansSC-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E1B3F0F69A441F3B4EF9A62 /* AlegreyaSansSC-ExtraBoldItalic.ttf */; };
+		8BCACC7B3D854C7F9EE407FE /* AlegreyaSansSC-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F3AA0C0A2F4C7F92FDE8A5 /* AlegreyaSansSC-Italic.ttf */; };
+		A9CA4DE0A9E444BD8C727C91 /* AlegreyaSansSC-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA5D0C0620E94F06B0CB1735 /* AlegreyaSansSC-Light.ttf */; };
+		C85BDA56123544B5875987DF /* AlegreyaSansSC-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50B9286A76D84567B2A8D20D /* AlegreyaSansSC-LightItalic.ttf */; };
+		EBC7708BA98C4CDC8E38B898 /* AlegreyaSansSC-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D45EFF92E1146879EBA8CD6 /* AlegreyaSansSC-Medium.ttf */; };
+		DFE560D0867147EC83702AD0 /* AlegreyaSansSC-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 455EC2B3B2DE4BBE9230CDD6 /* AlegreyaSansSC-MediumItalic.ttf */; };
+		CF9755CDAD38458E994BC495 /* AlegreyaSansSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D8795969154435BCCD67D9 /* AlegreyaSansSC-Regular.ttf */; };
+		FD976DD7532B4A62BDAC0EA0 /* AlegreyaSansSC-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F207F0B68946498A89117563 /* AlegreyaSansSC-Thin.ttf */; };
+		D15E0D49F5954A86827CB793 /* AlegreyaSansSC-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C48B895062248A18624831E /* AlegreyaSansSC-ThinItalic.ttf */; };
+		0A4F10A9C4234CCBBF604BED /* Drugs.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFBD607A1B3F43548E729DE4 /* Drugs.otf */; };
+		EC8641578DFA492EB3763E96 /* TitilliumWeb-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A43AA1DF8934804A0ADB5AE /* TitilliumWeb-Black.ttf */; };
+		6D7CB64E072346F587BC0263 /* TitilliumWeb-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E9289708A614F3E991BC712 /* TitilliumWeb-Bold.ttf */; };
+		D2695D9C847C42C8BC370686 /* TitilliumWeb-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9598B76D0AA8492598B6B524 /* TitilliumWeb-BoldItalic.ttf */; };
+		0D901E1FE3B640028BC4F704 /* TitilliumWeb-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D276A3DABEAD4150BB447786 /* TitilliumWeb-ExtraLight.ttf */; };
+		2CA4B4EE2D1846159E27E9FD /* TitilliumWeb-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC853967C37C4943BA86401E /* TitilliumWeb-ExtraLightItalic.ttf */; };
+		761623884FEA42ACA371DA34 /* TitilliumWeb-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51E15DD9AF284AD9BF2FD10E /* TitilliumWeb-Italic.ttf */; };
+		EA095689D683490B84B5CB38 /* TitilliumWeb-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A36CB3DF04AA468994FFA29B /* TitilliumWeb-Light.ttf */; };
+		FE82CF69DBE5414596BF48E0 /* TitilliumWeb-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7082E235EF6B446C97095BB8 /* TitilliumWeb-LightItalic.ttf */; };
+		05AF55AA25AD45CEBF724B41 /* TitilliumWeb-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95ABAEEA426947C7B0FA52CA /* TitilliumWeb-Regular.ttf */; };
+		507E70026A5A428D9D281BF3 /* TitilliumWeb-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A5DDA74BB3B4AF3A2B65CAB /* TitilliumWeb-SemiBold.ttf */; };
+		05EB433DAEE642089F7425BC /* TitilliumWeb-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8907A4789AFB4C76B1944899 /* TitilliumWeb-SemiBoldItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -343,6 +368,32 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		73D0F38E590A4CF280A37E96 /* AlegreyaSansSC-Black.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-Black.ttf"; path = "../assets/fonts/AlegreyaSansSC-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		893D3EA9DB044DEEBFC36A02 /* AlegreyaSansSC-BlackItalic.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-BlackItalic.ttf"; path = "../assets/fonts/AlegreyaSansSC-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9BB65DDE786244CF978ACE67 /* AlegreyaSansSC-Bold.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-Bold.ttf"; path = "../assets/fonts/AlegreyaSansSC-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7D9E67BC343146469EACD537 /* AlegreyaSansSC-BoldItalic.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-BoldItalic.ttf"; path = "../assets/fonts/AlegreyaSansSC-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F1FDFEF274574A6A871A8A46 /* AlegreyaSansSC-ExtraBold.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-ExtraBold.ttf"; path = "../assets/fonts/AlegreyaSansSC-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3E1B3F0F69A441F3B4EF9A62 /* AlegreyaSansSC-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-ExtraBoldItalic.ttf"; path = "../assets/fonts/AlegreyaSansSC-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		04F3AA0C0A2F4C7F92FDE8A5 /* AlegreyaSansSC-Italic.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-Italic.ttf"; path = "../assets/fonts/AlegreyaSansSC-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CA5D0C0620E94F06B0CB1735 /* AlegreyaSansSC-Light.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-Light.ttf"; path = "../assets/fonts/AlegreyaSansSC-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		50B9286A76D84567B2A8D20D /* AlegreyaSansSC-LightItalic.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-LightItalic.ttf"; path = "../assets/fonts/AlegreyaSansSC-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0D45EFF92E1146879EBA8CD6 /* AlegreyaSansSC-Medium.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-Medium.ttf"; path = "../assets/fonts/AlegreyaSansSC-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		455EC2B3B2DE4BBE9230CDD6 /* AlegreyaSansSC-MediumItalic.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-MediumItalic.ttf"; path = "../assets/fonts/AlegreyaSansSC-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		68D8795969154435BCCD67D9 /* AlegreyaSansSC-Regular.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-Regular.ttf"; path = "../assets/fonts/AlegreyaSansSC-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F207F0B68946498A89117563 /* AlegreyaSansSC-Thin.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-Thin.ttf"; path = "../assets/fonts/AlegreyaSansSC-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3C48B895062248A18624831E /* AlegreyaSansSC-ThinItalic.ttf */ = {isa = PBXFileReference; name = "AlegreyaSansSC-ThinItalic.ttf"; path = "../assets/fonts/AlegreyaSansSC-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FFBD607A1B3F43548E729DE4 /* Drugs.otf */ = {isa = PBXFileReference; name = "Drugs.otf"; path = "../assets/fonts/Drugs.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9A43AA1DF8934804A0ADB5AE /* TitilliumWeb-Black.ttf */ = {isa = PBXFileReference; name = "TitilliumWeb-Black.ttf"; path = "../assets/fonts/TitilliumWeb-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5E9289708A614F3E991BC712 /* TitilliumWeb-Bold.ttf */ = {isa = PBXFileReference; name = "TitilliumWeb-Bold.ttf"; path = "../assets/fonts/TitilliumWeb-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9598B76D0AA8492598B6B524 /* TitilliumWeb-BoldItalic.ttf */ = {isa = PBXFileReference; name = "TitilliumWeb-BoldItalic.ttf"; path = "../assets/fonts/TitilliumWeb-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D276A3DABEAD4150BB447786 /* TitilliumWeb-ExtraLight.ttf */ = {isa = PBXFileReference; name = "TitilliumWeb-ExtraLight.ttf"; path = "../assets/fonts/TitilliumWeb-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BC853967C37C4943BA86401E /* TitilliumWeb-ExtraLightItalic.ttf */ = {isa = PBXFileReference; name = "TitilliumWeb-ExtraLightItalic.ttf"; path = "../assets/fonts/TitilliumWeb-ExtraLightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		51E15DD9AF284AD9BF2FD10E /* TitilliumWeb-Italic.ttf */ = {isa = PBXFileReference; name = "TitilliumWeb-Italic.ttf"; path = "../assets/fonts/TitilliumWeb-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A36CB3DF04AA468994FFA29B /* TitilliumWeb-Light.ttf */ = {isa = PBXFileReference; name = "TitilliumWeb-Light.ttf"; path = "../assets/fonts/TitilliumWeb-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7082E235EF6B446C97095BB8 /* TitilliumWeb-LightItalic.ttf */ = {isa = PBXFileReference; name = "TitilliumWeb-LightItalic.ttf"; path = "../assets/fonts/TitilliumWeb-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		95ABAEEA426947C7B0FA52CA /* TitilliumWeb-Regular.ttf */ = {isa = PBXFileReference; name = "TitilliumWeb-Regular.ttf"; path = "../assets/fonts/TitilliumWeb-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0A5DDA74BB3B4AF3A2B65CAB /* TitilliumWeb-SemiBold.ttf */ = {isa = PBXFileReference; name = "TitilliumWeb-SemiBold.ttf"; path = "../assets/fonts/TitilliumWeb-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8907A4789AFB4C76B1944899 /* TitilliumWeb-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "TitilliumWeb-SemiBoldItalic.ttf"; path = "../assets/fonts/TitilliumWeb-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -578,6 +629,7 @@
 				00E356EF1AD99517003FC87E /* trackerTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				2BFF2864F2674CDA8C698564 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -603,6 +655,40 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		2BFF2864F2674CDA8C698564 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				73D0F38E590A4CF280A37E96 /* AlegreyaSansSC-Black.ttf */,
+				893D3EA9DB044DEEBFC36A02 /* AlegreyaSansSC-BlackItalic.ttf */,
+				9BB65DDE786244CF978ACE67 /* AlegreyaSansSC-Bold.ttf */,
+				7D9E67BC343146469EACD537 /* AlegreyaSansSC-BoldItalic.ttf */,
+				F1FDFEF274574A6A871A8A46 /* AlegreyaSansSC-ExtraBold.ttf */,
+				3E1B3F0F69A441F3B4EF9A62 /* AlegreyaSansSC-ExtraBoldItalic.ttf */,
+				04F3AA0C0A2F4C7F92FDE8A5 /* AlegreyaSansSC-Italic.ttf */,
+				CA5D0C0620E94F06B0CB1735 /* AlegreyaSansSC-Light.ttf */,
+				50B9286A76D84567B2A8D20D /* AlegreyaSansSC-LightItalic.ttf */,
+				0D45EFF92E1146879EBA8CD6 /* AlegreyaSansSC-Medium.ttf */,
+				455EC2B3B2DE4BBE9230CDD6 /* AlegreyaSansSC-MediumItalic.ttf */,
+				68D8795969154435BCCD67D9 /* AlegreyaSansSC-Regular.ttf */,
+				F207F0B68946498A89117563 /* AlegreyaSansSC-Thin.ttf */,
+				3C48B895062248A18624831E /* AlegreyaSansSC-ThinItalic.ttf */,
+				FFBD607A1B3F43548E729DE4 /* Drugs.otf */,
+				9A43AA1DF8934804A0ADB5AE /* TitilliumWeb-Black.ttf */,
+				5E9289708A614F3E991BC712 /* TitilliumWeb-Bold.ttf */,
+				9598B76D0AA8492598B6B524 /* TitilliumWeb-BoldItalic.ttf */,
+				D276A3DABEAD4150BB447786 /* TitilliumWeb-ExtraLight.ttf */,
+				BC853967C37C4943BA86401E /* TitilliumWeb-ExtraLightItalic.ttf */,
+				51E15DD9AF284AD9BF2FD10E /* TitilliumWeb-Italic.ttf */,
+				A36CB3DF04AA468994FFA29B /* TitilliumWeb-Light.ttf */,
+				7082E235EF6B446C97095BB8 /* TitilliumWeb-LightItalic.ttf */,
+				95ABAEEA426947C7B0FA52CA /* TitilliumWeb-Regular.ttf */,
+				0A5DDA74BB3B4AF3A2B65CAB /* TitilliumWeb-SemiBold.ttf */,
+				8907A4789AFB4C76B1944899 /* TitilliumWeb-SemiBoldItalic.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -685,7 +771,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 610;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -1050,6 +1136,32 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				D9B41455B9EF4F3BBBB7FD2C /* AlegreyaSansSC-Black.ttf in Resources */,
+				9720E68EB1EB4950AEBE0A17 /* AlegreyaSansSC-BlackItalic.ttf in Resources */,
+				716358F080244B2191E0E38E /* AlegreyaSansSC-Bold.ttf in Resources */,
+				718957D53FA54AAB964BB590 /* AlegreyaSansSC-BoldItalic.ttf in Resources */,
+				2C5323349E544EBFA8AC9168 /* AlegreyaSansSC-ExtraBold.ttf in Resources */,
+				63F59051B4AD4A5CA5FACB9F /* AlegreyaSansSC-ExtraBoldItalic.ttf in Resources */,
+				8BCACC7B3D854C7F9EE407FE /* AlegreyaSansSC-Italic.ttf in Resources */,
+				A9CA4DE0A9E444BD8C727C91 /* AlegreyaSansSC-Light.ttf in Resources */,
+				C85BDA56123544B5875987DF /* AlegreyaSansSC-LightItalic.ttf in Resources */,
+				EBC7708BA98C4CDC8E38B898 /* AlegreyaSansSC-Medium.ttf in Resources */,
+				DFE560D0867147EC83702AD0 /* AlegreyaSansSC-MediumItalic.ttf in Resources */,
+				CF9755CDAD38458E994BC495 /* AlegreyaSansSC-Regular.ttf in Resources */,
+				FD976DD7532B4A62BDAC0EA0 /* AlegreyaSansSC-Thin.ttf in Resources */,
+				D15E0D49F5954A86827CB793 /* AlegreyaSansSC-ThinItalic.ttf in Resources */,
+				0A4F10A9C4234CCBBF604BED /* Drugs.otf in Resources */,
+				EC8641578DFA492EB3763E96 /* TitilliumWeb-Black.ttf in Resources */,
+				6D7CB64E072346F587BC0263 /* TitilliumWeb-Bold.ttf in Resources */,
+				D2695D9C847C42C8BC370686 /* TitilliumWeb-BoldItalic.ttf in Resources */,
+				0D901E1FE3B640028BC4F704 /* TitilliumWeb-ExtraLight.ttf in Resources */,
+				2CA4B4EE2D1846159E27E9FD /* TitilliumWeb-ExtraLightItalic.ttf in Resources */,
+				761623884FEA42ACA371DA34 /* TitilliumWeb-Italic.ttf in Resources */,
+				EA095689D683490B84B5CB38 /* TitilliumWeb-Light.ttf in Resources */,
+				FE82CF69DBE5414596BF48E0 /* TitilliumWeb-LightItalic.ttf in Resources */,
+				05AF55AA25AD45CEBF724B41 /* TitilliumWeb-Regular.ttf in Resources */,
+				507E70026A5A428D9D281BF3 /* TitilliumWeb-SemiBold.ttf in Resources */,
+				05EB433DAEE642089F7425BC /* TitilliumWeb-SemiBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
