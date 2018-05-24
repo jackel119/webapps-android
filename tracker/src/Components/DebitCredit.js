@@ -5,14 +5,14 @@ import { CardSection } from './Common';
 const DebitCredit = () => {
 	const { headerContentStyle,
 		debitStyle,
-		creditStyle, 
-		textStyle, 
+		creditStyle,
+		textStyle,
 		fontStyle } = styles;
 
 	return (
 		<CardSection style={headerContentStyle}>
 			<View style={debitStyle}>
-				<Text>Debit</Text>
+				<Text style={fontStyle}>Debit</Text>
 				<Text style={textStyle}>£123</Text>
 			</View>
 
@@ -32,25 +32,32 @@ const styles = {
 	},
 	debitStyle: {
 		flex: 1,
-		height: 100,
+		height: 90,
+		paddingTop: 5,
+		paddingHorizontal: 20,
 		backgroundColor: '#f9ba32',
-		justifyContent: 'space-around'
+		//justifyContent: 'space-around'
 	},
 	creditStyle: {
 		flex: 1,
-		height: 100,
+		height: 90,
+		paddingTop: 5,
+		paddingHorizontal: 20,
 		backgroundColor: '#ff4e50',
-		justifyContent: 'space-around'
+		//justifyContent: 'space-around'
 	},
 	textStyle: {
-		margin: 30,
+		fontFamily: 'TitilliumWeb-Regular',
+		//margin: 30,
     fontSize: 36,
-    textAlign: 'left',
-    justifyContent: 'flex-start', 
+    textAlign: 'right',
+    //justifyContent: 'flex-start',
     color: 'white',
 	},
 	fontStyle: {
-		fontSize: 12
+		fontFamily: 'AlegreyaSansSC-Medium',
+		color: 'white',
+		fontSize: 20
 	}
 };
 

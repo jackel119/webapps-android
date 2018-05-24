@@ -29,7 +29,9 @@ const styles = {
 		fontSize: 20,
 		color: 'white',
 		textAlign: 'right',
-		marginRight: 5
+		marginBottom: -10,
+		marginTop: -10,
+		//marginRight: 5
 	},
 
 	containerStyle: {
