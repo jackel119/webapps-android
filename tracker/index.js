@@ -11,12 +11,12 @@ import ExpenseList from './src/Components/ExpenseList';
 
 /* Create components */
 class App extends Component {
+
   constructor(props) {
     super(props);
     this.socket = io.connect('http://10.0.2.2:2605');
-    this.socket.on('connection', () => {
-      this.socket.emit('hello-message', {message: 'hello backend!'});
-      console.log('socket emitted message!');
+    this.socket.on('connect', () => {
+      this.socket.emit('hello-message', {message: 'hello backend! from, frontend!'});
     });
   }
 
