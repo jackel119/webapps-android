@@ -9,7 +9,7 @@ class ExpenseList extends Component {
 /* Fetch JSON from http */
 	componentWillMount() {
 		// axios.get('http://0.0.0.0:8000/transaction.json')
-			// .then(response => this.setState({ expenseList: response.data }));
+		// 	.then(response => this.setState({ expenseList: response.data }));
 	}
 
 	renderExpenses() {

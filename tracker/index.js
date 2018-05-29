@@ -1,10 +1,10 @@
 /* Import libraries */
 import React, { Component } from 'react';
-import { AppRegistry, View, StatusBar } from 'react-native';
+import { AppRegistry, View, StatusBar, Linking } from 'react-native';
 import io from 'socket.io-client';
 
 /* Import locals */
-import { CardSection } from './src/Components/Common';
+import { CardSection, Button } from './src/Components/Common';
 import DebitCredit from './src/Components/DebitCredit';
 import HeaderGreeting from './src/Components/HeaderGreeting';
 import ExpenseList from './src/Components/ExpenseList';
@@ -30,6 +30,12 @@ class App extends Component {
 
 			<CardSection>
 				<ExpenseList />
+			</CardSection>
+
+			<CardSection>
+				<Button onPress={() => Linking.openURL('https://www.google.co.uk/')}>
+          Facebook
+        </Button>
 			</CardSection>
 
 		</View>
