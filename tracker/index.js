@@ -1,6 +1,8 @@
 /* Import libraries */
 import React, { Component } from 'react';
 import { AppRegistry, View, StatusBar } from 'react-native';
+import io from 'socket.io-client';
+
 /* Import locals */
 import { CardSection } from './src/Components/Common';
 import DebitCredit from './src/Components/DebitCredit';
@@ -9,6 +11,16 @@ import ExpenseList from './src/Components/ExpenseList';
 
 /* Create components */
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.socket = io.connect('http://10.0.2.2:2605');
+    this.socket.on('connection', () => {
+      this.socket.emit('hello-message', {message: 'hello backend!'});
+      console.log('socket emitted message!');
+    });
+  }
+
+
 	render() {
 		return (
 		<View style={{ flex: 1 }}>
