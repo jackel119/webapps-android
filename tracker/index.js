@@ -14,7 +14,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.socket = io.connect('http://10.0.2.2:2605');
+    this.socket = io.connect("https://www.jackpordi.com:443", {secure:true, reconnect:true, rejectUnauthorized: false});
     this.socket.on('connect', () => {
       this.socket.emit('hello-message', {message: 'hello backend! from, frontend!'});
     });
