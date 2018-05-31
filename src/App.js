@@ -12,8 +12,9 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.socket = io.connect('https://www.jackpordi.com:443', { secure:true, reconnect:true, rejectUnauthorized: false });
+    this.socket = io.connect('https://jackpordi.com:443', { secure:true, reconnect:true, rejectUnauthorized: false });
   }
+  
 	// componentWillMount() {
 	// 	const config = {
 	// 		apiKey: 'AIzaSyANioEYzpzbNpXELf6CV7gkZW2JCPQRhtM',
