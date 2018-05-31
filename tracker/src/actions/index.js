@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+// import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
 	EMAIL_CHANGED,
@@ -25,15 +25,22 @@ export const passwordChanged = (text) => {
 export const loginUser = ({ email, password }) => {
 	return (dispatch) => {
 		dispatch({ type: LOGIN_USER });
+		if (email === 'Test@test.com' && password === '123123') {
+			const user = { email, password };
+			loginUserSucess(dispatch, user);
+		} else {
+			loginUserFail(dispatch);
+		}
 
-		firebase.auth().signInWithEmailAndPassword(email, password)
-			.then(user => loginUserSucess(dispatch, user))
-			.catch((error) => {
-				console.log(error);
-				firebase.auth().createUserWithEmailAndPassword(email, password)
-					.then(user => loginUserSucess(user))
-					.catch(() => loginUserFail(dispatch));
-				});
+
+		// firebase.auth().signInWithEmailAndPassword(email, password)
+		// 	.then(user => loginUserSucess(dispatch, user))
+		// 	.catch((error) => {
+		// 		console.log(error);
+		// 		firebase.auth().createUserWithEmailAndPassword(email, password)
+		// 			.then(user => loginUserSucess(user))
+		// 			.catch(() => loginUserFail(dispatch));
+		// 		});
 	};
 };
 
