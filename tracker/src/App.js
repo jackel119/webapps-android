@@ -5,8 +5,15 @@ import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import Router from './Router';
+import io from 'socket.io-client';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.socket = io.connect("https://www.jackpordi.com:443", {secure:true, reconnect:true, rejectUnauthorized: false});
+  }
 	componentWillMount() {
 		const config = {
 			apiKey: 'AIzaSyANioEYzpzbNpXELf6CV7gkZW2JCPQRhtM',
