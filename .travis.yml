@@ -1,7 +1,7 @@
 language: android
 before_install:
 - openssl aes-256-cbc -K $encrypted_4f33c1e899f4_key -iv $encrypted_4f33c1e899f4_iv
-  -in my-release-key.keystore.enc -out my-release-key.keystore -d
+  -in android/app/my-release-key.keystore.enc -out android/app/my-release-key.keystore -d
 - nvm install 6
 - node --version
 install:
