@@ -14,6 +14,9 @@ class App extends Component {
 
     // Connect to backend
     this.socket = io.connect('https://jackpordi.com:443', { secure:true, reconnect:true, rejectUnauthorized: false });
+    socket.on('connect', () => {
+      console.log('Connection Successful!');
+    });
   }
   
 	// componentWillMount() {
