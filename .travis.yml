@@ -23,7 +23,7 @@ deploy:
   api_key:
     secure: Pe6owaVUlT1tbBgrBj7JsXDC/J9GCEvEOBdGqyvk95ZrxUej3COL/80r+Bz8xj4KJwWL/BZi8iwy89NNvBezciLxhfr3TcnjrKK0MIl02Qa3+oj1gKBiFZn9Di2KF3LwIw6FH5iDJ4m6Z2Lb/ETPnVcFK5JMI27UYSetIFu+yNKtMDRMXvS/G7upVn0PVTTEw88yWE7N935lMgA7a9/qkXiWfIOlBgSHowMOl601DydwgC9srXIl6y8I5hGUjAp7ji5vj7S63tnHKb7TrsySWlMJ6BGojKcjFluHKi8YrBpLAPLHTFRQjSNm0hjXaCvQ8XWEUKaheFGLZjktGB+qD9HYbrE+zf0CkPGHRUHhAY12VSt2Di4WsaUFRyKYiUN+s3XZfAwbHVftrhx2xOXnZWDnyEbZD6kItiPmzhQS3EO5woFi2NTF50L/CfmglZMJL2Rgy7nZOxqSCdz9iXo/gP096LinBK5bahYigmjrj3HHVjV1NNCZjoY7Z2XrinnjMg2Fr4pf2q1keuUdqC8LY964GpXd4ygJOla/voptnEOWzv/TxmUIFrFnBMYGjv/1GVqkJTMYi1f2Uiarbip1vBh+p1tWuwpRNEt6XiXGMs2WWS7x4Gsuuyh+YuSnj7QE2bxc3c9St9xp5YW04jbVV8F5TDDkka/HFvKBoZUTUtE=
   file_glob: true
-  file: "$TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release.apk"
+  file: "$TRAVIS_BUILD_DIR/android/app/build/outputs/apk/*.apk"
   on:
     repo: jackel119/webapps-android
     tags: true
