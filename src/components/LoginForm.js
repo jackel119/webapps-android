@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
@@ -45,6 +45,7 @@ class LoginForm extends Component {
 	render() {
 		return (
 			<Card>
+        <StatusBar barStyle="dark-content" />
 				<CardSection>
 					<Input
 						label="Email"
