@@ -1,5 +1,5 @@
-// import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
+import { socket } from '../Global';
 import {
 	EMAIL_CHANGED,
 	PASSWORD_CHANGED,
@@ -25,22 +25,17 @@ export const passwordChanged = (text) => {
 export const loginUser = ({ email, password }) => {
 	return (dispatch) => {
 		dispatch({ type: LOGIN_USER });
-		if (email === 'Test@test.com' && password === '123123') {
-			const user = { email, password };
-			loginUserSucess(dispatch, user);
-		} else {
-			loginUserFail(dispatch);
-		}
 
+    socket.emit('authentication', { username: email, password });
+    socket.on('authResult', res => {
+      console.log(res);
 
-		// firebase.auth().signInWithEmailAndPassword(email, password)
-		// 	.then(user => loginUserSucess(dispatch, user))
-		// 	.catch((error) => {
-		// 		console.log(error);
-		// 		firebase.auth().createUserWithEmailAndPassword(email, password)
-		// 			.then(user => loginUserSucess(user))
-		// 			.catch(() => loginUserFail(dispatch));
-		// 		});
+      if (res.result) {
+        loginUserSucess(dispatch, { email, password });
+      } else {
+        loginUserFail(dispatch);
+      }
+    });
 	};
 };
 
