@@ -29,10 +29,10 @@ export const loginUser = ({ email, password }) => {
     socket.emit('authentication', { username: email, password });
     socket.on('authResult', res => {
       if (res.result) {
-        socket.emit('requestTXs');
-        socket.on('allTransactions', txs => {
-          console.log(txs);
-        });
+        // socket.emit('requestTXs');
+        // socket.on('allTransactions', txs => {
+        //   console.log(txs);
+        // });
         loginUserSucess(dispatch, { email, password });
       } else {
         loginUserFail(dispatch);

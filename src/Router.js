@@ -9,6 +9,7 @@ const RouterComponent = () => {
     <Router>
       <Scene key="root" hideNavBar>
         <Scene
+          // initial
           key="login"
           component={LoginForm}
           title="Please Login"
@@ -25,7 +26,6 @@ const RouterComponent = () => {
             hideNavBar
           />
           <Scene
-            // initial 
             key="addTransaction"
             component={AddTransaction}
             title="Add Transaction"

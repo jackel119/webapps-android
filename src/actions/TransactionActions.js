@@ -5,10 +5,11 @@ import {
 } from './types';
 
 export const transactionCreate = ({ to, from, date, currency, amount }) => {
+  const transaction = { 
+    to, from, amount, currency, description: 'test test test', groupID: null };
   return (dispatch) => {
-    console.log({ to, from, date, currency, amount });
-    socket.emit('createTX', 
-      { to, from, amount, currency, description: 'test test test', groupID: null });
+    socket.emit('createTX', transaction);
+    console.log(transaction);
     dispatch({ type: TRANSACTION_CREATE });
   };
 };
