@@ -9,16 +9,16 @@ const RouterComponent = () => {
     <Router>
       <Scene key="root" hideNavBar>
         <Scene
-          // initial
+          initial
           key="login"
           component={LoginForm}
           title="Please Login"
           sceneStyle={{ paddingTop: 64 }}
         />
-        
-        <Scene initial key="main">
+
+        <Scene /*initial*/ key="main">
           <Scene
-            initial 
+            initial
             key="homepage"
             component={Homepage}
             title="Home"
