@@ -7,6 +7,7 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER
 } from './types';
+import Storages from './Storages';
 
 export const emailChanged = (text) => {
   return {
@@ -31,6 +32,8 @@ export const loginUser = ({ email, password }) => {
       if (res.result) {
         socket.emit('requestTXs');
         socket.on('allTransactions', txs => {
+          Storages.set('email', email);
+          Storages.set('TXs', txs);
           console.log(txs);
         });
         loginUserSucess(dispatch, { email, password });
