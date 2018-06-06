@@ -11,7 +11,7 @@ class CameraComponent extends Component {
     this.camera.capture({ metadata: options })
       .then((data) => { 
           console.log(data); 
-          Actions.login(); 
+          Actions.addTransaction(); 
         })
       .catch((error) => { console.log(error); });
   }
