@@ -3,18 +3,36 @@ import { AsyncStorage } from 'react-native';
 class Storages {
 
   static get(key) {
-      return AsyncStorage.getItem(key).then((value) => {
-          const parsedValue = JSON.parse(value);
-          return parsedValue;
-      });
+    return AsyncStorage.getItem(key).then((value) => {
+      if (value) {
+        try {
+          value = JSON.parse(value);
+        } catch (e) {
+          //error
+        }
+      }
+      return value;
+    });
   }
 
   static set(key, value) {
+    try {
       return AsyncStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      //error
+    }
   }
 
   static delete(key) {
       return AsyncStorage.removeItem(key);
+  }
+
+  static getAllKeys() {
+    return AsyncStorage.getAllKeys();
+  }
+
+  static clearAll() {
+    return AsyncStorage.clear();
   }
 
   // static update(key, value) {

@@ -32,33 +32,30 @@ export const loginUser = ({ email, password }) => {
       if (res.result) {
         socket.emit('requestTXs');
         socket.on('allTransactions', txs => {
-          Storages.get('TXs').then((txs1) => {
-            const uid = txs1.from[0].from_user;
-            if (uid == null) {
-              console.log('1.first time');
+
+          const uid = txs.from[0].from_user.toString();
+
+          //clear records
+          Storages.delete(uid);
+          Storages.set('uid', 'txs'); // an arbitrary sample
+          //Storages.set(uid, txs);
+
+          // for checking
+          Storages.getAllKeys().then((result) => {
+            if (result.indexOf(uid) < 0) {
+              console.log('uid is: ' + uid);
+              console.log('TXs is: ' + txs);
+              Storages.set(uid, txs); // login for the first time: store TXs with uid as key
+              console.log('1.have keys: ' + result)
             } else {
-              console.log('1.uid is: ' + uid);
+              // TODO: has logged in before
+              console.log('2.have keys: ' + result)
             }
           });
 
-          Storages.set('email', email);
-          Storages.set('TXs', txs);
-          Storages.get('email').then((result) => console.log('AS email is: ' + result));
-          Storages.get('TXs').then((result) => console.log('AS TXs is: ' + result.from[0].txid));
+          Storages.getAllKeys().then((result) => console.log('3.have keys: ' + result));
+          //Storages.get(uid).then((result) => console.log('AS TXs is: ' + result.from[0].txid));
           console.log(txs);
-
-          Storages.get('TXs').then((txs1) => {
-            const uid = txs1.from[0].from_user;
-            if (uid == null) {
-              console.log('2.first time');
-            } else {
-              console.log('2.uid is: ' + uid);
-            }
-          });
-
-          //if (txs1 != null) {
-            //TODO
-          //}
         });
         loginUserSucess(dispatch, { email, password });
       } else {
@@ -77,19 +74,22 @@ const loginUserSucess = (dispatch, user) => {
   Actions.homepage();
 };
 
-
-  // const checkLoggedIn = () => {
-  //     //let context = this;
-  //     try {
-  //        Storages.get('TXs').then((txs) => {
-  //          if (txs != null) {
-  //             const uid = txs.from[0].from_user;
-  //             console.log('uid is: ' + uid);
-  //          } else {
-  //             console.log('first time');
-  //         }
-  //        });
-  //     } catch (error) {
-  //       console.log('error!!!');
-  //     }
-  // };
+/*
+  TXs.from = [..]
+  TXs.to = [..]
+*/
+  const checkLoggedIn = () => {
+      //let context = this;
+      try {
+         Storages.get('TXs').then((txs) => {
+           if (txs != null) {
+              const uid = txs.from[0].from_user;
+              console.log('uid is: ' + uid);
+           } else {
+              console.log('first time');
+          }
+         });
+      } catch (error) {
+        console.log('error!!!');
+      }
+  };
