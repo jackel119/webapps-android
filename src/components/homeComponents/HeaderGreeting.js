@@ -15,6 +15,9 @@ const HeaderGreeting = () => {
         <RoundButton onPress={() => Actions.addTransaction()}>
           Add
         </RoundButton>
+        <RoundButton onPress={() => Actions.camera()}>
+          Pic
+        </RoundButton>
         <View style={containerStyle}>
           <Text style={greetingStyle}>Good Morning,</Text>
           <Text style={usernameStyle}>Jack.</Text>
@@ -77,7 +80,7 @@ const styles = {
     alignContent: 'space-between',
     height: 300,
     width: null //to make sure the img spread across the page
-  },
+  }
 };
 
 export { HeaderGreeting };
