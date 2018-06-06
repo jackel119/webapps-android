@@ -48,10 +48,14 @@ class Storages {
   }
 
   static update(key, value) {
-      return Storages.get(key).then((item) => {
-          value = typeof value === 'string' ? value : Object.assign({}, item, value);
-          return AsyncStorage.setItem(key, JSON.stringify(value));
-      });
+    return Storages.get(key).then((item) => {
+      try {
+        value = typeof value === 'string' ? value : Object.assign({}, item, value);
+        return AsyncStorage.setItem(key, JSON.stringify(value));
+      } catch (error) {
+        console.log('update() error');
+      }
+    });
   }
 
 }

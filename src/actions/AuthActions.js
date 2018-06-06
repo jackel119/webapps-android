@@ -35,32 +35,31 @@ export const loginUser = ({ email, password }) => {
 
           const uid = txs.from[0].from_user.toString();
 
-          //clear records
           //Storages.clearAll();
-          //Storages.delete(uid);
+          Storages.delete(uid); //clear records, assuming it's the first time to login
           Storages.set('uid', 'txs'); // an arbitrary sample
           //Storages.set(uid, txs);
 
           // for checking
           Storages.getAllKeys().then((result) => {
             if (result.indexOf(uid) < 0) {
-              console.log('uid is: ' + uid);
-              console.log('TXs is: ' + txs);
+              // console.log('uid is: ' + uid);
+              // console.log('TXs is: ' + txs);
               Storages.set(uid, txs); // login for the first time: store TXs with uid as key
-              console.log('1.have keys: ' + result)
+              // console.log('1.have keys: ' + result)
             } else {
               // TODO: has logged in before
               Storages.update(uid, txs);
-              console.log('2.have keys: ' + result)
+              // console.log('2.have keys: ' + result)
             }
           });
 
 
-          Storages.get(uid).then((result) => console.log(result));
+          // Storages.get(uid).then((result) => console.log(result));
           console.log(txs);
         });
         loginUserSucess(dispatch, { email, password });
-        Storages.getAllKeys().then((result) => console.log('3.have keys: ' + result));
+        // Storages.getAllKeys().then((result) => console.log('3.have keys: ' + result));
       } else {
         loginUserFail(dispatch);
       }
@@ -76,23 +75,3 @@ const loginUserSucess = (dispatch, user) => {
   dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
   Actions.homepage();
 };
-
-/*
-  TXs.from = [..]
-  TXs.to = [..]
-*/
-  const checkLoggedIn = () => {
-      //let context = this;
-      try {
-         Storages.get('TXs').then((txs) => {
-           if (txs != null) {
-              const uid = txs.from[0].from_user;
-              console.log('uid is: ' + uid);
-           } else {
-              console.log('first time');
-          }
-         });
-      } catch (error) {
-        console.log('error!!!');
-      }
-  };
