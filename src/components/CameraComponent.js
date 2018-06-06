@@ -1,30 +1,28 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import Camera from 'react-native-camera';
+import { RNCamera } from 'react-native-camera';
 import { Actions } from 'react-native-router-flux';
 
 class CameraComponent extends Component {
-  takePicture() {
-    const options = {};
-
-    this.camera.capture({ metadata: options })
-      .then((data) => { 
-          console.log(data); 
-          Actions.addTransaction(); 
-        })
-      .catch((error) => { console.log(error); });
+  takePicture = async function(){
+    if (this.camera) {
+      const options = { quality: 1, base64: true};
+      const data = await this.camera.takePictureAsync(options);
+      console.log(data);
+      Actions.addTransaction();
+    }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Camera
+        <RNCamera
           ref={(cam) => {
             this.camera = cam;
           }}
           style={styles.cameraStyle}
-          aspect={Camera.constants.Aspect.fill}
-          captureTarget={Camera.constants.CaptureTarget.disk}
+          type={RNCamera.Constants.Type.back}
+          flashMode={RNCamera.Constants.FlashMode.on}
         >
           <Text
             style={styles.capture}
@@ -32,7 +30,7 @@ class CameraComponent extends Component {
           >
             PRESS HERE
           </Text>
-        </Camera>
+        </RNCamera>
       </View>
     );
   }
