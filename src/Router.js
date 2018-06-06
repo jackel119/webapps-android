@@ -33,7 +33,7 @@ const RouterComponent = () => {
           <Scene
             key="camera"
             component={CameraComponent}
-            title="Take a pic yo"
+            title="Scan Receipt"
           />
 
         </Scene>

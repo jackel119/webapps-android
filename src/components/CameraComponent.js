@@ -7,7 +7,6 @@ class CameraComponent extends Component {
   takePicture() {
     const options = {};
 
-    console.log('Reached Here');
     this.camera.capture({ metadata: options })
       .then((data) => { 
           console.log(data); 
@@ -25,6 +24,7 @@ class CameraComponent extends Component {
           }}
           style={styles.cameraStyle}
           aspect={Camera.constants.Aspect.fill}
+          captureTarget={Camera.constants.CaptureTarget.disk}
         >
           <Text
             style={styles.capture}
