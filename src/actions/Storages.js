@@ -7,8 +7,8 @@ class Storages {
       if (value) {
         try {
           value = JSON.parse(value);
-        } catch (e) {
-          //error
+        } catch (error) {
+          console.log('get() error');
         }
       }
       return value;
@@ -19,29 +19,40 @@ class Storages {
     try {
       return AsyncStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
-      //error
+      console.log('set() error');
     }
   }
 
   static delete(key) {
+    try {
       return AsyncStorage.removeItem(key);
+    } catch (error) {
+      console.log('delete() error');
+    }
   }
 
   static getAllKeys() {
-    return AsyncStorage.getAllKeys();
+    try {
+      return AsyncStorage.getAllKeys();
+    } catch (error) {
+      console.log('getAllKeys() error');
+    }
   }
 
   static clearAll() {
-    return AsyncStorage.clear();
+    try {
+      return AsyncStorage.clear();
+    } catch (error) {
+      console.log('clearAll() error');
+    }
   }
 
-  // static update(key, value) {
-  //     return Storages.get(key).then((item) => {
-  //         value = typeof value === 'string' ? value : Object.assign({}, item, value);
-  //         return AsyncStorage.setItem(key, JSON.stringify(value));
-  //     });
-  // }
-
+  static update(key, value) {
+      return Storages.get(key).then((item) => {
+          value = typeof value === 'string' ? value : Object.assign({}, item, value);
+          return AsyncStorage.setItem(key, JSON.stringify(value));
+      });
+  }
 
 }
 

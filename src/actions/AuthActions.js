@@ -36,7 +36,8 @@ export const loginUser = ({ email, password }) => {
           const uid = txs.from[0].from_user.toString();
 
           //clear records
-          Storages.delete(uid);
+          //Storages.clearAll();
+          //Storages.delete(uid);
           Storages.set('uid', 'txs'); // an arbitrary sample
           //Storages.set(uid, txs);
 
@@ -49,15 +50,17 @@ export const loginUser = ({ email, password }) => {
               console.log('1.have keys: ' + result)
             } else {
               // TODO: has logged in before
+              Storages.update(uid, txs);
               console.log('2.have keys: ' + result)
             }
           });
 
-          Storages.getAllKeys().then((result) => console.log('3.have keys: ' + result));
-          //Storages.get(uid).then((result) => console.log('AS TXs is: ' + result.from[0].txid));
+
+          Storages.get(uid).then((result) => console.log(result));
           console.log(txs);
         });
         loginUserSucess(dispatch, { email, password });
+        Storages.getAllKeys().then((result) => console.log('3.have keys: ' + result));
       } else {
         loginUserFail(dispatch);
       }
