@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import Camera from 'react-native-camera';
+import { Actions } from 'react-native-router-flux';
 
 class CameraComponent extends Component {
   takePicture() {
     const options = {};
 
+    console.log('Reached Here');
     this.camera.capture({ metadata: options })
-      .then((data) => { console.log(data); })
+      .then((data) => { 
+          console.log(data); 
+          Actions.login(); 
+        })
       .catch((error) => { console.log(error); });
   }
 
