@@ -30,10 +30,12 @@ export const loginUser = ({ email, password }) => {
     socket.emit('authentication', { username: email, password });
     socket.on('authResult', res => {
       if (res.result) {
+        const uid = res.data.uid;
+
         socket.emit('requestTXs');
         socket.on('allTransactions', txs => {
 
-          const uid = txs.from[0].from_user.toString();
+          //const uid = txs.from[0].from_user.toString();
 
           //Storages.clearAll();
           Storages.delete(uid); //clear records, assuming it's the first time to login
