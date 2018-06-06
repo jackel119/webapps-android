@@ -4,8 +4,8 @@ class Storages {
 
   static get(key) {
       return AsyncStorage.getItem(key).then((value) => {
-          const jsonValue = JSON.parse(value);
-          return jsonValue;
+          const parsedValue = JSON.parse(value);
+          return parsedValue;
       });
   }
 
@@ -13,6 +13,9 @@ class Storages {
       return AsyncStorage.setItem(key, JSON.stringify(value));
   }
 
+  static delete(key) {
+      return AsyncStorage.removeItem(key);
+  }
 
   // static update(key, value) {
   //     return Storages.get(key).then((item) => {
@@ -20,10 +23,8 @@ class Storages {
   //         return AsyncStorage.setItem(key, JSON.stringify(value));
   //     });
   // }
-  //
-  // static delete(key) {
-  //     return AsyncStorage.removeItem(key);
-  //   }
+
+
 }
 
 export default Storages;

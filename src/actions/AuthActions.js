@@ -32,9 +32,33 @@ export const loginUser = ({ email, password }) => {
       if (res.result) {
         socket.emit('requestTXs');
         socket.on('allTransactions', txs => {
+          Storages.get('TXs').then((txs1) => {
+            const uid = txs1.from[0].from_user;
+            if (uid == null) {
+              console.log('1.first time');
+            } else {
+              console.log('1.uid is: ' + uid);
+            }
+          });
+
           Storages.set('email', email);
           Storages.set('TXs', txs);
+          Storages.get('email').then((result) => console.log('AS email is: ' + result));
+          Storages.get('TXs').then((result) => console.log('AS TXs is: ' + result.from[0].txid));
           console.log(txs);
+
+          Storages.get('TXs').then((txs1) => {
+            const uid = txs1.from[0].from_user;
+            if (uid == null) {
+              console.log('2.first time');
+            } else {
+              console.log('2.uid is: ' + uid);
+            }
+          });
+
+          //if (txs1 != null) {
+            //TODO
+          //}
         });
         loginUserSucess(dispatch, { email, password });
       } else {
@@ -52,3 +76,20 @@ const loginUserSucess = (dispatch, user) => {
   dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
   Actions.homepage();
 };
+
+
+  // const checkLoggedIn = () => {
+  //     //let context = this;
+  //     try {
+  //        Storages.get('TXs').then((txs) => {
+  //          if (txs != null) {
+  //             const uid = txs.from[0].from_user;
+  //             console.log('uid is: ' + uid);
+  //          } else {
+  //             console.log('first time');
+  //         }
+  //        });
+  //     } catch (error) {
+  //       console.log('error!!!');
+  //     }
+  // };
