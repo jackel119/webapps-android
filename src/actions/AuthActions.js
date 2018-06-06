@@ -32,11 +32,34 @@ export const loginUser = ({ email, password }) => {
       if (res.result) {
         socket.emit('requestTXs');
         socket.on('allTransactions', txs => {
-          Storages.set('email', email);
-          Storages.set('TXs', txs);
+
+          const uid = txs.from[0].from_user.toString();
+
+          //Storages.clearAll();
+          Storages.delete(uid); //clear records, assuming it's the first time to login
+          Storages.set('uid', 'txs'); // an arbitrary sample
+          //Storages.set(uid, txs);
+
+          // for checking
+          Storages.getAllKeys().then((result) => {
+            if (result.indexOf(uid) < 0) {
+              // console.log('uid is: ' + uid);
+              // console.log('TXs is: ' + txs);
+              Storages.set(uid, txs); // login for the first time: store TXs with uid as key
+              // console.log('1.have keys: ' + result)
+            } else {
+              // TODO: has logged in before
+              Storages.update(uid, txs);
+              // console.log('2.have keys: ' + result)
+            }
+          });
+
+
+          // Storages.get(uid).then((result) => console.log(result));
           console.log(txs);
         });
         loginUserSucess(dispatch, { email, password });
+        // Storages.getAllKeys().then((result) => console.log('3.have keys: ' + result));
       } else {
         loginUserFail(dispatch);
       }
