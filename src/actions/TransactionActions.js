@@ -1,7 +1,8 @@
 import { socket } from '../Global';
 import {
   TRANSACTION_CREATE,
-  TRANSACTION_UPDATE
+  TRANSACTION_UPDATE,
+  TRANSACTION_INITIATE
 } from './types';
 
 export const transactionCreate = ({ to, from, date, currency, amount }) => {
@@ -18,5 +19,12 @@ export const transactionUpdate = ({ prop, value }) => {
   return {
     type: TRANSACTION_UPDATE,
     payload: { prop, value }
+  };
+};
+
+export const transactionInitiate = (initial) => {
+  return {
+    type: TRANSACTION_INITIATE,
+    payload: initial
   };
 };

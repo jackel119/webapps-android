@@ -6,10 +6,10 @@ import { Actions } from 'react-native-router-flux';
 class CameraComponent extends Component {
   takePicture = async function(){
     if (this.camera) {
-      const options = { quality: 1, base64: true};
+      const options = { quality: 0.5, base64: true};
       const data = await this.camera.takePictureAsync(options);
-      console.log(data);
-      Actions.addTransaction();
+      Actions.imageDisplay(data);
+      // {base, height, width, uri}
     }
   }
 
@@ -22,7 +22,8 @@ class CameraComponent extends Component {
           }}
           style={styles.cameraStyle}
           type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.on}
+          //  autoFocus={RNCamera.Constants.AutoFocus.off}
+          //flashMode={RNCamera.Constants.FlashMode.on}
         >
           <Text
             style={styles.capture}
