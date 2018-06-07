@@ -9,6 +9,8 @@ import {
 } from './types';
 import Storages from './Storages';
 
+const Global = require('./../Global');
+
 export const emailChanged = (text) => {
   return {
     type: EMAIL_CHANGED,
@@ -30,17 +32,18 @@ export const loginUser = ({ email, password }) => {
     socket.emit('authentication', { username: email, password });
     socket.on('authResult', res => {
       if (res.result) {
-        const uid = res.data.uid;
+        Global.UID = res.data.uid;
+        const uid = Global.UID;
+        console.log('1.uid is: ' + uid);
 
         socket.emit('requestTXs');
         socket.on('allTransactions', txs => {
-
-          //const uid = txs.from[0].from_user.toString();
-
-          //Storages.clearAll();
-          Storages.delete(uid); //clear records, assuming it's the first time to login
+          Storages.clearAll();
+          //Storages.delete(uid); //clear records, assuming it's the first time to login
           Storages.set('uid', 'txs'); // an arbitrary sample
+          Storages.getAllKeys().then((result) => console.log('0.have keys: ' + result));
           //Storages.set(uid, txs);
+          console.log('2.uid is: ' + uid);
 
           // for checking
           Storages.getAllKeys().then((result) => {
@@ -48,20 +51,18 @@ export const loginUser = ({ email, password }) => {
               // console.log('uid is: ' + uid);
               // console.log('TXs is: ' + txs);
               Storages.set(uid, txs); // login for the first time: store TXs with uid as key
-              // console.log('1.have keys: ' + result)
+              console.log('1.have keys: ' + result)
             } else {
               // TODO: has logged in before
               Storages.update(uid, txs);
-              // console.log('2.have keys: ' + result)
+              console.log('2.have keys: ' + result)
             }
           });
 
-
-          // Storages.get(uid).then((result) => console.log(result));
+          //Storages.get(uid).then((result) => console.log(result));
           console.log(txs);
         });
         loginUserSucess(dispatch, { email, password });
-        // Storages.getAllKeys().then((result) => console.log('3.have keys: ' + result));
       } else {
         loginUserFail(dispatch);
       }
