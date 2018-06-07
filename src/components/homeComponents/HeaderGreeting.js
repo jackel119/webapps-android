@@ -12,13 +12,16 @@ const HeaderGreeting = () => {
     style={imageStyle}
     >
       <View>
+        <View style={containerStyle}>
         <RoundButton onPress={() => Actions.addTransaction()}>
           Add
         </RoundButton>
         <RoundButton onPress={() => Actions.camera()}>
           Pic
         </RoundButton>
-        <View style={containerStyle}>
+        <RoundButton onPress={() => Actions.refresh({key: "drawer", open: true})}>
+          Menu
+        </RoundButton>
           <Text style={greetingStyle}>Good Morning,</Text>
           <Text style={usernameStyle}>Jack.</Text>
           <View style={blankStyle} />
