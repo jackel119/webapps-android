@@ -5,6 +5,7 @@ class Storages {
 static get(key) {
     try {
       return AsyncStorage.getItem(key).then((value) => {
+        if (value == null) { console.log('get() returns null'); return; }
         const parsedValue = JSON.parse(value);
         return parsedValue;
       });

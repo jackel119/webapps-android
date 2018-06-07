@@ -4,13 +4,14 @@ import LoginForm from './components/LoginForm';
 import Homepage from './components/Homepage';
 import CameraComponent from './components/CameraComponent';
 import AddTransaction from './components/AddTransaction';
+import ExpensePage from './components/ExpensePage';
 
 const RouterComponent = () => {
   return (
     <Router>
       <Scene key="root" hideNavBar sceneStyle={{ paddingTop: 64 }}>
         <Scene
-          initial
+          //initial
           key="login"
           component={LoginForm}
           title="Please Login"
@@ -37,6 +38,13 @@ const RouterComponent = () => {
           />
 
         </Scene>
+
+        <Scene
+          initial
+          key="expenseList"
+          component={ExpensePage}
+          title="Show expense list"
+        />
 
       </Scene>
     </Router>
