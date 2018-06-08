@@ -3,11 +3,9 @@ import { ImageBackground, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { RoundButton } from '../common';
 
-
-
 const HeaderGreeting = () => {
   const { greetingStyle, blankStyle, usernameStyle, spentStyle, imageStyle,
-    containerStyle, white, toplineStyle } = styles;
+    containerStyle, white } = styles;
 
 
   return (
@@ -16,17 +14,17 @@ const HeaderGreeting = () => {
     style={imageStyle}
     >
       <View>
+        <View style={containerStyle}>
+        <RoundButton onPress={() => Actions.addTransaction()}>
+          Add
+        </RoundButton>
         <RoundButton onPress={() => Actions.camera()}>
           Pic
         </RoundButton>
-        <View style={containerStyle}>
-          <View style={toplineStyle}>
-            <Text style={greetingStyle}>Good Morning,</Text>
-            <RoundButton onPress={() => Actions.AddTransaction()}>
-              Add
-            </RoundButton>
-          </View>
-
+        <RoundButton onPress={() => Actions.refresh({ key: 'drawer', open: true })}>
+          Menu
+        </RoundButton>
+          <Text style={greetingStyle}>Good Morning,</Text>
           <Text style={usernameStyle}>Jack.</Text>
           <View style={blankStyle} />
           <Text style={white}>You have spent</Text>
@@ -49,7 +47,8 @@ const styles = {
   },
 
   containerStyle: {
-    paddingHorizontal: 20,
+    marginTop: 64,
+    paddingHorizontal: 20
   },
 
   blankStyle: {

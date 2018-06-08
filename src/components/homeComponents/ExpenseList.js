@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Actions } from 'react-native-router-flux';
-import { ScrollView, View } from 'react-native';
-import axios from 'axios';
-import Button from '../common';
+import { ScrollView } from 'react-native';
 import ExpenseDetail from './ExpenseDetail';
 import Storages from './../../actions/Storages';
 
@@ -15,8 +12,6 @@ class ExpenseList extends Component {
 	componentWillMount() {
 		// axios.get('http://10.0.2.2:8000/transaction.json')
 		// 	.then(response => this.setState({ expenseList: response.data }));
-
-
 	}
 
 	renderExpenses() {

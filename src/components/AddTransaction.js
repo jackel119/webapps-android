@@ -2,11 +2,20 @@ import React, { Component } from 'react';
 import { View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input, Button } from './common';
-import { transactionCreate, transactionUpdate } from '../actions';
+import { transactionCreate, transactionUpdate, transactionInitiate } from '../actions';
 
 class AddTransaction extends Component {
 
+  constructor(props) {
+    super(props);
+    console.log(this.props);
+    this.props.transactionInitiate({ 
+      amount: this.props.scannedAmount, 
+      date: this.props.scannedDate });
+  }
+
   onBottunPress() {
+    console.log(this.props);
     const { to, from, date, currency, amount } = this.props;
     this.props.transactionCreate({ to, from, date, currency, amount });
   }
@@ -78,4 +87,5 @@ const mapStateToProps = (state) => {
   return { to, from, date, currency, amount };
 };
 
-export default connect(mapStateToProps, { transactionUpdate, transactionCreate })(AddTransaction);
+export default connect(mapStateToProps, { transactionCreate, transactionUpdate, transactionInitiate })(AddTransaction);
+

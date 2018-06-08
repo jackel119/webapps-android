@@ -42,15 +42,19 @@ export const loginUser = ({ email, password }) => {
           //Storages.delete(uid); //clear records, assuming it's the first time to login
           Storages.set('uid', 'txs'); // an arbitrary sample
           Storages.getAllKeys().then((result) => console.log('0.have keys: ' + result));
+
           //Storages.set(uid, txs);
           console.log('2.uid is: ' + uid);
+          Storages.set(uid, txs);
+          Storages.get(uid).then(res => console.log(res));
+
 
           // for checking
           Storages.getAllKeys().then((result) => {
             if (result.indexOf(uid) < 0) {
               // console.log('uid is: ' + uid);
               // console.log('TXs is: ' + txs);
-              Storages.set(uid, txs); // login for the first time: store TXs with uid as key
+ // login for the first time: store TXs with uid as key
               console.log('1.have keys: ' + result)
             } else {
               // TODO: has logged in before
@@ -60,7 +64,6 @@ export const loginUser = ({ email, password }) => {
           });
 
           //Storages.get(uid).then((result) => console.log(result));
-          console.log(txs);
         });
         loginUserSucess(dispatch, { email, password });
       } else {

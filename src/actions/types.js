@@ -5,3 +5,4 @@ export const LOGIN_USER_FAIL = 'login_user_fail';
 export const LOGIN_USER = 'login_user';
 export const TRANSACTION_CREATE = 'transaction_create';
 export const TRANSACTION_UPDATE = 'transaction_update';
+export const TRANSACTION_INITIATE = 'transaction_initiate';
