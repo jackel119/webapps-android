@@ -11,18 +11,18 @@ class ExpensePage extends Component {
 
 /* Fetch JSON from http */
 	componentWillMount() {
-    // const uid = Global.UID;
+    const uid = Global.UID;
 		// Storages.get(uid)
 		// 	.then(result => this.setState({ expenseList: result }));
 
-    // An example TX for testing
+    //An example TX for testing
     const exampleTX = {
           txid: '1',
           from_user: 'uid',
           to_user: '3',
           currency: 0,
           amount: 'howMuch',
-          time: 'dateCreated',
+          time: 'dateCreated loooooooog',
           description: 'description',
           status: 0,
           gid: null

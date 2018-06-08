@@ -48,6 +48,7 @@ const styles = {
 	timeStyle: {
 		color: 'white',
 		textAlign: 'right',
+		fontSize: 12,
 		marginBottom: 5,
 	},
 	descriptionStyle: {

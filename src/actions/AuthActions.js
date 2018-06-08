@@ -38,7 +38,7 @@ export const loginUser = ({ email, password }) => {
 
         socket.emit('requestTXs');
         socket.on('allTransactions', txs => {
-          Storages.clearAll();
+          //Storages.clearAll();
           //Storages.delete(uid); //clear records, assuming it's the first time to login
           Storages.set('uid', 'txs'); // an arbitrary sample
           Storages.getAllKeys().then((result) => console.log('0.have keys: ' + result));
@@ -54,7 +54,7 @@ export const loginUser = ({ email, password }) => {
               console.log('1.have keys: ' + result)
             } else {
               // TODO: has logged in before
-              Storages.update(uid, txs);
+              //Storages.update(uid, txs);
               console.log('2.have keys: ' + result)
             }
           });

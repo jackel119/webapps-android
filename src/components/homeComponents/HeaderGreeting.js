@@ -3,23 +3,30 @@ import { ImageBackground, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { RoundButton } from '../common';
 
+
+
 const HeaderGreeting = () => {
   const { greetingStyle, blankStyle, usernameStyle, spentStyle, imageStyle,
-    containerStyle, white } = styles;
+    containerStyle, white, toplineStyle } = styles;
+
+
   return (
     <ImageBackground
     source={require('../Img/header1.jpg')}
     style={imageStyle}
     >
       <View>
-        <RoundButton onPress={() => Actions.addTransaction()}>
-          Add
-        </RoundButton>
         <RoundButton onPress={() => Actions.camera()}>
           Pic
         </RoundButton>
         <View style={containerStyle}>
-          <Text style={greetingStyle}>Good Morning,</Text>
+          <View style={toplineStyle}>
+            <Text style={greetingStyle}>Good Morning,</Text>
+            <RoundButton onPress={() => Actions.AddTransaction()}>
+              Add
+            </RoundButton>
+          </View>
+
           <Text style={usernameStyle}>Jack.</Text>
           <View style={blankStyle} />
           <Text style={white}>You have spent</Text>
@@ -51,7 +58,7 @@ const styles = {
 
   greetingStyle: {
     fontFamily: 'Drugs',
-    fontSize: 40,
+    fontSize: 34,
     textAlign: 'left',
     color: 'white',
     opacity: 0.9
@@ -59,9 +66,9 @@ const styles = {
 
   usernameStyle: {
     fontFamily: 'AlegreyaSansSC-Regular',
-    fontSize: 35,
+    fontSize: 30,
     textAlign: 'right',
-    right: 30,
+    right: 40,
     color: 'white',
     opacity: 0.9
   },
@@ -80,6 +87,11 @@ const styles = {
     alignContent: 'space-between',
     height: 300,
     width: null //to make sure the img spread across the page
+  },
+
+  toplineStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 };
 
