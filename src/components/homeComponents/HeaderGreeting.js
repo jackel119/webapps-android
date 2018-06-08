@@ -21,9 +21,6 @@ const HeaderGreeting = () => {
         <RoundButton onPress={() => Actions.camera()}>
           Pic
         </RoundButton>
-        <RoundButton onPress={() => Actions.refresh({ key: 'drawer', open: true })}>
-          Menu
-        </RoundButton>
           <Text style={greetingStyle}>Good Morning,</Text>
           <Text style={usernameStyle}>Jack.</Text>
           <View style={blankStyle} />
