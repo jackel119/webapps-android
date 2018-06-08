@@ -13,20 +13,27 @@ const RouterComponent = () => {
   return (
     <Router>
       <Scene key="root" hideNavBar sceneStyle={{ paddingTop: 64 }}>
+        <Scene 
+          //initial 
+          key="login"
+          component={LoginForm}
+          title="Please Login"
+        />
         <Drawer
+          initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
           drawerWidth={300}
         >
-          <Scene initial key="main">
+          <Scene key="main">
             <Scene
               initial
               key="homepage"
               component={Homepage}
               title="Home"
-              onLeft="Menu"
-              hideNavBar
+              //onLeft="Menu"
+              //hideNavBar
             />
             <Scene
               key="addTransaction"

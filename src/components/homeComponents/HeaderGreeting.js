@@ -19,7 +19,7 @@ const HeaderGreeting = () => {
         <RoundButton onPress={() => Actions.camera()}>
           Pic
         </RoundButton>
-        <RoundButton onPress={() => Actions.refresh({key: "drawer", open: true})}>
+        <RoundButton onPress={() => Actions.refresh({ key: 'drawer', open: true })}>
           Menu
         </RoundButton>
           <Text style={greetingStyle}>Good Morning,</Text>
@@ -45,7 +45,8 @@ const styles = {
   },
 
   containerStyle: {
-    paddingHorizontal: 20,
+    marginTop: 64,
+    paddingHorizontal: 20
   },
 
   blankStyle: {
