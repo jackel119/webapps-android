@@ -10,6 +10,8 @@ class ExpenseList extends Component {
 
 /* Fetch JSON from http */
 	componentWillMount() {
+    const uid = Global.UID;
+    Storages.get(uid).then(result => this.setState({ expenseList: result }));
 		// axios.get('http://10.0.2.2:8000/transaction.json')
 		// 	.then(response => this.setState({ expenseList: response.data }));
 	}
@@ -21,8 +23,6 @@ class ExpenseList extends Component {
 	}
 
 	render() {
-		const uid = Global.UID;
-		Storages.get(uid).then(result => this.setState({ expenseList: result }));
 		console.log(this.state);
 		return (
 			<ScrollView>

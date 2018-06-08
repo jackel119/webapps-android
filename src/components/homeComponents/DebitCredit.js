@@ -11,13 +11,13 @@ const DebitCredit = () => {
 	return (
 		<View style={headerContentStyle}>
 			<View style={debitStyle}>
-				<Text style={fontStyle}>Debit</Text>
-				<Text style={textStyle}>£123</Text>
+				<Text style={fontStyle}>In</Text>
+				<Text style={textStyle}>£1432.56</Text>
 			</View>
 
 			<View style={creditStyle}>
-				<Text style={fontStyle}>Credit</Text>
-				<Text style={textStyle}>£456</Text>
+				<Text style={fontStyle}>Out</Text>
+				<Text style={textStyle}>£956.23</Text>
 			</View>
 		</View>
 	);
