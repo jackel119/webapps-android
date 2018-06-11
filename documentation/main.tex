@@ -9,10 +9,12 @@
 
 % This is the preamble section where you can include extra packages etc.
 \titlespacing*{\section}
-{0pt}{-1ex}{-1ex}
+{0pt}{-1.5ex}{-1.5ex}
 \titlespacing*{\subsection}
 {0pt}{-1ex}{-1ex}
-\setlist[itemize]{noitemsep, topsep=0pt}
+\titleformat*{\section}{\Large\bfseries}
+
+\setlist[itemize]{noitemsep, topsep=-4pt}
 
 \begin{document}
 \title{\vspace{-8ex}Human Centred Design Techniques Report \vspace{-2ex}}
@@ -34,9 +36,13 @@ In the current market, there exists many apps that help people with splitting bi
 \section{Key Design Insights and Proposed Future States}
 
 We aim to have our app to not only be able to function as a bill splitter/expense tracker, but also for it to be convenient enough for our users that they actually save time and effort in doing those tasks. From our user panel, we realized that no one actually likes the process, and they just want to get it done, so our design philosophy will be based on the users (hopefully) not even noticing themselves using our app solution.
-Based on the main problem of inconvenience that we identified through our interviews, we proposed (along with our users' suggestions) several features that focus on allowing users to record and split their bills with the absolute minimum effort. See *appendix* for details.
+Based on the main problem of inconvenience that we identified through our interviews, we proposed (along with our users' suggestions) several features that focus on allowing users to record and split their bills with the absolute minimum effort. See Section \ref{intQ}  for details.
+
+<<<<<<< HEAD
+=======
 We ended up focusing on the image scanning as our number 1 feature, as this was the most impactful feature in easing the process of splitting bills (whilst still being technically possible/not relying on 3rd party features that don't yet exist).
 
+>>>>>>> 17cbee67f65e9729ff78669ebd4319d9f4c17d4c
 We believe that with those features, as well as focusing on a simple and clean interface, would solve the problem that we identified eariler. We believe that the app that we produce would provide convenience for many young professionals that struggle to track their expenses currently.
 
 \section{HCD Research Methodology}
@@ -45,7 +51,7 @@ During all of our iterations, we made sure to keep requesting our user panel for
 
 \begin{itemize}
 \item What are your thought on splitting bills and expenses? How do you currently deal with them? Are you frustrated by having to do this?
-\item Have you ever used an app like this before? (after showing them one such app) What are your thoughts on it?
+\item Have you ever used an app like this before? (after showing them one such app) What are your thoughts?
 \item Do you think it has enough features? Is it intuitive enough?
 \item Do you know friends/family that already use this, or would benefit from it?
 \end{itemize} 
@@ -56,36 +62,11 @@ Given that the problem statement revolves around the (in)convenience and sluggis
 \newpage
 \section{Appendix}
 
-\subsection{Interview Response}
-\label{intRes}
-Below are the some of the response we had when interviewing people that have recently begun their professional careers.
-
-\begin{itemize}
-  \item ‘We end up taking as much time to write down down the items and details of an expense’
-  \item ‘I’m still too lazy to do mental arithmetic.’
-  \item ‘Why do I have to enter the same details every time? I'm fed up with it.’
-  \item 'Why is it so complicated to add a bill?'
-  \item 'The app just is not easy to use, too many useless features that I don't need.'
-  \item 'Sometimes my friends don't believe me when I tell them that they owe me. It is also very difficult when you tell your coworker that they owe you money.'
-\end{itemize}
-
-\subsection{Initial Mockup}
-\vspace{-3ex}
-\label{mockup}
-\adjustimage{max size={0.8\linewidth}{0.8\paperheight}}{initialMockup.jpg}
-
-\subsection{Digital Touchpoint Prototype}
-\label{dtp}
-
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{DTP1.png}
-
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{DTP2.png}
-
 \subsection{Personas}
 \label{persona}
 \subsubsection{Persona 1}
 Rachel McKeown 
-\vspace{-2ex}
+
 \begin{itemize}
   \item 22 years old
   \item Did not go to university - went straight into work
@@ -105,7 +86,7 @@ Her preference: Be able to easily track expenses without having to spend 5 minut
 
 \subsubsection{Persona 2}
 Johnathan Ong
-\vspace{-2ex}
+
 \begin{itemize}
   \item 23 years old
   \item Recent graduate, currently working at large tech company
@@ -121,7 +102,7 @@ His preference:
 He would like to to know exactly which of his friends/coworkers owes him how much, and have a record of every time he ha��s paid for/been paid for.
 
 \subsection{Sample Interview Questions}
-\vspace{-2ex}
+
 \begin{itemize}
   \item How often do you split the bill with others, per week?
   \item Roughly, could you give us an idea of how much money each bill you split would cost you?
@@ -162,7 +143,7 @@ Some commonly mentioned interview responses (Our target interviewees are young p
   \item "Sometimes my friends don't believe me when I tell them that they owe me. It is also very difficult when you tell your coworker that they owe you money."
 \end{itemize}
 
-\subsection{Preliminary Feedback on Research Questions}
+\subsection{Preliminary Feedback on Interviews}
 \label{feedback}
 \begin{itemize}
   \item Focus on keeping it simple
@@ -173,8 +154,11 @@ Likely due to them being their own money they earn through work and not loans/pa
   \item Most said they liked our mockups, but didn’t care too much about advanced/detailed features.
 \end{itemize}
 
-\subsection{Proposed/Suggested App Features}
+\subsection{Mood-o-grams to Represent User journey Using Existing Bill-splitting Apps}
+\adjustimage{max size={0.8\linewidth}{0.8\paperheight}}{mood-o-gram.png}
 
+\subsection{Proposed/Suggested App Features}
+\label{intQ}
 \begin{itemize}
 \item Receipt Scanning/Parsing - Users will no longer need to type out an itemized version of their receipts, and this will save a significant amount of time and effort for them.
 \item Integration with Android Pay/Apple Pay/other vendors to automatically detect their itemized payments, meaning users don't even need to input any data apart from how it will be split (if at all).
@@ -183,18 +167,31 @@ Likely due to them being their own money they earn through work and not loans/pa
 \item Paypay/Monzo integration - Allow users to settle debts easily, as well as request settlements from other users.
 \end{itemize} 
 
+\subsection{Initial Mockup}
+
+\label{mockup}
+\adjustimage{max size={0.8\linewidth}{0.8\paperheight}}{initialMockup.jpg}
+
+\subsection{Digital Touchpoint Prototype}
+\label{dtp}
+
+\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{DTP1.png}
+
+\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{DTP2.png}
+
+
+
 \subsection{Application Iteration 1}
 
 In the first iteration, we introduced Login Page and Home page as well as an add transaction page, some very basic functionality for the app. The user mentioned that they like the simplicity in the design, especially in the Add Transaction page, they mentioned one point for improvement can be adding drop-down menus for the entry fields as well as default options, which can make their life easier while entering the transaction. They also mentioned that they very much look forward to the receipt scanning feature.
 
 \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{appIt1.png}
 
-
 \subsection{Application Iteration 2}
 
 We started implementing the receipt scanning feature as user requested in the previous iteration. However, that feature is not easy to implement, especially when trying to pick out all the items from the receipt one by one, that is especially time consuming. Therefore we decided to implement an easier version of the feature first, and see how the feedback is like on that feature before digging deeper into the more sophisticated aspect of this feature. The users liked this feature but they mentioned that they would also like the feature to be able to split out different items in the bill. They think that feature would be especially helpful when going grocery shopping for their friends but different people request different items. They also mentioned that they would like to see the picture that they took before the receipt processed, because they don't want to waste time requesting information from a blurred picture. They also mentioned that they would like easier navigation around the app, since the number of interfaces are getting greater, possibly a menu would be very good.
 
-\adjustimage{max size={0.8\linewidth}{0.8\paperheight}}{appIt2.png}
+\adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{appIt2.png}
 
 \subsection{Application Iteration 3}
 We implemented the features that the users suggested in the previous iteration. The users were very impressed with the new improvements and they also made a couple more suggestions. One user mentioned that they would like to be able to crop the picture after it has been taken. Another mentioned the UI design and flow of the app could be improved, especially with how the menu bar looks and where it is located.
