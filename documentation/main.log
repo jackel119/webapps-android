@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.1.13)  10 JUN 2018 14:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.1.13)  11 JUN 2018 13:27
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -241,19 +241,19 @@ File: appIt1.png Graphic file (type png)
 Package pdftex.def Info: appIt1.png used on input line 169.
 (pdftex.def)             Requested size: 469.75502pt x 197.30177pt.
  [7]
-<appIt2.png, id=35, 956.57375pt x 552.0625pt>
+<appIt2.png, id=35, 536.60475pt x 303.534pt>
 File: appIt2.png Graphic file (type png)
  <use appIt2.png>
 Package pdftex.def Info: appIt2.png used on input line 173.
-(pdftex.def)             Requested size: 469.75502pt x 271.10265pt.
+(pdftex.def)             Requested size: 469.75502pt x 265.72127pt.
 
-<appIt3.png, id=36, 610.28pt x 502.87875pt>
+<appIt3.png, id=37, 610.28pt x 502.87875pt>
 File: appIt3.png Graphic file (type png)
  <use appIt3.png>
 Package pdftex.def Info: appIt3.png used on input line 177.
 (pdftex.def)             Requested size: 352.31625pt x 290.31937pt.
 
-<appIt4.png, id=37, 672.5125pt x 528.97626pt> [8 <./appIt1.png> <./appIt2.png>]
+<appIt4.png, id=38, 672.5125pt x 528.97626pt> [8 <./appIt1.png> <./appIt2.png>]
 File: appIt4.png Graphic file (type png)
 <use appIt4.png>
 Package pdftex.def Info: appIt4.png used on input line 179.
@@ -274,10 +274,10 @@ Here is how much of TeX's memory you used:
 /amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 msy10.pfb>
-Output written on main.pdf (9 pages, 1215905 bytes).
+Output written on main.pdf (9 pages, 1128166 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
- 40 compressed objects within 1 object stream
+ 67 PDF objects out of 1000 (max. 8388607)
+ 41 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
