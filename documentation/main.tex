@@ -1,4 +1,4 @@
-\documentclass[a4wide, 11pt]{article}
+\documentclass[a4wide, 10pt]{article}
 \usepackage{a4, fullpage, graphicx}
 \setlength{\parskip}{0.3cm}
 \setlength{\parindent}{0cm}
@@ -25,25 +25,57 @@ Our initial idea is to create an app that helps people with tracking their expen
 \vspace{-3ex}
 In the current market, there do exist many apps that help people with splitting bills and keeping track of their expenses. However, we have also identified that not many people use these apps that are available on the market. Therefore we would like to identify why that is the case. We have done so through some interviews with people of our target audience, and the result can be found in Section \ref{intRes}. As we identified with our interviews, many people dislike the current state of the apps simply because it is not easy enough to use, and it doesn't actually help them with solving their problem of keeping track of the expenses.
 \vspace{-3ex}
+
+Almost everyone has at least one person who they often share expenses and split bills with - for example, flatmates, significant others, friends and coworkers. Such expenses can range from restaurant meals, grocery shopping, to house bills, etc. It is almost always an inconvenient situation for everyone involved on dealing with said expenses, e.g. paying separately is not always possible, having one person cover the costs and keeping a track record/ledger of payments requires considerable effort, and all solutions take some mental arithmetic.
+
+Our initial idea is to create an app that helps people with tracking their expenses, specifically with splitting their bills. We then went on to do some initial research on the this specific idea. We are specifically focusing on young professionals under the age of 30 that share expenses with their coworkers/friends/flatmates/SOs (as through our research, they seem to be the most passionate about this problem). We will discuss in detail the process our initial research below.
+
+\section{Identification of Current State}
+
+There already exists many apps that aid people in dealing with the problem stated above. However, we have also identified that few people actually utilise these apps. Therefore we would like to identify why that is the case. We conducted interviews with individuals from our target audience, and the result can be found in Section \ref{intRes}. From our interviews, we found that many people dislike the current state of the apps simply because they are not intuitive, and doesn't actually help them with solving their problem of keeping track of the expenses.
+
 \section{Key Design Insights and Proposed Future States}
 \vspace{-3ex}
 Based on the problem that we identified through our interviews, we proposed several features:
 \begin{itemize}
-\item Receipt Scanning - This means that people don't have to go through the pain of entering the items one by one, also saves a lot of their time.
-\item Integration with Android Pay/Apple pay to automatically detect their expenses - This kind of automation would mean that users could keep track of their expenses without even opening the app.
-\item Learn user's behavior over time - No need to enter repeated bills
-\item Allow user to settle debts automatically with other users that uses the app - debts can cancel over time, no need for excess amount of transactions.
-\item Paypay/Monzo integration - Allow users to settle debts easily
+\item Receipt Scanning/Parsing - Users will no longer need to type out an itemized version of their receipts, and this will save a significant amount of time and effort for them.
+\item Integration with Android Pay/Apple Pay/other vendors to automatically detect their itemized payments, meaning users don't even need to input any data apart from how it will be split (if at all).
+\item Adaptive behaviour - intelligently learn user's splitting habits over time, e.g. expenses named "Bill" (or e.g. images of an electricity bill) will automatically be split evenly with a group names "Flat".
+\item Automatically and optimally calculating debt settling/transferring so that users have less people to worry about.
+\item Paypay/Monzo integration - Allow users to settle debts easily, as well as request settlements from other users.
 \end{itemize} 
 
-We believe that with those features, as well as a simple and clean interface, would solve the problem that we identified eariler. We believe that the app that we produce would provide convenience for many young professionals that struggle to track their expenses currently.
+We believe that with those features, as well as focusing on a simple and clean interface, would solve the problem that we identified eariler. We believe that the app that we produce would provide convenience for many young professionals that struggle to track their expenses currently.
 
 \section{HCD Research Metthodology}
 \vspace{-3ex}
-something hahahaha~
+Throughout the project, we made sure to keep requesting our user panel for feedback. Before we started working, we also asked more general questions in regards to the nature of the problem statement.
+
+\begin{itemize}
+\item What are your thought on splitting bills and expenses? How do you currently deal with them? Are you frustrated by having to do this?
+\item Have you ever used an app like this before? (after showing them one such app) What are your thoughts on it?
+\item Do you think it has enough features? Is it intuitive enough?
+\item Do you know friends/family that already use this, or would benefit from it?
+\end{itemize} 
+
+Given that the problem statement revolves around the (in)convenience and sluggish nature of splitting bills, we also prioritized on the UI giving users a clean and minimal experience in using the app, hence we continuously also asked users to try using the app and provide feedback on the app GUI and flow.
+
 
 \newpage
 \section{Appendix}
+
+\subsection{Interview Response}
+\label{intRes}
+Below are the some of the response we had when interviewing people that have recently begun their professional careers.
+
+\begin{itemize}
+  \item ‘We end up taking as much time to write down down the items and details of an expense’
+  \item ‘I’m still too lazy to do mental arithmetic.’
+  \item ‘Why do I have to enter the same details every time? I'm fed up with it.’
+  \item 'Why is it so complicated to add a bill?'
+  \item 'The app just is not easy to use, too many useless features that I don't need.'
+  \item 'Sometimes my friends don't believe me when I tell them that they owe me. It is also very difficult when you tell your coworker that they owe you money.'
+\end{itemize}
 
 \subsection{Initial Mockup}
 \vspace{-3ex}
