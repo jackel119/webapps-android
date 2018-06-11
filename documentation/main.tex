@@ -8,27 +8,25 @@
 % This is the preamble section where you can include extra packages etc.
 
 \begin{document}
+\title{\vspace{-8ex}Human Centred Design Techniques Report \vspace{-2ex}}
 
-\title{Human Centred Design Techniques Report}
-
-\author{Lan Yi (ly2715), Pobpawat Pordi(pp2916), Xiaokage Ying(xy1716), Zicong Ma(zm1216)}
-
-\date{\today}         % inserts today's date
+\author{Lan Yi(ly2715), Pobpawat Pordi(pp2916), Xiaokage Ying(xy1716), Zicong Ma(zm1216)}
+\date{\vspace{-2ex}\today\vspace{-4ex}}         % inserts today's date
 
 \maketitle            % generates the title from the data above
 
 \section{Initial Research Motivation and Problem Statement} 
-
+\vspace{-3ex}
 Almost everyone has at least one person who they often share expenses and split bills with - for example, flatmates, significant others, friends and coworkers. Such expenses can range from restaurant meals, grocery shopping, to house bills, etc. It is almost always an inconvenient situation for everyone involved to decide how to deal with said expenses,
 
 Our initial idea is to create an app that helps people with tracking their expenses, specifically with splitting their bills. We then went on to produce some initial research on the this specific idea. We started off by focusing on young professionals that share expenses with their coworkers and friends. We will discuss in detail the process our initial research below.
-
+\vspace{-3ex}
 \section{Identification of Current State}
-
+\vspace{-3ex}
 In the current market, there do exist many apps that help people with splitting bills and keeping track of their expenses. However, we have also identified that not many people use these apps that are available on the market. Therefore we would like to identify why that is the case. We have done so through some interviews with people of our target audience, and the result can be found in Section \ref{intRes}. As we identified with our interviews, many people dislike the current state of the apps simply because it is not easy enough to use, and it doesn't actually help them with solving their problem of keeping track of the expenses.
-
+\vspace{-3ex}
 \section{Key Design Insights and Proposed Future States}
-
+\vspace{-3ex}
 Based on the problem that we identified through our interviews, we proposed several features:
 \begin{itemize}
 \item Receipt Scanning - This means that people don't have to go through the pain of entering the items one by one, also saves a lot of their time.
@@ -41,36 +39,29 @@ Based on the problem that we identified through our interviews, we proposed seve
 We believe that with those features, as well as a simple and clean interface, would solve the problem that we identified eariler. We believe that the app that we produce would provide convenience for many young professionals that struggle to track their expenses currently.
 
 \section{HCD Research Metthodology}
+\vspace{-3ex}
+something hahahaha~
 
 \newpage
 \section{Appendix}
 
-\subsection{Interview Response}
-\label{intRes}
-Below are the some of the response we had when interviewing young people that just started their professional career.
-
-\begin{itemize}
-  \item ‘We end up taking as much time to write down down the items and details of an expense’
-  \item ‘Why do I have to enter the same details every time? I'm fed up with it.’
-  \item ‘I’m still too lazy to do mental arithmetic.’
-  \item 'Why is it so complicated to add a bill?'
-  \item 'The app just is not easy to use, too many useless features that I don't need.'
-  \item 'Sometimes my friends don't believe me when I tell them that they owe me. It is also very difficult when you tell your coworker that they owe you money.'
-\end{itemize}
-
 \subsection{Initial Mockup}
+\vspace{-3ex}
 \label{mockup}
-\includegraphics[width=\textwidth]{initialMockup.jpg}
+\adjustimage{max size={0.8\linewidth}{0.8\paperheight}}{initialMockup.jpg}
 
 \subsection{Digital Touchpoint Prototype}
 \label{dtp}
-\includegraphics[width=\textwidth]{DTP1.png}
-\includegraphics[width=\textwidth]{DTP2.png}
+
+\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{DTP1.png}
+
+\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{DTP2.png}
 
 \subsection{Personas}
 \label{persona}
-\subsubsection{Persona1}
-Jane Doe
+\subsubsection{Persona 1}
+Rachel McKeown 
+\vspace{-2ex}
 \begin{itemize}
   \item 22 years old
   \item Did not go to university - went straight into work
@@ -89,9 +80,9 @@ Need/Pains: Already likes to track her expenses, however, finds current apps inc
 Goals: Be able to easily track expenses without having to spend 5 minutes putting in details every time (preferably with the least amount of hassle)
 
 
-\subsubsection{Persona2}
-John Doe
-
+\subsubsection{Persona 2}
+Johnathan Ong
+\vspace{-2ex}
 \begin{itemize}
   \item 23 years old
   \item Recent graduate, currently working at large tech company
@@ -107,7 +98,7 @@ Goals:
 Wants to know exactly which of his friends/coworkers owes him what, and have a record of every time he’s paid for/been paid for.
 
 \subsection{Research Questions}
-\label{resQn}
+\vspace{-2ex}
 \begin{itemize}
   \item How often do you split the bill with others, per month?
   \item Roughly, could you give us an idea of how much money each bill you split would cost you?
@@ -133,6 +124,19 @@ Wants to know exactly which of his friends/coworkers owes him what, and have a r
   \item Do you think the UI is intuitive/simple enough?
   \item What would be your most-used feature?
   \item Do you think your friends/family/coworkers/flatmates would use this too?
+\end{itemize}
+
+\subsection{Interview Response}
+\label{intRes}
+Below are the some of the response we had when interviewing young people that just started their professional career.
+
+\begin{itemize}
+  \item ‘We end up taking as much time to write down down the items and details of an expense’
+  \item ‘Why do I have to enter the same details every time? I'm fed up with it.’
+  \item ‘I’m still too lazy to do mental arithmetic.’
+  \item 'Why is it so complicated to add a bill?'
+  \item 'The app just is not easy to use, too many useless features that I don't need.'
+  \item 'Sometimes my friends don't believe me when I tell them that they owe me. It is also very difficult when you tell your coworker that they owe you money.'
 \end{itemize}
 
 \subsection{Preliminary Feedback on Research Questions}
@@ -162,8 +166,7 @@ We started implementing the receipt scanning feature as user requested in the pr
 \subsection{Application Iteration 3}
 We implemented the features that the user suggested in the previous iteration. The users are very impressed with the new features and they also made a couple more suggestions. One user mentioned that they would like to crop the picture after it has been taken, and possibly resize functionality as well. Another mentioned the UI design could be improved, especially with how the menu bar looks and where it is located.
 
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{appIt3.png}
-
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{appIt4.png}
+\adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{appIt3.png}
+\adjustimage{max size={0.52\linewidth}{0.52\paperheight}}{appIt4.png}
 
 \end{document}
