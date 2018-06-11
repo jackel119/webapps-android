@@ -15,12 +15,14 @@ const HeaderGreeting = () => {
     >
       <View>
         <View style={containerStyle}>
-        <RoundButton onPress={() => Actions.addTransaction()}>
-          Add
-        </RoundButton>
-        <RoundButton onPress={() => Actions.camera()}>
-          Pic
-        </RoundButton>
+          <View style={{ flexDirection: 'row' }}>
+            <RoundButton onPress={() => Actions.addTransaction()}>
+              Add
+            </RoundButton>
+            <RoundButton onPress={() => Actions.camera()}>
+              Pic
+            </RoundButton>
+          </View>
           <Text style={greetingStyle}>Good Morning,</Text>
           <Text style={usernameStyle}>Jack.</Text>
           <View style={blankStyle} />
