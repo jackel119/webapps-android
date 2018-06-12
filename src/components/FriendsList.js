@@ -3,14 +3,18 @@ import { ScrollView } from 'react-native';
 import FriendDetails from './FriendDetails';
 import Storages from './../actions/Storages';
 
-class FriendsList extends Component {
-  state = { friendsList: [
-    { uid: 1, name: 'david', email: '2@test.com' },
-    { uid: 2, name: 'avid', email: '2@est.com' },
-    { uid: 3, name: 'vid', email: '2@st.com' }
-  ] };
+const Global = require('./../Global');
 
-  componnetWillMount() {
+class FriendsList extends Component {
+  state = { friendsList: [] };
+
+  componentWillMount() {
+    console.log('get here???');
+    const uid = Global.UID;
+    Storages.get(uid).then(result => {
+      this.setState({ friendsList: result.friends });
+      console.log(result.friends);
+    });
   }
 
   renderFriends() {

@@ -26,7 +26,8 @@ export const passwordChanged = (text) => {
 };
 
 export const loginUser = ({ email, password }) => {
-  Storages.set('uid', { userData: 'userInfo', trans: 'txs' }); // an arbitrary sample
+  // an arbitrary sample
+  Storages.set('uid', { userData: 'userInfo', trans: 'txs', friends: 'friendList' });
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
 
@@ -43,10 +44,34 @@ export const loginUser = ({ email, password }) => {
           //Storages.delete(uid); //clear records, assuming it's the first time to login
           Storages.getAllKeys().then((result) => console.log('0.have keys: ' + result));
 
-          //Storages.set(uid, txs);
-          console.log('2.uid is: ' + uid);
-          Storages.set(uid, { userData: res.data, trans: txs });
-          Storages.get(uid).then(res => console.log(res));
+          let uidList = [];
+          let friendList = [{ uid: '1', name: 'example', email: 'example@com' }];
+
+          //Add friends:
+          for (const tx of txs) {
+            console.log('looping...');
+            if (tx.from_user !== res.data.uid) {
+              uidList = uidList.concat(tx.from_user);
+            } else if (tx.to_user !== res.data.uid) {
+              uidList = uidList.concat(tx.to_user);
+            }
+          }
+
+          socket.emit('getUsersByUID', uidList);
+          socket.on('users', res2 => {
+            for (const friendUID of uidList) {
+              friendList = friendList.concat({
+                uid: friendUID,
+                name: res2[friendUID].first_name,
+                email: res2[friendUID].email
+              });
+            }
+            Storages.set(uid, { userData: res.data, trans: txs, friends: friendList });
+          });
+
+          //console.log('2.uid is: ' + uid);
+         // Storages.set(uid, { userData: res.data, trans: txs, friends: friendList });
+          Storages.get(uid).then(res1 => console.log(res1));
 
 
           // for checking

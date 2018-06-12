@@ -3,17 +3,17 @@ import { Text, View } from 'react-native';
 
 const FriendDetail = ({ friend }) => {
   const { email, name } = friend;
-  const { cardStyle, amountStyle, timeStyle, descriptionStyle, rightStyle, leftStyle } = styles;
+  const { cardStyle, nameStyle, groupStyle, emailStyle, rightStyle, leftStyle } = styles;
   return (
     <View style={cardStyle}>
       <View style={leftStyle}>
-          <Text style={amountStyle}>{name} </Text>
+          <Text style={nameStyle}>{name} </Text>
       </View>
 
 
       <View style={rightStyle}>
-          <Text style={timeStyle}>group?</Text>
-          <Text style={descriptionStyle}>{email}</Text>
+          <Text style={groupStyle}>group?</Text>
+          <Text style={emailStyle}>{email}</Text>
       </View>
     </View>
   );
@@ -35,25 +35,25 @@ const styles = {
     justifyContent: 'flex-end',
   },
   rightStyle: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'column',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
   },
-  amountStyle: {
+  nameStyle: {
     color: 'white',
     textAlign: 'left',
     fontSize: 24,
   },
-  timeStyle: {
+  groupStyle: {
     color: 'white',
     textAlign: 'right',
     fontSize: 12,
     marginBottom: 5,
   },
-  descriptionStyle: {
+  emailStyle: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 14,
     textAlign: 'right',
     fontFamily: 'TitilliumWeb-Regular',
   }

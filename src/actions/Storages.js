@@ -51,7 +51,7 @@ static get(key) {
     return Storages.get(key).then((items) => {
       try {
         const newTXlist = [newTX].concat(items.trans);
-        const result = { userData: items.userData, trans: newTXlist };
+        const result = { userData: items.userData, trans: newTXlist, friends: items.friends };
         //const result = Object.assign({}, items, { trans: newTXlist });
         return Storages.set(key, result);
       } catch (error) {
