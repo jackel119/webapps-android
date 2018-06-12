@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput } from 'react-native';
-// import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class AddNewFriends extends Component {
   render() {
@@ -8,6 +8,7 @@ class AddNewFriends extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={containerStyle}>
+          <Icon name="search" size={20} style={iconStyle} />
           <TextInput
             placeholder="Add New Friends"
             style={inputStyle}
@@ -23,15 +24,15 @@ class AddNewFriends extends Component {
 }
 
 const styles = {
-  iconStyle: {
+  inputStyle: {
     color: '#000',
     paddingRight: 5,
     paddingLeft: 5,
     fontSize: 18,
     lineHeight: 23,
-    flex: 4
+    flex: 10
   },
-  labelStyle: {
+  iconStyle: {
     fontSize: 18,
     paddingLeft: 20,
     flex: 1
