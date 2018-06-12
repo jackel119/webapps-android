@@ -16,13 +16,13 @@ const RouterComponent = () => {
     <Router>
       <Scene key="root" hideNavBar sceneStyle={{ paddingTop: 64 }}>
         <Scene
-          initial
+          // initial
           key="login"
           component={LoginForm}
           title="Please Login"
         />
         <Drawer
-          //initial
+          initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
@@ -30,12 +30,13 @@ const RouterComponent = () => {
         >
           <Scene key="main">
             <Scene
-              // initial
+              initial
               key="homepage"
               component={Homepage}
               title="Home"
-              //onLeft="Menu"
-              // hideNavBar
+              rightTitle="Add"
+              onRight={() => console.log('')}
+              hideNavBar
             />
             <Scene
               key="addTransaction"
@@ -61,7 +62,6 @@ const RouterComponent = () => {
             />
 
             <Scene
-              initial
               key="friendsList"
               component={FriendsList}
               title="Friends List"
@@ -69,7 +69,6 @@ const RouterComponent = () => {
               rightTitle="Add"
             />
               <Scene
-                // initial
                 key="addFriend"
                 component={AddNewFriends}
                 title="Add Friends"
