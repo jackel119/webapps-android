@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import ExpenseDetail from './homeComponents/ExpenseDetail';
 import Storages from './../actions/Storages';
-import { socket } from '../Global';
 
 const Global = require('./../Global');
 
@@ -13,7 +12,7 @@ class ExpensePage extends Component {
 	componentWillMount() {
     const uid = Global.UID;
 		Storages.get(uid)
-			.then(result => this.setState({ expenseList: result }));
+			.then(result => this.setState({ expenseList: result.trans }));
 
     //An example TX for testing
     // const exampleTX = {

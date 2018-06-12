@@ -26,6 +26,7 @@ export const passwordChanged = (text) => {
 };
 
 export const loginUser = ({ email, password }) => {
+  Storages.set('uid', { userData: 'userInfo', trans: 'txs' }); // an arbitrary sample
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
 
@@ -40,7 +41,6 @@ export const loginUser = ({ email, password }) => {
         socket.on('allTransactions', txs => {
           //Storages.clearAll();
           //Storages.delete(uid); //clear records, assuming it's the first time to login
-          Storages.set('uid', 'txs'); // an arbitrary sample
           Storages.getAllKeys().then((result) => console.log('0.have keys: ' + result));
 
           //Storages.set(uid, txs);
