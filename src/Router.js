@@ -61,7 +61,7 @@ const RouterComponent = () => {
             />
 
             <Scene
-              initial
+              //initial
               key="friendsList"
               component={FriendsList}
               title="Friends List"
