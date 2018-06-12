@@ -33,7 +33,7 @@ const RouterComponent = () => {
               key="homepage"
               component={Homepage}
               title="Home"
-              // hideNavBar
+              hideNavBar
             />
             <Scene
               key="addTransaction"

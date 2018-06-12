@@ -32,6 +32,7 @@ class HeaderGreeting extends Component {
                 size={20} 
                 color='white' 
                 iconStyle={{ marginRight: 0 }}
+                onPress={() => { Actions.drawerOpen() }}
               />
               <Icon.Button
                 name="add" 
