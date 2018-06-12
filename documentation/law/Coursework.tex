@@ -1,0 +1,107 @@
+\documentclass[a4paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage{listings}
+
+%%useful package
+\usepackage{amsmath}
+\everymath{\displaystyle}
+
+\usepackage{enumerate}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amssymb}
+
+\usepackage{adjustbox} % Used to constrain images to a maximum size 
+
+
+%%page size and margin
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+\title{C273: An Introduction to Law for Computer Scientists Coursework}
+\author{Lan Yi (ly2715), Pobpawat Pordi(pp2916), Xiaokage Ying(xy1716), Zicong Ma(zm1216)}
+
+\begin{document}
+\maketitle
+\section*{Q 1}
+\begin{enumerate}
+\item Licence
+\\??????????????
+\item Definition of Software
+\\ This term does not violates any of Free Software Foundation's four freedoms.
+\item Permitted Use
+\\This term restricts user purpose to scientific research and education only, violating freedom 0 for which users should be free to run the program as they wish and for any purpose.
+\\
+\\In addition, this term prohibits users from distributing copies of the `Software', either with or without modification, for commercial purposes. It violates freedom 2 and 3, which states that users are free to redistribute copies, either with or without modifications for any purpose, including but not limited to commercial purpose. 
+
+\item Copyright and Distribution
+\\Under this term, users are disallowed to sell `Software' or any part of it, or to distribute the ``Software" in its original or modified form. It contradicts freedom 2 and 3 which affirm users' freedom to distribute and sell the ``Software" with or without modification for any purpose and to anyone anywhere. 
+\\
+\\ The term also states that under permitted use, users may distribute modification to the ``Software" only if they adhere some rules concerning modification. It first counters freedom 1 which asserts users' freedom to modify the ``Software" however they want, and then contradicts freedom 3 which asserts users' freedom to distribute modified ``Software" to anyone anywhere under no constrains. 
+\\ 
+\\ Moreover, the term prohibits users to sell its modification to this ``Software", violating freedom 3 which states users should be free to sell its modification to anyone. 
+
+\item Modifications
+\\This term prevents modification of ``Software" from constituting a working model on their own, violating freedom 1 which states that user should be free to modify the ``Software" however they want.
+\\
+\\The term also requires users to attach prominent notices to the files that are modified and to the result that the modified ``Software" generates. However, under freedom 1, users should be free to modify any part of ``Software" and use the modification without mentioning that the modification exists, hence there is a conflict. 
+\\
+\\The term also states that ``Error fixes and `Software' modifications must be communicated to the coordinator of MPI-M model development/ model integration" and the users are required "to submit such modified parts of the `Software' to MPI-M". This is another conflict to freedom 1 as the user should be free to choose whether he/she wants to communicate with the coordinator of MPI-M and whether he/she wants to submit the modification. 
+
+\item Acknowledgements
+\\????????????
+\item Termination
+\\This term terminates user's rights from using the ``Software" if he/she does not comply the licence agreement. It breaches freedom 0, where users should be free to run ``Software" whenever they want and should not be forbidden or stopped from making it run.
+\item Fees
+\\ This term does not violates any of Free Software Foundation's four freedoms.
+\item Proprietary Rights
+\\ This term does not violates any of Free Software Foundation's four freedoms.
+\item Disclaimer of Warranty
+\\ This term does not violates any of Free Software Foundation's four freedoms.
+\item Limitation of Liability
+\\ This term does not violates any of Free Software Foundation's four freedoms.
+\item Support/Modifications
+\\ This term does not violates any of Free Software Foundation's four freedoms.
+\item Controlling Law and Severability
+\\ This term does not violates any of Free Software Foundation's four freedoms.
+\end{enumerate}
+
+
+\section*{Q2 a.)}
+
+Firstly, \textbf{Articles 1-4} of the GDPR all apply, as they constitute the definitions (e.g. of controllers, processors, and data subjects) and platform required to demonstrate violations of other articles of the GDPR.
+
+\textbf{Article 5} is also relevant here, as they state that personal data shall be processed "lawfully, fairly, and in a transparent manner in relation to the data subject" and "collected for specified, explicit and legitimate purposes and not further processed in a manner that is incompatible with those purposes". Clearly, Facebook and Global Science Research did not follow the former, as they were neither transparent nor explicit in regards to the manner in which they processed personal user data. GSR also violated the latter, as they processed the data beyond their initial purpose of scientific research (selling it for commercial gain to a third party that intended to unethically influence elections).
+
+\textbf{Article 6}, particularly point 1 stating "Processing shall be lawful only if and to the extent that at least one of the following applies...." has also been clearly breached by all three parties (Facebook, GSR, and Cambridge Analytica). None of the criteria from a.) to f.) has been fulfilled (e.g. data subject has not given consent, processing is not necessary for the fulfillment of any contract or compliance of law or protecting the interests of anyone, and certainly not in the "legitimate interests" of the controller).
+
+\textbf{Article 9} requires that special categories of personal data, including political alignment, not be processed. On the scope of Facebook, this is clearly impossible as many Facebook users will have information from said categories that can be deduced by other parts of their profile, without 9.2 applying (as consent may not necessarily be given, and all other clauses of 9.2 such as legitimate interest and activities), hence once again all three parties have violated this clause.
+
+\textbf{Article 13} requires that the controller shall supply data subjects with information such as "the purposes of the processing for which the personal data are intended as well as the legal basis for the processing", "the recipients or categories of recipients of the personal data, if any", and "where the processing is based on point (f) of Article 6(1), the legitimate interests pursued by the controller or by a third party". As Facebook did not fully provide any of these to its users. Similarly, Article 14 applies to GSR.
+
+\textbf{Article 28.2} states "The processor shall not engage another processor without prior specific or general written authorisation of the controller". As GSR engaged with CA (an unauthorized processor, and without the consent of FB), then it is at fault for violating this Article.
+
+\textbf{Article 30} necessitates that controllers and processors keep detailed records of processing activities including information such as "the purposes of the processin", "a description of the categories of data subjects and of the categories of personal data", and "the categories of processing carried out on behalf of each controller". Both Facebook and GSR did not do this.
+
+\textbf{Articles 33 and 34} are about notifying a personal data breach to authorities within 72 hours, and to the data subjects "without undue delay". When Facebook found out that GSR had provided CA personal data from Facebook, it failed to do both of these.
+
+Some other articles that are also relevant:
+\begin{itemize}
+	\item \textbf{Article 15.} Users have the right to obtain from Facebook information regarding if their data is being processed, the purposes behind processing, etc 
+	\item \textbf{Article 16-21.}  Users have the right to rectify and erase their personal data, restrict/object processing on their personal data, be notified of how their data is being used/modified/erased, as well as request all personal data containing him/her.
+	\item \textbf{Article 22} Users have a right to not be subjected to purely automatic decision-making from the processing of their user data
+	\item \textbf{Articles 24 and 25} Controllers and processors must ensure that all data is handled responsibily and implement technical and organisational measures to guarantee that the Regulations will be complied with and adhere to the approved codes of conduct in Article 40.
+	\item \textbf{Article 35 and 36} Controllers shall perform an appropriate data protection impact assessment, as well as consult the supervisory authority when in consideration of processing activities that have a high risk to the rights and freedoms of natural persons.
+	\item \textbf{Article 37-39} Requirement of an appointed Data Protection Officer to inform and advise the controller in matters regarding data protection, and cooperate with the supervisory authority on such affairs.
+
+\end{itemize}
+
+\section*{Q2 b.)}
+
+Firstly, Facebook should already have a Data Protecton Officer trained to deal with events of this nature and cooperate with supervisory authorities. Secondly, the moment Facebook discovered the data breach, it should have informed the supervisory authority (in the UK, ICO) within 72 hours of the breach being known, as well as notified relevant users that an unauthorized controller (CA) has access to and are misusing their data for non-legitimate purposes. Thirdly, Facebook should assess the nature of the data breach (what was lost/taken, how it happened) and evaluate and implement future security measures against it happening again in the future.
+
+\section*{Q2 c.)}
+
+\end{document}
