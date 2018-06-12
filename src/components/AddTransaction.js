@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection, Button, Input } from './common';
+import { CardSection, Button, Input } from './common';
 import { transactionUpdate, addItem } from '../actions';
 
 class AddTransaction extends Component {
@@ -19,6 +19,28 @@ class AddTransaction extends Component {
 
   onBottunPress() {
     console.log(this.state.data);
+  }
+
+  convertToNumber(amount) {
+    if (amount) {
+      return parseFloat(amount);
+    }
+    return 0;
+  }
+
+  renderTop() {
+    console.log('current data', this.props.data);
+    let total = 0;
+    for (var item of this.props.data) {
+      console.log(item);
+      total = total + this.convertToNumber(item.amount);
+    }
+    return (
+      <CardSection>
+        <Text> Total Amount </Text>
+        <Text> {total.toFixed(2)} </Text>
+      </CardSection>
+    );
   }
 
   render() {
@@ -49,7 +71,10 @@ class AddTransaction extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ flex: 0.9 }}>
+        <View style={{ flex: 0.1 }}>
+          {this.renderTop()}
+        </View>
+        <View style={{ flex: 0.8 }}>
           <ScrollView>
             {renderAddItem}
           </ScrollView>
