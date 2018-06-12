@@ -8,26 +8,28 @@ import ExpensePage from './components/ExpensePage';
 import ImageComponent from './components/ImageComponent';
 import Setting from './components/Setting';
 import DrawerContent from './DrawerContent';
+import BillList from './components/BillList';
 
 const RouterComponent = () => {
   return (
     <Router>
       <Scene key="root" hideNavBar sceneStyle={{ paddingTop: 64 }}>
         <Scene 
-          initial 
+          // initial 
           key="login"
           component={LoginForm}
           title="Please Login"
         />
         <Drawer
+          initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
           drawerWidth={300}
         >
-          <Scene key="main">
+          <Scene intial key="main">
             <Scene
-              initial
+              //initial
               key="homepage"
               component={Homepage}
               title="Home"
@@ -35,6 +37,7 @@ const RouterComponent = () => {
               //hideNavBar
             />
             <Scene
+              initial 
               key="addTransaction"
               component={AddTransaction}
               title="Add Transaction"

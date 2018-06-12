@@ -8,12 +8,6 @@ const Global = require('./../../Global');
 class ExpenseList extends Component {
 	state = { expenseList: [] };
 
-/* Fetch JSON from http */
-	componentWillMount() {
-		// axios.get('http://10.0.2.2:8000/transaction.json')
-		// 	.then(response => this.setState({ expenseList: response.data }));
-	}
-
 	renderExpenses() {
 		return this.state.expenseList.map(expense =>
 			<ExpenseDetail key={expense.txid} expense={expense} />

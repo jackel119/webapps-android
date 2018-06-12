@@ -1,26 +1,35 @@
 import {
   TRANSACTION_CREATE,
   TRANSACTION_UPDATE, 
-  TRANSACTION_INITIATE
+  TRANSACTION_INITIATE,
+  ADD_ITEM
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  to: '',
-  from: '',
-  date: '',
-  currency: '',
-  amount: ''
+  data: []
 };
+
+function updateItem(data, detail) {
+ return data.map((item) => {
+  if (item.id === detail.id) {
+    return { ...item, [detail.type]: detail.value };
+  } else {
+    return item;
+  }
+ });
+}
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TRANSACTION_INITIATE:
-      console.log(action.payload);
       return { ...state, from: 'me', amount: action.payload.amount, date: action.payload.date };
     case TRANSACTION_UPDATE:
-      return { ...state, [action.payload.prop]: action.payload.value };
+      return { data: updateItem(state.data, action.payload) };
     case TRANSACTION_CREATE:
       return INITIAL_STATE;
+    case ADD_ITEM:
+      console.log(action.payload);
+      return { data: [...state.data, { id: action.payload.id, name: '', amount: '' }] };
     default:
       return state;
   } 
