@@ -29,6 +29,7 @@ class DrawerContent extends React.Component {
         <Text onPress={Actions.homepage}>Home</Text>
         <Text onPress={Actions.addTransaction}>Add Transaction</Text>
         <Text onPress={Actions.expensePage}>Transaction History</Text>
+        <Text onPress={Actions.friendsList}>Friends List</Text>
         <Text onPress={Actions.setting}>Setting</Text>
       </View >
     );

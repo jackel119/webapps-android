@@ -7,6 +7,7 @@ import AddTransaction from './components/AddTransaction';
 import ExpensePage from './components/ExpensePage';
 import ImageComponent from './components/ImageComponent';
 import Setting from './components/Setting';
+import FriendsList from './components/FriendsList';
 import DrawerContent from './DrawerContent';
 
 const RouterComponent = () => {
@@ -20,6 +21,7 @@ const RouterComponent = () => {
           title="Please Login"
         />
         <Drawer
+          // initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
@@ -32,7 +34,7 @@ const RouterComponent = () => {
               component={Homepage}
               title="Home"
               //onLeft="Menu"
-              //hideNavBar
+              // hideNavBar
             />
             <Scene
               key="addTransaction"
@@ -55,6 +57,12 @@ const RouterComponent = () => {
               key="imageDisplay"
               component={ImageComponent}
               title="Scanned Image"
+            />
+
+            <Scene
+              key="friendsList"
+              component={FriendsList}
+              title="FriendsList"
             />
 
             <Scene
