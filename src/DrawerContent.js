@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
 
   barStyle1: {
     height: 50,
-    width: 300,
     alignItems: 'center',
     paddingHorizontal: 30,
     //justifyContent: 'center',
@@ -24,10 +23,8 @@ const styles = StyleSheet.create({
 
   barStyle2: {
     height: 50,
-    width: 300,
     alignItems: 'center',
     paddingHorizontal: 30,
-    //justifyContent: 'center',
     backgroundColor: 'white',
     flexDirection: 'row'
   },
