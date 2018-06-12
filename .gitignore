@@ -57,3 +57,16 @@ buck-out/
 
 package-lock.json
 package.json
+
+# Latex Stuff
+documentation/law/Coursework.aux
+documentation/law/Coursework.log
+documentation/law/Coursework.out
+documentation/law/Coursework.pdf
+documentation/law/Coursework.synctex.gz
+documentation/main.aux
+documentation/main.pdf
+documentation/main.log
+documentation/main.synctex.gz
+documentation/texput.log
+
