@@ -15,14 +15,14 @@ const RouterComponent = () => {
   return (
     <Router>
       <Scene key="root" hideNavBar sceneStyle={{ paddingTop: 64 }}>
-        <Scene 
-          // initial 
+        <Scene
+          initial
           key="login"
           component={LoginForm}
           title="Please Login"
         />
         <Drawer
-          initial
+          //initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
