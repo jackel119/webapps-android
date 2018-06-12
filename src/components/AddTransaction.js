@@ -1,91 +1,72 @@
 import React, { Component } from 'react';
-import { View, StatusBar } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection, Input, Button } from './common';
-import { transactionCreate, transactionUpdate, transactionInitiate } from '../actions';
+import { Card, CardSection, Button, Input } from './common';
+import { transactionUpdate, addItem } from '../actions';
 
 class AddTransaction extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props);
-    this.props.transactionInitiate({ 
-      amount: this.props.scannedAmount, 
-      date: this.props.scannedDate });
+    this.onAddItem = this.onAddItem.bind(this);
+    this.counter = 0;
+  }
+
+  onAddItem() {
+    this.counter += 1;
+    this.props.addItem({ id: this.counter });
   }
 
   onBottunPress() {
-    console.log(this.props);
-    const { to, from, date, currency, amount } = this.props;
-    this.props.transactionCreate({ to, from, date, currency, amount });
+    console.log(this.state.data);
   }
 
   render() {
+    let renderAddItem = this.props.data.map((data, index) => {
+        return (
+          <View key={index}>
+            <CardSection>
+              <Input
+                label={'Item ' + data.id} 
+                placeholder="Item Name"
+                value={this.props.data.name}
+                onChangeText={value => this.props.transactionUpdate({ 
+                index: data.id, type: 'name', value })}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                label="Amount"
+                placeholder="Item Amount"
+                value={this.props.data.amount}
+                onChangeText={value => this.props.transactionUpdate({ 
+                index: data.id, type: 'amount', value })}
+              />
+            </CardSection>
+          </View>
+        );
+    });
+
     return (
-      <View>
-        <Card>
-          <StatusBar barStyle="dark-content" />
-          <CardSection>
-            <Input
-              label="To"
-              placeholder="To"
-              value={this.props.to}
-              onChangeText={value => this.props.transactionUpdate({ prop: 'to', value })}
-            />
-          </CardSection>
-
-          <CardSection>
-            <Input
-              label="From"
-              placeholder="From"
-              value={this.props.from}
-              onChangeText={value => this.props.transactionUpdate({ prop: 'from', value })}
-            />
-          </CardSection>
-
-          <CardSection>
-            <Input
-              label="Date"
-              placeholder="Date"
-              value={this.props.date}
-              onChangeText={value => this.props.transactionUpdate({ prop: 'date', value })}
-            />
-          </CardSection>
-
-          <CardSection>
-            <Input
-              label="Currency"
-              placeholder="Currency"
-              value={this.props.currency}
-              onChangeText={value => this.props.transactionUpdate({ prop: 'currency', value })}
-            />
-          </CardSection>
-
-          <CardSection>
-            <Input
-              label="Amount"
-              placeholder="Amount"
-              value={this.props.amount}
-              onChangeText={value => this.props.transactionUpdate({ prop: 'amount', value })}
-            />
-          </CardSection>
-
-          <CardSection>
-            <Button onPress={this.onBottunPress.bind(this)}>
-              Add New Transaction
-            </Button>
-          </CardSection>
-
-        </Card>
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 0.9 }}>
+          <ScrollView>
+            {renderAddItem}
+          </ScrollView>
+        </View>
+        <View style={{ flex: 0.1 }}>
+          <Button onPress={this.onAddItem} >
+            Add Item  
+          </Button>
+        </View>
       </View>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { to, from, date, currency, amount } = state.transaction;
-  return { to, from, date, currency, amount };
+  return state.receipt;
 };
 
-export default connect(mapStateToProps, { transactionCreate, transactionUpdate, transactionInitiate })(AddTransaction);
+export default connect(mapStateToProps, { transactionUpdate, addItem })(AddTransaction);
 

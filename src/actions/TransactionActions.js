@@ -2,7 +2,8 @@ import { socket } from '../Global';
 import {
   TRANSACTION_CREATE,
   TRANSACTION_UPDATE,
-  TRANSACTION_INITIATE
+  TRANSACTION_INITIATE,
+  ADD_ITEM
 } from './types';
 import Storages from './Storages';
 
@@ -44,10 +45,10 @@ export const transactionCreate = ({ to, from, date, currency, amount }) => {
   };
 };
 
-export const transactionUpdate = ({ prop, value }) => {
+export const transactionUpdate = ({ index, type, value }) => {
   return {
     type: TRANSACTION_UPDATE,
-    payload: { prop, value }
+    payload: { index, type, value }
   };
 };
 
@@ -57,3 +58,11 @@ export const transactionInitiate = (initial) => {
     payload: initial
   };
 };
+
+export const addItem = (counter) => {
+  return {
+    type: ADD_ITEM,
+    payload: counter
+  };
+};
+

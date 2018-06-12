@@ -4,5 +4,5 @@ import TransactionReducer from './TransactionReducer';
 
 export default combineReducers({
 	auth: AuthReducer,
-  transaction: TransactionReducer
+  receipt: TransactionReducer
 });
