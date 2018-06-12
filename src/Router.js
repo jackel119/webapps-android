@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scene, Router, Drawer } from 'react-native-router-flux';
+import { Scene, Router, Drawer, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import Homepage from './components/Homepage';
 import CameraComponent from './components/CameraComponent';
@@ -8,6 +8,7 @@ import ExpensePage from './components/ExpensePage';
 import ImageComponent from './components/ImageComponent';
 import Setting from './components/Setting';
 import FriendsList from './components/FriendsList';
+import AddNewFriends from './components/AddNewFriends';
 import DrawerContent from './DrawerContent';
 
 const RouterComponent = () => {
@@ -15,13 +16,13 @@ const RouterComponent = () => {
     <Router>
       <Scene key="root" hideNavBar sceneStyle={{ paddingTop: 64 }}>
         <Scene 
-          initial 
+          // initial 
           key="login"
           component={LoginForm}
           title="Please Login"
         />
         <Drawer
-          // initial
+          initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
@@ -29,7 +30,7 @@ const RouterComponent = () => {
         >
           <Scene key="main">
             <Scene
-              initial
+              // initial
               key="homepage"
               component={Homepage}
               title="Home"
@@ -60,10 +61,19 @@ const RouterComponent = () => {
             />
 
             <Scene
+              initial
               key="friendsList"
               component={FriendsList}
-              title="FriendsList"
+              title="Friends List"
+              onRight={() => Actions.addFriend()}
+              rightTitle="Add"
             />
+              <Scene
+                // initial
+                key="addFriend"
+                component={AddNewFriends}
+                title="Add Friends"
+              />
 
             <Scene
               key="setting"
