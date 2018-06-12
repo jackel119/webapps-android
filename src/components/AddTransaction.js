@@ -3,6 +3,7 @@ import { View, ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection, Button, Input } from './common';
 import { transactionUpdate, addItem } from '../actions';
+import { Actions } from 'react-native-router-flux';
 
 class AddTransaction extends Component {
 
@@ -28,6 +29,10 @@ class AddTransaction extends Component {
     return 0;
   }
 
+  submit() {
+    Actions.split();
+  }
+
   renderTop() {
     console.log('current data', this.props.data);
     let total = 0;
@@ -37,8 +42,11 @@ class AddTransaction extends Component {
     }
     return (
       <CardSection>
-        <Text> Total Amount </Text>
-        <Text> {total.toFixed(2)} </Text>
+        <Text style={{ fontSize: 24 }}> Total Amount </Text>
+        <Text style={{ fontSize: 24 }}> {total.toFixed(2)} </Text>
+        <Button onPress={this.submit.bind()}>
+          Submit
+        </Button>
       </CardSection>
     );
   }

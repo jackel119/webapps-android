@@ -8,7 +8,7 @@ import ExpensePage from './components/ExpensePage';
 import ImageComponent from './components/ImageComponent';
 import Setting from './components/Setting';
 import DrawerContent from './DrawerContent';
-import BillList from './components/BillList';
+import SplitBill from './components/SplitBill';
 
 const RouterComponent = () => {
   return (
@@ -58,6 +58,12 @@ const RouterComponent = () => {
               key="imageDisplay"
               component={ImageComponent}
               title="Scanned Image"
+            />
+
+            <Scene
+              key="split"
+              component={SplitBill}
+              title="SplitBill"
             />
 
             <Scene
