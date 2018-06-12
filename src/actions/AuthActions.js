@@ -45,7 +45,7 @@ export const loginUser = ({ email, password }) => {
 
           //Storages.set(uid, txs);
           console.log('2.uid is: ' + uid);
-          Storages.set(uid, txs);
+          Storages.set(uid, { userData: res.data, trans: txs });
           Storages.get(uid).then(res => console.log(res));
 
 
