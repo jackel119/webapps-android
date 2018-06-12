@@ -54,7 +54,7 @@ class HeaderGreeting extends Component {
           <Modal
             isVisible={this.state.modalVisible}
             backdropOpacity={0.5}
-            onBackdropPress={() => this.setModalVisible(false)}
+            onBackdropPress={() => this.setModalVisible()}
           >
             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               <View style={iconContainerStyle}>
@@ -63,7 +63,10 @@ class HeaderGreeting extends Component {
                   size={50}
                   color='white'
                   borderRadius={100}
-                  onPress={Actions.camera}
+                  onPress={() => { 
+                    this.setModalVisible();
+                    Actions.camera(); 
+                  }}
                   iconStyle={{ marginRight: 0 }}
                 />
               </View>
@@ -74,7 +77,10 @@ class HeaderGreeting extends Component {
                   size={50} 
                   color='white'
                   borderRadius={100}
-                  onPress={Actions.addTransaction} 
+                  onPress={() => {
+                    this.setModalVisible();
+                    Actions.addTransaction();
+                  }} 
                   iconStyle={{ marginRight: 0 }}
 
                 />
