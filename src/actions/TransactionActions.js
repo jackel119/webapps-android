@@ -10,31 +10,38 @@ const Global = require('./../Global');
 
 export const transactionCreate = ({ to, from, date, currency, amount }) => {
   const uid = Global.UID;
-  console.log('my uid is ' + uid);
-  let toUID = -1;
-  let fromUID = -1;
+  let toUID = '-1';
+  let fromUID = '-1';
 
   if (to === 'me') {
     toUID = uid;
     fromUID = Storages.getFriendUID(uid, from);
-  } else if (from === 'me') {
-    toUID = Storages.getFriendUID(uid, to);
+  } 
+  if (from === 'me') {
+    Storages.getFriendUID(uid, to).then(id => {
+      console.log('id: ' + id);
+      toUID = id;
+      console.log("zhe ge!!!!!!!" + toUID);
+    });
+    /* TODO: should be able to catch and throw errors */
     fromUID = uid;
   } else {
-    console.log('TO or FROM must be me');
+    // alert('You are not authorised to add this transaction!');
+    return (dispatch) => {
+      dispatch({ type: TRANSACTION_CREATE });
+    };
   }
-  console.log(toUID);
-  console.log('to is: ' + toUID + 'from is: ' + fromUID);
+
 
   const transaction = {
-    toUID, fromUID, amount, currency, description: 'test test test', groupID: null };
+    to: toUID, from: fromUID, amount: 1, currency: 0, description: 'test test test', groupID: null };
   return (dispatch) => {
-    socket.emit('createTX', transaction);
-    Storages.getAllKeys().then((result) => { console.log('4.have keys: ' + result); });
-    socket.on('createTX', tx => {
-      console.log(tx);
-      Storages.addTX(uid, tx);
-    });
+    // socket.emit('createTX', transaction);
+    // socket.on('newTransaction', tx => {
+    //   console.log(tx);
+    //   Storages.addTX(uid, tx);
+    //   Storages.get(uid).then((user) => { console.log(user.trans); });
+    // });
     dispatch({ type: TRANSACTION_CREATE });
   };
 };

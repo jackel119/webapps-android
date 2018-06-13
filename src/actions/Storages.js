@@ -62,17 +62,13 @@ class Storages {
 
   static getFriendUID(key, email) {
     return Storages.get(key).then((res) => {
-      console.log("result "+res);
       const friendList = res.friends;
-      console.log(friendList);
       for (const friend of friendList) {
         if (friend.email === email) {
-          // console.log(friend.email);
-          // console.log(friend.uid);
           return friend.uid;
         }
       }
-      console.log('You dont have this friend!')
+      // alert('You dont have this friend!');
       return -1;
     });
   }
