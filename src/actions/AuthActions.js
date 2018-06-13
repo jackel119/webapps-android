@@ -45,31 +45,35 @@ export const loginUser = ({ email, password }) => {
           Storages.getAllKeys().then((result) => console.log('0.have keys: ' + result));
 
           let uidList = [];
-          let friendList = [{ uid: '1', name: 'example', email: 'example@com' }];
+          let friendList = [];
 
           //Add friends:
           for (const tx of txs) {
-            console.log('looping...');
             if (tx.from_user !== res.data.uid) {
               uidList = uidList.concat(tx.from_user);
             } else if (tx.to_user !== res.data.uid) {
               uidList = uidList.concat(tx.to_user);
             }
           }
+          const newList = [...new Set(uidList)];
 
-          socket.emit('getUsersByUID', uidList);
+          socket.emit('getUsersByUID', newList);
           socket.on('users', res2 => {
-            for (const friendUID of uidList) {
-              friendList = friendList.concat({
+            let newFriend = {};
+            for (const friendUID of newList) {
+                newFriend = {
                 uid: friendUID,
                 name: res2[friendUID].first_name,
                 email: res2[friendUID].email
-              });
+              };
+              if (!friendList.includes(newFriend)) {
+                friendList = friendList.concat(newFriend);
+              }
             }
+            console.log(friendList);
             Storages.set(uid, { userData: res.data, trans: txs, friends: friendList });
           });
 
-          //console.log('2.uid is: ' + uid);
          // Storages.set(uid, { userData: res.data, trans: txs, friends: friendList });
           Storages.get(uid).then(res1 => console.log(res1));
 
