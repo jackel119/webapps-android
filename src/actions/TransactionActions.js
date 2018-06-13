@@ -9,37 +9,32 @@ import Storages from './Storages';
 const Global = require('./../Global');
 
 export const transactionCreate = ({ to, from, date, currency, amount }) => {
+  const uid = Global.UID;
+  console.log('my uid is ' + uid);
+  let toUID = -1;
+  let fromUID = -1;
+
+  if (to === 'me') {
+    toUID = uid;
+    fromUID = Storages.getFriendUID(uid, from);
+  } else if (from === 'me') {
+    toUID = Storages.getFriendUID(uid, to);
+    fromUID = uid;
+  } else {
+    console.log('TO or FROM must be me');
+  }
+  console.log(toUID);
+  console.log('to is: ' + toUID + 'from is: ' + fromUID);
+
   const transaction = {
-    to, from, amount, currency, description: 'test test test', groupID: null };
+    toUID, fromUID, amount, currency, description: 'test test test', groupID: null };
   return (dispatch) => {
     socket.emit('createTX', transaction);
     Storages.getAllKeys().then((result) => { console.log('4.have keys: ' + result); });
-    const uid = Global.UID;
-    console.log('uid is: ' + uid);
-    const exampleTX = {
-          txid: '1',
-          from_user: uid,
-          to_user: '3',
-          currency: 0,
-          amount: 'howMuch',
-          time: 'dateCreated',
-          description: 'description',
-          status: 0,
-          gid: null
-        };
-
-
-    Storages.addTX(uid, exampleTX);
-
-    // socket.on('newTransaction', tx => {
-    //   const uid = Global.uid;
-    //
-    //   Storages.add(uid, tx);
-    //   //console.log(tx);
-    // });
-
-    Storages.get(uid).then((result) => console.log(result));
-    console.log(transaction);
+    socket.on('createTX', tx => {
+      console.log(tx);
+      Storages.addTX(uid, tx);
+    });
     dispatch({ type: TRANSACTION_CREATE });
   };
 };
