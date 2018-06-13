@@ -30,10 +30,8 @@ class AddTransaction extends Component {
   }
   
   renderTop() {
-    console.log('current data', this.props.data);
     let total = 0;
     for (var item of this.props.data) {
-      console.log(item);
       total = total + this.convertToNumber(item.amount);
     }
     return (
