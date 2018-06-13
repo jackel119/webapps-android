@@ -8,7 +8,7 @@ const Homepage = () => {
 			<StatusBar barStyle="light-content" />
 			<HeaderGreeting />
 			<DebitCredit />
-			<ExpenseList />
+      <ExpenseList />
 		</View>
 
 	);

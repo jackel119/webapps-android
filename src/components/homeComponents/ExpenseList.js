@@ -15,8 +15,6 @@ class ExpenseList extends Component {
 	}
 
 	render() {
-		const uid = Global.UID;
-		Storages.get(uid).then(result => this.setState({ expenseList: result }));
 		console.log(this.state);
 		return (
 			<ScrollView>

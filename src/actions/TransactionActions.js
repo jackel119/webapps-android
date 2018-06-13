@@ -30,7 +30,7 @@ export const transactionCreate = ({ to, from, date, currency, amount }) => {
         };
 
 
-    Storages.add(uid, exampleTX);
+    Storages.addTX(uid, exampleTX);
 
     // socket.on('newTransaction', tx => {
     //   const uid = Global.uid;

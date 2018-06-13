@@ -47,13 +47,15 @@ static get(key) {
   }
 
   //Add one new TX
-  static add(key, value) {
+  static addTX(key, newTX) {
     return Storages.get(key).then((items) => {
       try {
-        const result = Object.assign({}, items, value);
+        const newTXlist = [newTX].concat(items.trans);
+        const result = { userData: items.userData, trans: newTXlist, friends: items.friends };
+        //const result = Object.assign({}, items, { trans: newTXlist });
         return Storages.set(key, result);
       } catch (error) {
-        console.log('add() error');
+        console.log('addTX() error');
       }
     });
   }

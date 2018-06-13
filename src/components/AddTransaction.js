@@ -98,4 +98,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { transactionUpdate, addItem })(AddTransaction);
-

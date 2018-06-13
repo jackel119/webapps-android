@@ -1,39 +1,98 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { ImageBackground, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { RoundButton } from '../common';
+import Modal from 'react-native-modal';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const HeaderGreeting = () => {
-  const { greetingStyle, blankStyle, usernameStyle, spentStyle, imageStyle,
-    containerStyle, white } = styles;
+class HeaderGreeting extends Component {
 
+  state = {
+    modalVisible: false,
+  };
 
-  return (
-    <ImageBackground
-    source={require('../Img/header1.jpg')}
-    style={imageStyle}
-    >
-      <View>
-        <View style={containerStyle}>
-          <View style={{ flexDirection: 'row' }}>
-            <RoundButton onPress={() => Actions.addTransaction()}>
-              Add
-            </RoundButton>
-            <RoundButton onPress={() => Actions.camera()}>
-              Pic
-            </RoundButton>
+  setModalVisible() {
+    this.setState({ modalVisible: !this.state.modalVisible });
+  }
+
+  render() {
+    const { greetingStyle, blankStyle, usernameStyle, spentStyle, imageStyle,
+      containerStyle, white, iconContainerStyle } = styles;
+
+    return (
+      <ImageBackground
+      source={require('../Img/header1.jpg')}
+      style={imageStyle}
+      >
+        <View>
+
+          <View style={containerStyle}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Icon
+                name="menu" 
+                size={20} 
+                color='white' 
+                iconStyle={{ marginRight: 0 }}
+                onPress={() => { Actions.drawerOpen() }}
+              />
+              <Icon.Button
+                name="add" 
+                size={40} 
+                borderRadius={100}
+                color='white' 
+                onPress={() => this.setModalVisible()}
+                backgroundColor={'#f9ba32'}
+                iconStyle={{ marginRight: 0 }}
+              />
+            </View>
+            <Text style={greetingStyle}>Good Morning,</Text>
+            <Text style={usernameStyle}>Jack.</Text>
+            <View style={blankStyle} />
+            <Text style={white}>You have spent</Text>
+            <Text style={spentStyle}>£12345.67</Text>
+            <Text style={white}>this week.</Text>
           </View>
-          <Text style={greetingStyle}>Good Morning,</Text>
-          <Text style={usernameStyle}>Jack.</Text>
-          <View style={blankStyle} />
-          <Text style={white}>You have spent</Text>
-          <Text style={spentStyle}>£12345.67</Text>
-          <Text style={white}>this week.</Text>
+
+          <Modal
+            isVisible={this.state.modalVisible}
+            backdropOpacity={0.5}
+            onBackdropPress={() => this.setModalVisible()}
+          >
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+              <View style={iconContainerStyle}>
+                <Icon.Button
+                  name="camera-alt" 
+                  size={50}
+                  color='white'
+                  borderRadius={100}
+                  onPress={() => { 
+                    this.setModalVisible();
+                    Actions.camera(); 
+                  }}
+                  iconStyle={{ marginRight: 0 }}
+                />
+              </View>
+
+              <View style={iconContainerStyle}>
+                <Icon.Button
+                  name="edit" 
+                  size={50} 
+                  color='white'
+                  borderRadius={100}
+                  onPress={() => {
+                    this.setModalVisible();
+                    Actions.addTransaction();
+                  }} 
+                  iconStyle={{ marginRight: 0 }}
+
+                />
+              </View>
+            </View>
+          </Modal>
         </View>
-      </View>
-    </ImageBackground>
-  );
-};
+      </ImageBackground>
+    );
+  }
+}
 
 const styles = {
   white: {
@@ -46,7 +105,7 @@ const styles = {
   },
 
   containerStyle: {
-    marginTop: 64,
+    marginTop: 30,
     paddingHorizontal: 20
   },
 
@@ -85,6 +144,13 @@ const styles = {
     alignContent: 'space-between',
     height: 300,
     width: null //to make sure the img spread across the page
+  },
+
+  iconContainerStyle: {
+    flex: 1, 
+    flexDirection: 'row', 
+    justifyContent: 'center', 
+    alignItems: 'stretch' 
   },
 
   toplineStyle: {
