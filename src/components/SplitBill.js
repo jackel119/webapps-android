@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, Picker } from 'react-native';
 import MultiSelect from 'react-native-multiple-select'; 
 import { CardSection, Button } from './common';
 
@@ -81,14 +81,27 @@ class SplitBill extends Component {
     return (
         <CardSection>
           <View style={{ flexDirection: 'row' }}>
+
             <View style={{ flexDirection: 'column' }}>
               <Text> {'Item ' + data.id} </Text>
               <Text> Amount </Text>
             </View>
+
             <View style={{ flexDirection: 'column' }}>
               <Text> {data.name} </Text>
               <Text> {data.amount} </Text>
             </View>
+
+            <View style={styles.containerStyle}>
+              <Text style={styles.labelStyle}>SharedWith</Text>
+              <Picker
+                style={styles.inputStyle}
+              >
+                <Picker.Item label="Jack1" value='1' />
+                <Picker.Item label="Jack2" value='2' />
+              </Picker>
+            </View>
+
           </View>
         </CardSection>
       );
@@ -96,10 +109,10 @@ class SplitBill extends Component {
 
     return (
       <ScrollView style={{ flex: 1 }}>
-        <View style={{ flex: 0.2 }}>
+        <View style={{ flex: 0.2, paddingTop: 5 }}>
           {this.renderTop()}
         </View>
-        <View style={{ flex: 0.8 }}>
+        <View style={{ flex: 0.8, paddingTop: 5 }}>
           <ScrollView>
             {renderData}
           </ScrollView>
@@ -110,20 +123,24 @@ class SplitBill extends Component {
 }
 
 const styles = {
-  container: {
+  inputStyle: {
+    color: '#000',
+    paddingRight: 5,
+    paddingLeft: 5,
+    fontSize: 18,
+    lineHeight: 23,
     flex: 1
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 30,
+  labelStyle: {
+    fontSize: 18,
+    paddingLeft: 20,
+    flex: 1
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  containerStyle: {
+    height: 40
+  }
 };
+
 
 export default SplitBill;
 
