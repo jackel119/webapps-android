@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import MultiSelect from 'react-native-multiple-select'; 
-import { CardSection } from './common';
+import { CardSection, Button } from './common';
 
 
 class SplitBill extends Component {
@@ -10,7 +10,8 @@ class SplitBill extends Component {
     super(props);
 
     this.state = {
-      selectedPeople: []
+      selectedPeople: [],
+      splitEqually: false
     };
     this.items = 
       [{ id: '1',
@@ -36,8 +37,10 @@ class SplitBill extends Component {
   }
 
   renderTop() {
-    const { selectedItems } = this.state;
-    return (
+    console.log(this.state.splitEqually);
+    if (this.state.splitEqually) {
+      const { selectedItems } = this.state;
+      return (
       <View style={styles.container}>
         <MultiSelect
           hideTags
@@ -60,8 +63,17 @@ class SplitBill extends Component {
           submitButtonColor="#CCC"
           submitButtonText="Submit"
         />
-    </View>
-    );
+      </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <Button onPress={() => { this.setState({ splitEqually: true }); }}>
+            AA?
+          </Button>
+        </View>
+      );
+    }
   }
 
   render() {
