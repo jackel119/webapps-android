@@ -55,13 +55,13 @@ export const loginUser = ({ email, password }) => {
               uidList = uidList.concat(tx.to_user);
             }
           }
-          const newList = [...new Set(uidList)];
+          const newList = [...new Set(uidList.filter(x => x))];//remove null
 
           socket.emit('getUsersByUID', newList);
           socket.on('users', res2 => {
             let newFriend = {};
             for (const friendUID of newList) {
-                newFriend = {
+              newFriend = {
                 uid: friendUID,
                 name: res2[friendUID].first_name,
                 email: res2[friendUID].email

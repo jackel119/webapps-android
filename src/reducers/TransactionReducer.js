@@ -1,6 +1,6 @@
 import {
   TRANSACTION_CREATE,
-  TRANSACTION_UPDATE, 
+  TRANSACTION_UPDATE,
   TRANSACTION_INITIATE
 } from '../actions/types';
 
@@ -23,5 +23,5 @@ export default (state = INITIAL_STATE, action) => {
       return INITIAL_STATE;
     default:
       return state;
-  } 
+  }
 };

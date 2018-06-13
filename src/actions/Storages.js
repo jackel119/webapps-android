@@ -50,7 +50,8 @@ class Storages {
   static addTX(key, newTX) {
     return Storages.get(key).then((items) => {
       try {
-        const newTXlist = [newTX].concat(items.trans);
+        //const newTXlist = [newTX].concat(items.trans);
+        const newTXlist = (items.trans).concat(newTX);
         const result = { userData: items.userData, trans: newTXlist, friends: items.friends };
         //const result = Object.assign({}, items, { trans: newTXlist });
         return Storages.set(key, result);
@@ -62,29 +63,30 @@ class Storages {
 
   static getFriendUID(key, email) {
     return Storages.get(key).then((res) => {
-      const friendList = res.friends;
-      for (const friend of friendList) {
-        if (friend.email === email) {
-          // console.log(friend.email);
-          // console.log(friend.uid);
-          return friend.uid;
+      try {
+        console.log('getting FriendUID');
+        const friendList = res.friends;
+        for (const friend of friendList) {
+          if (friend.email === email) {
+            return friend.uid;
+          }
         }
+      } catch (error) {
+        console.log('You dont have this friend!');
       }
-      console.log('You dont have this friend!')
-      return -1;
     });
   }
 
-  static update(key, value) {
-    return Storages.get(key).then((item) => {
-      try {
-        value = typeof value === 'string' ? value : Object.assign({}, item, value);
-        return AsyncStorage.setItem(key, JSON.stringify(value));
-      } catch (error) {
-        console.log('update() error');
-      }
-    });
-  }
+  // static update(key, value) {
+  //   return Storages.get(key).then((item) => {
+  //     try {
+  //       value = typeof value === 'string' ? value : Object.assign({}, item, value);
+  //       return AsyncStorage.setItem(key, JSON.stringify(value));
+  //     } catch (error) {
+  //       console.log('update() error');
+  //     }
+  //   });
+  // }
 
 }
 

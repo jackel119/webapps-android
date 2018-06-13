@@ -10,31 +10,74 @@ const Global = require('./../Global');
 
 export const transactionCreate = ({ to, from, date, currency, amount }) => {
   const uid = Global.UID;
-  console.log('my uid is ' + uid);
+  console.log('my uid is: ' + uid);
+  let transaction = {};
   let toUID = -1;
   let fromUID = -1;
 
-  if (to === 'me') {
-    toUID = uid;
-    fromUID = Storages.getFriendUID(uid, from);
-  } else if (from === 'me') {
-    toUID = Storages.getFriendUID(uid, to);
-    fromUID = uid;
-  } else {
-    console.log('TO or FROM must be me');
-  }
-  console.log(toUID);
-  console.log('to is: ' + toUID + 'from is: ' + fromUID);
-
-  const transaction = {
-    toUID, fromUID, amount, currency, description: 'test test test', groupID: null };
   return (dispatch) => {
-    socket.emit('createTX', transaction);
-    Storages.getAllKeys().then((result) => { console.log('4.have keys: ' + result); });
-    socket.on('createTX', tx => {
-      console.log(tx);
-      Storages.addTX(uid, tx);
-    });
+    if (to === '' || from === '') {
+      //TODO: set an alert for this
+      console.log('CANNOT have empty user!');
+      return;
+    } else if (to === 'me' && from === 'me') {
+      fromUID = uid;
+      toUID = uid;
+      transaction = {
+      to: toUID,
+      from: fromUID,
+      amount: 111,
+      currency: 0,
+      description: 'TX between myself',
+      groupID: null };
+      socket.emit('createTX', transaction);
+      socket.on('newTransaction', tx => {
+        console.log('even here');
+        console.log(tx);
+        Storages.addTX(uid, tx);
+      });
+    } else if (to === 'me') {
+      toUID = uid;
+      Storages.getFriendUID(uid, from).then(res => {
+        fromUID = res;
+        transaction = {
+        to: toUID,
+        from: fromUID,
+        amount: 222,
+        currency: 0,
+        description: 'TX to me',
+        groupID: null };
+        socket.emit('createTX', transaction);
+        console.log('here');
+        socket.on('newTransaction', tx => {
+          console.log('even here');
+          console.log(tx);
+          Storages.addTX(uid, tx);
+        });
+      });
+    } else if (from === 'me') {
+      fromUID = uid;
+      Storages.getFriendUID(uid, to).then(res => {
+        toUID = res;
+        transaction = {
+        to: toUID,
+        from: fromUID,
+        amount: 333,
+        currency: 0,
+        description: 'TX from me',
+        groupID: null };
+        socket.emit('createTX', transaction);
+        console.log('here');
+        socket.on('newTransaction', tx => {
+          console.log('even here');
+          console.log(tx);
+          Storages.addTX(uid, tx);
+        });
+      });
+    } else {
+      console.log('TO or FROM must be me');
+      return;
+    }
     dispatch({ type: TRANSACTION_CREATE });
   };
 };

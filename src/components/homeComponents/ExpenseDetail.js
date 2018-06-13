@@ -35,7 +35,7 @@ const styles = {
 		justifyContent: 'flex-end',
 	},
 	rightStyle: {
-		flex: 1,
+		flex: 2,
 		flexDirection: 'column',
 		justifyContent: 'flex-end',
 		alignItems: 'flex-end',
@@ -53,7 +53,7 @@ const styles = {
 	},
 	descriptionStyle: {
 		color: 'white',
-		fontSize: 20,
+		fontSize: 18,
 		textAlign: 'right',
 		fontFamily: 'TitilliumWeb-Regular',
 	}
