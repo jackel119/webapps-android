@@ -28,6 +28,11 @@ class AddTransaction extends Component {
     }
     return 0;
   }
+
+  submit() {
+    console.log(this.props.data);
+    Actions.split({data: this.props.data});
+  }
   
   renderTop() {
     let total = 0;
@@ -38,7 +43,7 @@ class AddTransaction extends Component {
       <CardSection>
         <Text style={{ fontSize: 24 }}> Total Amount </Text>
         <Text style={{ fontSize: 24 }}> {total.toFixed(2)} </Text>
-        <Button onPress={() => Actions.split(this.props.data)}>
+        <Button onPress={this.submit.bind(this)}>
           Submit
         </Button>
       </CardSection>

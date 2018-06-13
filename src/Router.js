@@ -11,7 +11,6 @@ import FriendsList from './components/FriendsList';
 import AddNewFriends from './components/AddNewFriends';
 import DrawerContent from './DrawerContent';
 import SplitBill from './components/SplitBill';
-import TestComponent from './components/TestComponent'
 
 const RouterComponent = () => {
   return (
@@ -39,7 +38,7 @@ const RouterComponent = () => {
               hideNavBar
             />
             <Scene
-              // initial 
+              initial 
               key="addTransaction"
               component={AddTransaction}
               title="Add Transaction"
@@ -88,12 +87,6 @@ const RouterComponent = () => {
               title="Setting"
             />
 
-            <Scene
-              initial
-              key="test"
-              component={TestComponent}
-              title="Test"
-            />
           </Scene>
         </Drawer>
       </Scene>

@@ -24,6 +24,7 @@ export default (state = INITIAL_STATE, action) => {
     case TRANSACTION_INITIATE:
       return { ...state, from: 'me', amount: action.payload.amount, date: action.payload.date };
     case TRANSACTION_UPDATE:
+      console.log(state, action);
       return { data: updateItem(state.data, action.payload) };
     case TRANSACTION_CREATE:
       return INITIAL_STATE;

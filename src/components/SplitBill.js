@@ -1,18 +1,71 @@
 import React, { Component } from 'react';
-import { Text, View, ListView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
+import MultiSelect from 'react-native-multiple-select'; 
 import { CardSection } from './common';
+
 
 class SplitBill extends Component {
 
   constructor(props) {
     super(props);
 
-    console.log(this.props.data);
+    this.state = {
+      selectedPeople: []
+    };
+    this.items = 
+      [{ id: '1',
+        name: 'Jack',
+      }, {
+        id: '2',
+        name: 'Cassie',
+      }, {
+        id: '3',
+        name: 'Elain',
+      }, {
+        id: '4',
+        name: 'David',
+      }, {
+        id: '5',
+        name: 'Zicong',
+      }];
+    console.log(this.props);
   }
 
+  onSelectedItemsChange(selectedItems) {
+    this.setState({ selectedItems });
+  }
+
+  renderTop() {
+    const { selectedItems } = this.state;
+    return (
+      <View style={styles.container}>
+        <MultiSelect
+          hideTags
+          fixedHeight
+          items={this.items}
+          uniqueKey="id"
+          ref={(component) => { this.multiSelect = component; }}
+          onSelectedItemsChange={this.onSelectedItemsChange.bind(this)}
+          selectedItems={selectedItems}
+          selectText="Pick Friends"
+          searchInputPlaceholderText="Search Friends..."
+          altFontFamily="ProximaNova-Light"
+          tagRemoveIconColor="#CCC"
+          tagBorderColor="#CCC"
+          tagTextColor="#CCC"
+          selectedItemTextColor="#CCC"
+          selectedItemIconColor="#CCC"
+          itemTextColor="#000"
+          searchInputStyle={{ color: '#CCC' }}
+          submitButtonColor="#CCC"
+          submitButtonText="Submit"
+        />
+    </View>
+    );
+  }
 
   render() {
-    let renderData = this.props.data.map((data) => {
+    const renderData = this.props.data.map((data) => {
     return (
         <CardSection>
           <View style={{ flexDirection: 'row' }}>
@@ -28,20 +81,37 @@ class SplitBill extends Component {
         </CardSection>
       );
     });
+
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{ flex: 0.1 }}>
+      <ScrollView style={{ flex: 1 }}>
+        <View style={{ flex: 0.2 }}>
           {this.renderTop()}
         </View>
-        <View style={{ flex: 0.9 }}>
+        <View style={{ flex: 0.8 }}>
           <ScrollView>
             {renderData}
           </ScrollView>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
+
+const styles = {
+  container: {
+    flex: 1
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 30,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+};
 
 export default SplitBill;
 
