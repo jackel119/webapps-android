@@ -72,6 +72,7 @@ class Storages {
           }
         }
       } catch (error) {
+        //TODO: set an alert
         console.log('You dont have this friend!');
       }
     });

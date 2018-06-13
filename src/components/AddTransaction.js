@@ -60,8 +60,8 @@ class AddTransaction extends Component {
                 style={styles.inputStyle}
                 onValueChange={value => this.props.transactionUpdate({ prop: 'currency', value })}
               >
-                <Picker.Item label="Pound" value='1' />
-                <Picker.Item label="RMB" value='2' />
+                <Picker.Item label="Pound" value={0} />
+                <Picker.Item label="Euro" value={1} />
               </Picker>
             </View>
           </CardSection>
