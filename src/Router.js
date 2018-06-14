@@ -17,13 +17,12 @@ const RouterComponent = () => {
     <Router>
       <Scene key="root" hideNavBar sceneStyle={{ paddingTop: 64 }}>
         <Scene 
-          //initial
+          initial
           key="login"
           component={LoginForm}
           title="Please Login"
         />
         <Drawer
-          initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
@@ -31,14 +30,13 @@ const RouterComponent = () => {
         >
           <Scene intial key="main">
             <Scene
-              //initial
+              initial
               key="homepage"
               component={Homepage}
               title="Home"
               hideNavBar
             />
-            <Scene
-              initial 
+            <Scene 
               key="addTransaction"
               component={AddTransaction}
               title="Add Transaction"
