@@ -67,7 +67,23 @@ class Storages {
           return friend.uid;
         }
       }
-    }).catch(() => alert('You dont have this friend!'));
+      console.log('You dont have this friend!');
+    }).catch(() => console.log(''));
+  };
+
+  static getFriendName = async (key, uid) => {
+    var name = 'Invalid Friend';
+    await Storages.get(key).then(res => {
+      console.log('getting FriendName');
+      const friendList = res.friends;
+      for (const friend of friendList) {
+        if (friend.uid === uid) {
+          name = friend.name;
+          break;
+        }
+      }
+    }).catch(() => console.log('getFriendName error'));
+    return name;
   };
 
   static getTotalAmount = async (key) => {
@@ -78,13 +94,12 @@ class Storages {
           total += parseFloat(tx.amount);
       }
     }).catch(() => console.log('getTotalAmount() error'));
-    return total;
+    return total.toFixed(2);
   };
 
     static getUsername = async (key) => {
     var username = '';
     await Storages.get(key).then(res => {
-      console.log(res.userData);
       username = res.userData.first_name;
     }).catch(() => console.log('getTotalAmount() error'));
     return username;

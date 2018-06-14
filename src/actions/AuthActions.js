@@ -48,10 +48,13 @@ export function loginUser({ email, password }) {
           for (const tx of txs) {
             if (tx.from_user !== res.data.uid) {
               uidList = uidList.concat(tx.from_user);
+              tx.amount = '-' + tx.amount;
             } else if (tx.to_user !== res.data.uid) {
               uidList = uidList.concat(tx.to_user);
+              tx.amount = '+' + tx.amount;
             }
           }
+
           const newList = [...new Set(uidList.filter(x => x))];//remove null
 
           socket.emit('getUsersByUID', newList);
@@ -66,10 +69,10 @@ export function loginUser({ email, password }) {
               if (!friendList.includes(newFriend)) {
                 friendList = friendList.concat(newFriend);
               }
-            }
+            } 
             // TODO: Storages.setFriendList();
             Storages.set(uid, { userData: res.data, trans: txs, friends: friendList });
-            // Storages.get(uid).then(re => console.log(re));
+            Storages.get(uid).then(re => console.log(re));
           });
         });
 
