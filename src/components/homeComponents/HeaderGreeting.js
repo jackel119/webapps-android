@@ -3,12 +3,27 @@ import { ImageBackground, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Storages from './../../actions/Storages';
+
+const Global = require('./../../Global');
 
 class HeaderGreeting extends Component {
 
   state = {
     modalVisible: false,
+    totalAmount: 0,
+    username: 'name'
   };
+
+  componentWillMount() {
+    const uid = Global.UID;
+    Storages.getTotalAmount(uid).then(result => {
+      this.setState({ totalAmount: result });
+    });
+    Storages.get(uid).then(result => {
+      this.setState({ username: result.userData.first_name });
+    });
+  }
 
   setModalVisible() {
     this.setState({ modalVisible: !this.state.modalVisible });
@@ -46,11 +61,11 @@ class HeaderGreeting extends Component {
                 iconStyle={{ marginRight: 0 }}
               />
             </View>
-            <Text style={greetingStyle}>Good Morning,</Text>
-            <Text style={usernameStyle}>Jack.</Text>
+            <Text style={greetingStyle}> Hello, </Text>
+            <Text style={usernameStyle}>{this.state.username}.</Text>
             <View style={blankStyle} />
             <Text style={white}>You have spent</Text>
-            <Text style={spentStyle}>£12345.67</Text>
+            <Text style={spentStyle}>{this.state.totalAmount}</Text>
             <Text style={white}>this week.</Text>
           </View>
 

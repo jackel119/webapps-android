@@ -11,11 +11,15 @@ class AddTransaction extends Component {
     super(props);
     this.onAddItem = this.onAddItem.bind(this);
     this.counter = 0;
+
     if (this.props.scannedItems) {
       for (var item of this.props.scannedItems) {
         this.counter += 1;
         this.props.addItem({ initial: true, id: this.counter, name: item.name, price: item.price });
       }
+    } else {
+      this.counter += 1;
+      this.props.addItem({ initial: false, id: this.counter });
     }
   }
 
@@ -38,7 +42,7 @@ class AddTransaction extends Component {
   submit() {
     Actions.split({ data: this.props.data });
   }
-  
+
   renderTop() {
     let total = 0;
     for (var item of this.props.data) {
@@ -46,11 +50,10 @@ class AddTransaction extends Component {
     }
     return (
       <CardSection>
-        <Text style={{ fontSize: 24 }}> Total Amount </Text>
-        <Text style={{ fontSize: 24 }}> {total.toFixed(2)} </Text>
-        <Button onPress={this.submit.bind(this)}>
-          Submit
-        </Button>
+        <View style={styles.topStyle} >
+          <Text style={styles.totalAmountStyle}> Total Amount </Text>
+          <Text style={styles.totalAmountStyle}> {total.toFixed(2)} </Text>
+        </View>
       </CardSection>
     );
   }
@@ -61,10 +64,10 @@ class AddTransaction extends Component {
           <View key={index}>
             <CardSection>
               <Input
-                label={'Item ' + data.id} 
+                label={'Item ' + data.id}
                 placeholder="Item Name"
                 value={data.name}
-                onChangeText={value => this.props.transactionUpdate({ 
+                onChangeText={value => this.props.transactionUpdate({
                 index: data.id, type: 'name', value })}
               />
             </CardSection>
@@ -73,7 +76,7 @@ class AddTransaction extends Component {
                 label="Amount"
                 placeholder="Item Amount"
                 value={data.price.toString()}
-                onChangeText={value => this.props.transactionUpdate({ 
+                onChangeText={value => this.props.transactionUpdate({
                 index: data.id, type: 'price', value })}
               />
             </CardSection>
@@ -81,18 +84,24 @@ class AddTransaction extends Component {
         );
     });
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.containerStyle}>
         <View style={{ flex: 0.1 }}>
           {this.renderTop()}
         </View>
         <View style={{ flex: 0.8 }}>
           <ScrollView>
             {renderAddItem}
+            <View style={{ flexDirection: 'row', flex: 1 }}>
+              <View style={{ flex: 0.5 }} />
+              <Button onPress={this.onAddItem} >
+                Add Item
+              </Button>
+            </View>
           </ScrollView>
         </View>
         <View style={{ flex: 0.1 }}>
-          <Button onPress={this.onAddItem} >
-            Add Item  
+          <Button onPress={this.submit.bind(this)}>
+            Submit
           </Button>
         </View>
       </View>
@@ -103,6 +112,27 @@ class AddTransaction extends Component {
 const mapStateToProps = (state) => {
   const { data } = state.receipt;
   return { data } ;
+};
+
+const styles = {
+  containerStyle: {
+    marginTop: 10,
+    paddingHorizontal: 20,
+    flex: 1
+  },
+
+  topStyle: {
+    padding: 2,
+    flexDirection: 'row',
+    // justifyContent: 'flex-end',
+    // alignItems: 'flex-end',
+  },
+
+  totalAmountStyle: {
+    fontSize: 24,
+    //textAlign: 'right',
+    //alignSelf: 'flex-end',
+  }
 };
 
 export default connect(mapStateToProps, { transactionUpdate, addItem })(AddTransaction);
