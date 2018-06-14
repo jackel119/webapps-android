@@ -3,7 +3,8 @@ import {
   TRANSACTION_CREATE,
   TRANSACTION_UPDATE,
   TRANSACTION_INITIATE,
-  ADD_ITEM
+  ADD_ITEM,
+  INITIALISE_STATE
 } from './types';
 import Storages from './Storages';
 
@@ -59,10 +60,16 @@ export const transactionInitiate = (initial) => {
   };
 };
 
-export const addItem = (counter) => {
+export const addItem = (item) => {
   return {
     type: ADD_ITEM,
-    payload: counter
+    payload: item
+  };
+};
+
+export const initialiseState = () => {
+  return {
+    type: INITIALISE_STATE
   };
 };
 

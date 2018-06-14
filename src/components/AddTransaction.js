@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection, Button, Input } from './common';
-import { transactionUpdate, addItem } from '../actions';
+import { transactionUpdate, addItem, initialiseState } from '../actions';
 import { Actions } from 'react-native-router-flux';
 
 class AddTransaction extends Component {
@@ -12,6 +12,7 @@ class AddTransaction extends Component {
     this.onAddItem = this.onAddItem.bind(this);
     this.counter = 0;
 
+    this.props.initialiseState();
     if (this.props.scannedItems) {
       for (var item of this.props.scannedItems) {
         this.counter += 1;
@@ -111,7 +112,7 @@ class AddTransaction extends Component {
 
 const mapStateToProps = (state) => {
   const { data } = state.receipt;
-  return { data } ;
+  return { data };
 };
 
 const styles = {
@@ -135,4 +136,4 @@ const styles = {
   }
 };
 
-export default connect(mapStateToProps, { transactionUpdate, addItem })(AddTransaction);
+export default connect(mapStateToProps, { transactionUpdate, addItem, initialiseState })(AddTransaction);

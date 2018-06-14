@@ -2,11 +2,11 @@ import {
   TRANSACTION_CREATE,
   TRANSACTION_UPDATE, 
   TRANSACTION_INITIATE,
-  ADD_ITEM
+  ADD_ITEM,
+  INITIALISE_STATE,
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  counter: 0,
   data: []
 };
 
@@ -23,19 +23,20 @@ function updateItem(data, detail) {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TRANSACTION_INITIATE:
-      console.log('In reducer', action.payload);
       return { data: action.payload };
     case TRANSACTION_UPDATE:
-      console.log(state, action);
       return { data: updateItem(state.data, action.payload) };
     case TRANSACTION_CREATE:
       return INITIAL_STATE;
     case ADD_ITEM:
       if (action.payload.initial) {
-        return { data: [...state.data, { id: action.payload.id, 
-          name: action.payload.name, price: action.payload.price }] };
-      }
+        return { data: [...state.data, {
+          id: action.payload.id, name: action.payload.name, price: action.payload.price }] };
+      } 
       return { data: [...state.data, { id: action.payload.id, name: '', price: '' }] };
+    case INITIALISE_STATE:
+      console.log('hi');
+      return { data: [] };
     default:
       return state;
   } 
