@@ -12,7 +12,8 @@ class HeaderGreeting extends Component {
   state = {
     username: 'User',
     modalVisible: false,
-    totalAmount: 0
+    totalAmount: 0,
+    username: 'name'
   };
 
   async componentWillMount() {
@@ -23,6 +24,9 @@ class HeaderGreeting extends Component {
 
     await Storages.getUsername(uid).then(username => {
       this.setState({ username });
+    });
+    Storages.get(uid).then(result => {
+      this.setState({ username: result.userData.first_name });
     });
   }
 
@@ -62,7 +66,7 @@ class HeaderGreeting extends Component {
                 iconStyle={{ marginRight: 0 }}
               />
             </View>
-            <Text style={greetingStyle}>Good Morning,</Text>
+            <Text style={greetingStyle}> Hello, </Text>
             <Text style={usernameStyle}>{this.state.username}.</Text>
             <View style={blankStyle} />
             <Text style={white}>You have spent</Text>
