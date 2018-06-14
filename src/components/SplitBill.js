@@ -52,7 +52,6 @@ class SplitBill extends Component {
           selectedItems={selectedItems}
           selectText="Pick Friends"
           searchInputPlaceholderText="Search Friends..."
-          altFontFamily="ProximaNova-Light"
           tagRemoveIconColor="#CCC"
           tagBorderColor="#CCC"
           tagTextColor="#CCC"

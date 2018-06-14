@@ -9,11 +9,9 @@ class FriendsList extends Component {
   state = { friendsList: [] };
 
   componentWillMount() {
-    console.log('get here???');
     const uid = Global.UID;
     Storages.get(uid).then(result => {
       this.setState({ friendsList: result.friends });
-      //console.log(result.friends);
     });
   }
 
