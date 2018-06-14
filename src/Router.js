@@ -8,6 +8,7 @@ import ExpensePage from './components/ExpensePage';
 import ImageComponent from './components/ImageComponent';
 import Setting from './components/Setting';
 import FriendsList from './components/FriendsList';
+import GroupList from './components/GroupList';
 import AddNewFriends from './components/AddNewFriends';
 import DrawerContent from './DrawerContent';
 import SplitBill from './components/SplitBill';
@@ -66,17 +67,25 @@ const RouterComponent = () => {
             />
 
             <Scene
-              key="friendsList"
+              key="friendList"
               component={FriendsList}
-              title="Friends List"
+              title="Friend List"
               onRight={() => Actions.addFriend()}
               rightTitle="Add"
             />
 
+              <Scene
+                key="addFriend"
+                component={AddNewFriends}
+                title="Add Friends"
+              />
+
             <Scene
-              key="addFriend"
-              component={AddNewFriends}
-              title="Add Friends"
+              key="groupList"
+              component={GroupList}
+              title="Group List"
+              onRight={() => alert("Add Group")}
+              rightTitle="Add"
             />
 
             <Scene

@@ -68,11 +68,15 @@ class DrawerContent extends React.Component {
           <Icon name="list-alt" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Transactions</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.barStyle2} onPress={Actions.friendsList}>
+        <TouchableOpacity style={styles.barStyle2} onPress={Actions.friendList}>
           <Icon name="users" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Friends List</Text>
+        </TouchableOpacity>        
+        <TouchableOpacity style={styles.barStyle1} onPress={Actions.groupList}>
+          <Icon name="users" size={20} style={styles.iconStyle} />
+          <Text style={styles.textStyle}>Group List</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.barStyle1} onPress={Actions.setting}>
+        <TouchableOpacity style={styles.barStyle2} onPress={Actions.setting}>
           <Icon name="cog" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Setting</Text>
         </TouchableOpacity>
