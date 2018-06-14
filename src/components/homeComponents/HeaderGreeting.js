@@ -26,19 +26,21 @@ class HeaderGreeting extends Component {
         <View>
 
           <View style={containerStyle}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <View
+            style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: -20 }}
+            >
               <Icon
-                name="menu" 
-                size={20} 
-                color='white' 
+                name="menu"
+                size={20}
+                color='white'
                 iconStyle={{ marginRight: 0 }}
-                onPress={() => { Actions.drawerOpen() }}
+                onPress={() => { Actions.drawerOpen(); }}
               />
               <Icon.Button
-                name="add" 
-                size={40} 
+                name="add"
+                size={40}
                 borderRadius={100}
-                color='white' 
+                color='white'
                 onPress={() => this.setModalVisible()}
                 backgroundColor={'#f9ba32'}
                 iconStyle={{ marginRight: 0 }}
@@ -60,13 +62,13 @@ class HeaderGreeting extends Component {
             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               <View style={iconContainerStyle}>
                 <Icon.Button
-                  name="camera-alt" 
+                  name="camera-alt"
                   size={50}
                   color='white'
                   borderRadius={100}
-                  onPress={() => { 
+                  onPress={() => {
                     this.setModalVisible();
-                    Actions.camera(); 
+                    Actions.camera();
                   }}
                   iconStyle={{ marginRight: 0 }}
                 />
@@ -74,14 +76,14 @@ class HeaderGreeting extends Component {
 
               <View style={iconContainerStyle}>
                 <Icon.Button
-                  name="edit" 
-                  size={50} 
+                  name="edit"
+                  size={50}
                   color='white'
                   borderRadius={100}
                   onPress={() => {
                     this.setModalVisible();
                     Actions.addTransaction();
-                  }} 
+                  }}
                   iconStyle={{ marginRight: 0 }}
 
                 />
@@ -105,7 +107,7 @@ const styles = {
   },
 
   containerStyle: {
-    marginTop: 30,
+    marginTop: 10,
     paddingHorizontal: 20
   },
 
@@ -147,10 +149,10 @@ const styles = {
   },
 
   iconContainerStyle: {
-    flex: 1, 
-    flexDirection: 'row', 
-    justifyContent: 'center', 
-    alignItems: 'stretch' 
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'stretch'
   },
 
   toplineStyle: {
