@@ -8,9 +8,9 @@ const Global = require('./../../Global');
 class ExpenseList extends Component {
   state = { expenseList: [] };
 
-  componentWillMount() {
+  async componentWillMount() {
     const uid = Global.UID;
-    Storages.get(uid).then(result => this.setState({ expenseList: result.trans }));
+    await Storages.get(uid).then(result => this.setState({ expenseList: result.trans }));
   }
 
   renderExpenses() {

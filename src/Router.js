@@ -24,6 +24,7 @@ const RouterComponent = () => {
           title="Please Login"
         />
         <Drawer
+          // initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
@@ -82,6 +83,7 @@ const RouterComponent = () => {
               />
 
             <Scene
+              initial
               key="groupList"
               component={GroupList}
               title="Group List"

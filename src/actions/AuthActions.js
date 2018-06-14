@@ -25,20 +25,22 @@ export const passwordChanged = (text) => {
   };
 };
 
-export const loginUser = ({ email, password }) => {
+export function loginUser({ email, password }) {
   return (dispatch) => {
-    dispatch({ type: LOGIN_USER });
-
     socket.emit('authentication', { username: email, password });
     socket.on('authResult', res => {
       if (res.result) {
         Global.UID = res.data.uid;
         const uid = Global.UID;
 
+        // TODO: Storages.set(uid, { userData: res.data, trans: [] || [], friends: [] });
+
         socket.emit('requestTXs');
         socket.on('allTransactions', txs => {
-          Storages.clearAll();
           //Storages.delete(uid); //clear records, assuming it's the first time to login
+          // Storages.set(uid, { userData: res.data, trans: txs, friends: [] });
+          // Storages.get(uid).then(r => console.log(r));
+          // TODO: Storages.setTransaction();
 
           let uidList = [];
           let friendList = [];
@@ -66,31 +68,20 @@ export const loginUser = ({ email, password }) => {
                 friendList = friendList.concat(newFriend);
               }
             }
+            // TODO: Storages.setFriendList();
             Storages.set(uid, { userData: res.data, trans: txs, friends: friendList });
-            loginUserSucess(dispatch, { email, password });
+            // Storages.get(uid).then(re => console.log(re));
           });
-
-          // for checking
-          // Storages.getAllKeys().then((result) => {
-          //   if (result.indexOf(uid) < 0) {
-          //     // console.log('uid is: ' + uid);
-          //     // console.log('TXs is: ' + txs);
-          //     // login for the first time: store TXs with uid as key
-          //     console.log('1.have keys: ' + result)
-          //   } else {
-          //     // TODO: has logged in before
-          //     //Storages.update(uid, txs);
-          //     console.log('2.have keys: ' + result)
-          //   }
-          // });
         });
-        //loginUserSucess(dispatch, { email, password });
+
+        loginUserSucess(dispatch, { email, password });
       } else {
         loginUserFail(dispatch);
       }
     });
+    dispatch({ type: LOGIN_USER });
   };
-};
+}
 
 const loginUserFail = (dispatch) => {
   dispatch({ type: LOGIN_USER_FAIL });

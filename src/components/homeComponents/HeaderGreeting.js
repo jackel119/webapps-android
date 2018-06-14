@@ -14,9 +14,10 @@ class HeaderGreeting extends Component {
     totalAmount: 0
   };
 
-  componentWillMount() {
+  async componentWillMount() {
     const uid = Global.UID;
-    Storages.getTotalAmount(uid).then(result => {
+    await Storages.getTotalAmount(uid).then(result => {
+      console.log(result);
       this.setState({ totalAmount: result });
     });
   }
