@@ -77,6 +77,21 @@ class Storages {
     });
   }
 
+  static getTotalAmount(key) {
+    return Storages.get(key).then((res) => {
+      try {
+        let total = 0;
+        const txList = res.trans;
+        for (const tx of txList) {
+          total += parseFloat(tx.amount);
+        }
+        return total;
+      } catch (error) {
+        console.log('getTotalAmount() error');
+      }
+    });
+  }
+
   // static update(key, value) {
   //   return Storages.get(key).then((item) => {
   //     try {
