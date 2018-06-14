@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native';
 
 class Storages {
 
-static get(key) {
+  static get(key) {
     try {
       return AsyncStorage.getItem(key).then((value) => {
         if (value == null) { console.log('get() returns null'); return; }
@@ -60,16 +60,33 @@ static get(key) {
     });
   }
 
-  static update(key, value) {
-    return Storages.get(key).then((item) => {
+  static getFriendUID(key, email) {
+    return Storages.get(key).then((res) => {
       try {
-        value = typeof value === 'string' ? value : Object.assign({}, item, value);
-        return AsyncStorage.setItem(key, JSON.stringify(value));
+        console.log('getting FriendUID');
+        const friendList = res.friends;
+        for (const friend of friendList) {
+          if (friend.email === email) {
+            return friend.uid;
+          }
+        }
       } catch (error) {
-        console.log('update() error');
+        //TODO: set an alert
+        alert('You dont have this friend!');
       }
     });
   }
+
+  // static update(key, value) {
+  //   return Storages.get(key).then((item) => {
+  //     try {
+  //       value = typeof value === 'string' ? value : Object.assign({}, item, value);
+  //       return AsyncStorage.setItem(key, JSON.stringify(value));
+  //     } catch (error) {
+  //       console.log('update() error');
+  //     }
+  //   });
+  // }
 
 }
 
