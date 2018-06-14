@@ -17,7 +17,6 @@ class AddTransaction extends Component {
         this.props.addItem({ initial: true, id: this.counter, name: item.name, price: item.price });
       }
     }
-    console.log(this.props.data);
   }
 
   onAddItem() {
@@ -57,9 +56,7 @@ class AddTransaction extends Component {
   }
 
   render() {
-    console.log('rendering now', this.props.data);
     let renderAddItem = this.props.data.map((data, index) => {
-        console.log(data);
         return (
           <View key={index}>
             <CardSection>

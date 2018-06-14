@@ -31,7 +31,6 @@ export default (state = INITIAL_STATE, action) => {
     case TRANSACTION_CREATE:
       return INITIAL_STATE;
     case ADD_ITEM:
-      console.log(action.payload);
       if (action.payload.initial) {
         return { data: [...state.data, { id: action.payload.id, 
           name: action.payload.name, price: action.payload.price }] };
