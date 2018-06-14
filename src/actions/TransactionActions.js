@@ -10,7 +10,6 @@ const Global = require('./../Global');
 
 export const transactionCreate = ({ to, from, date, currency, amount }) => {
   const uid = Global.UID;
-  console.log('my uid is: ' + uid);
   let transaction = {};
   let toUID = -1;
   let fromUID = -1;
@@ -32,8 +31,6 @@ export const transactionCreate = ({ to, from, date, currency, amount }) => {
       groupID: null };
       socket.emit('createTX', transaction);
       socket.on('newTransaction', tx => {
-        console.log('even here');
-        console.log(tx);
         Storages.addTX(uid, tx);
       });
     } else if (to === 'me') {
@@ -48,10 +45,7 @@ export const transactionCreate = ({ to, from, date, currency, amount }) => {
         description: 'TX to me',
         groupID: null };
         socket.emit('createTX', transaction);
-        console.log('here');
         socket.on('newTransaction', tx => {
-          console.log('even here');
-          console.log(tx);
           Storages.addTX(uid, tx);
         });
       });
@@ -67,10 +61,7 @@ export const transactionCreate = ({ to, from, date, currency, amount }) => {
         description: 'TX from me',
         groupID: null };
         socket.emit('createTX', transaction);
-        console.log('here');
         socket.on('newTransaction', tx => {
-          console.log('even here');
-          console.log(tx);
           Storages.addTX(uid, tx);
         });
       });
