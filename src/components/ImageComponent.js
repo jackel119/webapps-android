@@ -11,7 +11,6 @@ export default class ImageComponent extends Component {
     this.state = {
       generating: false
     };
-    console.log(this.state.generating);
   }
 
   onButtonPress() {
@@ -43,6 +42,7 @@ export default class ImageComponent extends Component {
       return res;
     })
     .then(res => {
+      console.log('before going in');
       Actions.addTransaction({
         scannedItems: [
         {
