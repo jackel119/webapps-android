@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Image, Text } from 'react-native';
 import { Button, CardSection, Card, Spinner } from './common';
+import { socket } from '../Global';
 
 
 export default class ImageComponent extends Component {
@@ -19,10 +20,8 @@ export default class ImageComponent extends Component {
     // console.log(this.props);
     // send and get back
     // mock code here
-    setTimeout(() => { 
-      Actions.addTransaction({ scannedAmount: '8.40', scannedDate: '08/06/2018' });
-      this.setState({ generating: false }); 
-      }, 5000);
+    socket.emit('imageParse', null);
+    socket.on('itemizedBill', res => Actions.addTransaction({ scannedItems: res.items }));
   }
 
   renderButton() {

@@ -11,11 +11,18 @@ class AddTransaction extends Component {
     super(props);
     this.onAddItem = this.onAddItem.bind(this);
     this.counter = 0;
+    if (this.props.scannedItems) {
+      for (var item of this.props.scannedItems) {
+        this.counter += 1;
+        this.props.addItem({ initial: true, id: this.counter, name: item.name, price: item.price });
+      }
+    }
+    console.log(this.props.data);
   }
 
   onAddItem() {
     this.counter += 1;
-    this.props.addItem({ id: this.counter });
+    this.props.addItem({ initial: false, id: this.counter });
   }
 
   onBottunPress() {
@@ -30,14 +37,13 @@ class AddTransaction extends Component {
   }
 
   submit() {
-    console.log(this.props.data);
-    Actions.split({data: this.props.data});
+    Actions.split({ data: this.props.data });
   }
   
   renderTop() {
     let total = 0;
     for (var item of this.props.data) {
-      total = total + this.convertToNumber(item.amount);
+      total = total + this.convertToNumber(item.price);
     }
     return (
       <CardSection>
@@ -51,14 +57,16 @@ class AddTransaction extends Component {
   }
 
   render() {
+    console.log('rendering now', this.props.data);
     let renderAddItem = this.props.data.map((data, index) => {
+        console.log(data);
         return (
           <View key={index}>
             <CardSection>
               <Input
                 label={'Item ' + data.id} 
                 placeholder="Item Name"
-                value={this.props.data.name}
+                value={data.name}
                 onChangeText={value => this.props.transactionUpdate({ 
                 index: data.id, type: 'name', value })}
               />
@@ -67,15 +75,14 @@ class AddTransaction extends Component {
               <Input
                 label="Amount"
                 placeholder="Item Amount"
-                value={this.props.data.amount}
+                value={data.price.toString()}
                 onChangeText={value => this.props.transactionUpdate({ 
-                index: data.id, type: 'amount', value })}
+                index: data.id, type: 'price', value })}
               />
             </CardSection>
           </View>
         );
     });
-
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 0.1 }}>
@@ -97,7 +104,8 @@ class AddTransaction extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state.receipt;
+  const { data } = state.receipt;
+  return { data } ;
 };
 
 export default connect(mapStateToProps, { transactionUpdate, addItem })(AddTransaction);

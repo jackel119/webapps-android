@@ -6,6 +6,7 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
+  counter: 0,
   data: []
 };
 
@@ -22,14 +23,20 @@ function updateItem(data, detail) {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TRANSACTION_INITIATE:
-      return { ...state, from: 'me', amount: action.payload.amount, date: action.payload.date };
+      console.log('In reducer', action.payload);
+      return { data: action.payload };
     case TRANSACTION_UPDATE:
       console.log(state, action);
       return { data: updateItem(state.data, action.payload) };
     case TRANSACTION_CREATE:
       return INITIAL_STATE;
     case ADD_ITEM:
-      return { data: [...state.data, { id: action.payload.id, name: '', amount: '' }] };
+      console.log(action.payload);
+      if (action.payload.initial) {
+        return { data: [...state.data, { id: action.payload.id, 
+          name: action.payload.name, price: action.payload.price }] };
+      }
+      return { data: [...state.data, { id: action.payload.id, name: '', price: '' }] };
     default:
       return state;
   } 
