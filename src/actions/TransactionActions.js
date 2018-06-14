@@ -15,24 +15,8 @@ export const transactionCreate = ({ to, from, date, currency, amount }) => {
   let fromUID = -1;
 
   return (dispatch) => {
-    if (to === '' || from === '') {
-      //TODO: set an alert for this
-      console.log('CANNOT have empty user!');
-      return;
-    } else if (to === 'me' && from === 'me') {
-      fromUID = uid;
-      toUID = uid;
-      transaction = {
-      to: toUID,
-      from: fromUID,
-      amount: 111,
-      currency: 0,
-      description: 'TX between myself',
-      groupID: null };
-      socket.emit('createTX', transaction);
-      socket.on('newTransaction', tx => {
-        Storages.addTX(uid, tx);
-      });
+    if ((to === '' || from === '') || (to === 'me' && from === 'me')) {
+      alert('Invalid transaction!');
     } else if (to === 'me') {
       toUID = uid;
       Storages.getFriendUID(uid, from).then(res => {
@@ -40,9 +24,9 @@ export const transactionCreate = ({ to, from, date, currency, amount }) => {
         transaction = {
         to: toUID,
         from: fromUID,
-        amount: 222,
-        currency: 0,
-        description: 'TX to me',
+        amount: Number(amount),
+        currency: Number(currency),
+        description: 'TODO',
         groupID: null };
         socket.emit('createTX', transaction);
         socket.on('newTransaction', tx => {
@@ -56,18 +40,19 @@ export const transactionCreate = ({ to, from, date, currency, amount }) => {
         transaction = {
         to: toUID,
         from: fromUID,
-        amount: 333,
-        currency: 0,
-        description: 'TX from me',
+        amount: Number(amount),
+        currency: Number(currency), 
+        description: 'TODO',
         groupID: null };
+        console.log(transaction);
         socket.emit('createTX', transaction);
         socket.on('newTransaction', tx => {
+          console.log('hiiii');
           Storages.addTX(uid, tx);
         });
       });
     } else {
-      console.log('TO or FROM must be me');
-      return;
+      alert('TO or FROM must be me');
     }
     dispatch({ type: TRANSACTION_CREATE });
   };

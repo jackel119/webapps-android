@@ -50,8 +50,7 @@ class Storages {
   static addTX(key, newTX) {
     return Storages.get(key).then((items) => {
       try {
-        //const newTXlist = [newTX].concat(items.trans);
-        const newTXlist = (items.trans).concat(newTX);
+        const newTXlist = [newTX].concat(items.trans);
         const result = { userData: items.userData, trans: newTXlist, friends: items.friends };
         //const result = Object.assign({}, items, { trans: newTXlist });
         return Storages.set(key, result);
@@ -73,7 +72,7 @@ class Storages {
         }
       } catch (error) {
         //TODO: set an alert
-        console.log('You dont have this friend!');
+        alert('You dont have this friend!');
       }
     });
   }
