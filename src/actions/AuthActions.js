@@ -37,7 +37,6 @@ export function loginUser({ email, password }) {
 
         socket.emit('requestTXs');
         socket.on('allTransactions', txs => {
-          //Storages.delete(uid); //clear records, assuming it's the first time to login
           // Storages.set(uid, { userData: res.data, trans: txs, friends: [] });
           // Storages.get(uid).then(r => console.log(r));
           // TODO: Storages.setTransaction();

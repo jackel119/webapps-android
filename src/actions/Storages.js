@@ -1,4 +1,3 @@
-import React from 'react';
 import { AsyncStorage } from 'react-native';
 
 class Storages {
@@ -48,7 +47,7 @@ class Storages {
 
   //Add one new TX
   static addTX = async (key, newTX) => {
-    await Storages.get(key).then((items) => {
+    await Storages.get(key).then(items => {
       try {
         const newTXlist = [newTX].concat(items.trans);
         const result = { userData: items.userData, trans: newTXlist, friends: items.friends };
@@ -80,6 +79,15 @@ class Storages {
       }
     }).catch(() => console.log('getTotalAmount() error'));
     return total;
+  };
+
+    static getUsername = async (key) => {
+    var username = '';
+    await Storages.get(key).then(res => {
+      console.log(res.userData);
+      username = res.userData.first_name;
+    }).catch(() => console.log('getTotalAmount() error'));
+    return username;
   };
 
   // static update(key, value) {

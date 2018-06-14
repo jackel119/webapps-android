@@ -10,15 +10,19 @@ const Global = require('./../../Global');
 class HeaderGreeting extends Component {
 
   state = {
+    username: 'User',
     modalVisible: false,
     totalAmount: 0
   };
 
   async componentWillMount() {
     const uid = Global.UID;
-    await Storages.getTotalAmount(uid).then(result => {
-      console.log(result);
-      this.setState({ totalAmount: result });
+    await Storages.getTotalAmount(uid).then(totalAmount => {
+      this.setState({ totalAmount });
+    });
+
+    await Storages.getUsername(uid).then(username => {
+      this.setState({ username });
     });
   }
 
@@ -59,7 +63,7 @@ class HeaderGreeting extends Component {
               />
             </View>
             <Text style={greetingStyle}>Good Morning,</Text>
-            <Text style={usernameStyle}>Jack.</Text>
+            <Text style={usernameStyle}>{this.state.username}.</Text>
             <View style={blankStyle} />
             <Text style={white}>You have spent</Text>
             <Text style={spentStyle}>{this.state.totalAmount}</Text>
