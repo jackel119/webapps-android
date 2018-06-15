@@ -2,12 +2,12 @@ import React from 'react';
 import { Text, View } from 'react-native';
 
 const FriendDetail = ({ friend }) => {
-  const { email, name } = friend;
+  const { email, firstName, lastName } = friend;
   const { cardStyle, nameStyle, groupStyle, emailStyle, rightStyle, leftStyle } = styles;
   return (
     <View style={cardStyle}>
       <View style={leftStyle}>
-          <Text style={nameStyle}>{name} </Text>
+          <Text style={nameStyle}>{firstName} {lastName} </Text>
       </View>
 
 
@@ -43,7 +43,7 @@ const styles = {
   nameStyle: {
     color: 'white',
     textAlign: 'left',
-    fontSize: 24,
+    fontSize: 18,
   },
   groupStyle: {
     color: 'white',
