@@ -9,7 +9,8 @@ export default class ImageComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      generating: false
+      generating: false,
+      buttonText: 'Generate Transaction'
     };
   }
 
@@ -18,6 +19,7 @@ export default class ImageComponent extends Component {
     // console.log(this.props);
     // send and get back
     // console.log(this.props.base64);
+
     fetch(config.googleCloud.api + config.googleCloud.apiKey, {
     method: 'POST',
     body: JSON.stringify({
@@ -45,9 +47,8 @@ export default class ImageComponent extends Component {
       console.log('before going in');
       Actions.addTransaction({ scannedItems: this.parseReceipt(res) });
     })
-    .catch((err) => {
-      console.error('promise rejected');
-      console.error(err);
+    .catch(() => {
+      this.setState({ generating: false, buttonText: 'Retry Please' });
     });
   }
 
@@ -57,7 +58,6 @@ export default class ImageComponent extends Component {
     var items = [];
     var prices = [];
     var tobreak = false;
-    var chinese_char = /^[\u4E00-\u9FFF\u3400-\u4DFF]+$/;
     for (var line of file) {
       if (currencies.includes(line.charAt(0))) {
         if (/\d/.test(line) || /\d/.test(line.substring(1, line.length))) {
@@ -83,7 +83,7 @@ export default class ImageComponent extends Component {
     var offset = 0;
 
     for (i = 0; i < prices.length - 1; i++) {
-      if (items[items.length - i - 2 - offset].match(/[\u3400-\u9FBF]/) || items[items.length - i - 2 - offset].includes('*')) {
+      if (items[items.length - i - 2 - offset].match(/[\u3400-\u9FBF]/) || items[items.length - i - 2 - offset] == '*') {
         offset += 1;
       }
       result.unshift({
@@ -103,7 +103,7 @@ export default class ImageComponent extends Component {
     }
     return (
       <Button onPress={this.onButtonPress.bind(this)}>
-        Generate Transaction
+        {this.state.buttonText}
       </Button>
     );
   }
