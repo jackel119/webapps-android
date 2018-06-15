@@ -35,9 +35,9 @@ export default (state = INITIAL_STATE, action) => {
       } 
       return { data: [...state.data, { id: action.payload.id, name: '', price: '' }] };
     case INITIALISE_STATE:
-      console.log('hi');
       return { data: [] };
     default:
       return state;
   } 
 };
+

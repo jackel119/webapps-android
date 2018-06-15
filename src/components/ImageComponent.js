@@ -35,6 +35,7 @@ export default class ImageComponent extends Component {
       ]
     })
     }).then((response) => {
+      console.log(response.responses[0].fullTextAnnotation);
       return response.json();
     }).then(res => res.responses[0].fullTextAnnotation.text.split('\n'))
     .then(res => {

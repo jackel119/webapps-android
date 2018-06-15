@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection, Button, Input } from './common';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { transactionUpdate, addItem, initialiseState } from '../actions';
 import { Actions } from 'react-native-router-flux';
 
@@ -23,6 +24,7 @@ class AddTransaction extends Component {
       this.props.addItem({ initial: false, id: this.counter });
     }
   }
+
 
   onAddItem() {
     this.counter += 1;
@@ -47,22 +49,20 @@ class AddTransaction extends Component {
   renderTop() {
     let total = 0;
     for (var item of this.props.data) {
-      total = total + this.convertToNumber(item.price);
+      total += this.convertToNumber(item.price);
     }
     return (
-      <CardSection>
-        <View style={styles.topStyle} >
-          <Text style={styles.totalAmountStyle}> Total Amount </Text>
-          <Text style={styles.totalAmountStyle}> {total.toFixed(2)} </Text>
-        </View>
-      </CardSection>
+      <View style={styles.topStyle} >
+        <Text style={styles.totalAmountStyle}> Total Amount </Text>
+        <Text style={styles.totalAmountNumber}> {total.toFixed(2)} </Text>
+      </View>
     );
   }
 
   render() {
     let renderAddItem = this.props.data.map((data, index) => {
         return (
-          <View key={index}>
+          <View style={styles.newItemStyle} key={index}>
             <CardSection>
               <Input
                 label={'Item ' + data.id}
@@ -86,19 +86,22 @@ class AddTransaction extends Component {
     });
     return (
       <View style={styles.containerStyle}>
-        <View style={{ flex: 0.1 }}>
-          {this.renderTop()}
-        </View>
         <View style={{ flex: 0.8 }}>
           <ScrollView>
-            {renderAddItem}
-            <View style={{ flexDirection: 'row', flex: 1 }}>
-              <View style={{ flex: 0.5 }} />
-              <Button onPress={this.onAddItem} >
-                Add Item
-              </Button>
+            <View>
+              {renderAddItem}
+            </View>
+            <View style={styles.addItemStyle}>
+              <View style={{ flex: 1.5 }} />
+              <TouchableOpacity style={styles.addButtonStyle} onPress={this.onAddItem}>
+                <Icon name="plus" size={20} style={styles.iconStyle} />
+                <Text style={{ fontSize: 16 }}>Add Item</Text>
+              </TouchableOpacity>
             </View>
           </ScrollView>
+        </View>
+        <View style={{ flex: 0.1 }}>
+          {this.renderTop()}
         </View>
         <View style={{ flex: 0.1 }}>
           <Button onPress={this.submit.bind(this)}>
@@ -119,20 +122,54 @@ const styles = {
   containerStyle: {
     marginTop: 10,
     paddingHorizontal: 20,
-    flex: 1
+    paddingBottom: 5,
+    flex: 1,
+    //backgroundColor: '#000a29'
   },
 
   topStyle: {
-    padding: 2,
+    paddingVertical: 8,
     flexDirection: 'row',
-    // justifyContent: 'flex-end',
-    // alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    borderBottomWidth: 1,
+    backgroundColor: 'lightyellow',
+    borderColor: '#ddd',
+    position: 'relative',
+    paddingRight: 15,
+    alignItems: 'flex-end',
   },
 
   totalAmountStyle: {
-    fontSize: 24,
-    //textAlign: 'right',
-    //alignSelf: 'flex-end',
+    fontSize: 16,
+    paddingRight: 15,
+  },
+
+  totalAmountNumber: {
+    fontSize: 20,
+  },
+
+  addItemStyle: {
+    flexDirection: 'row',
+    flex: 1,
+    height: 40,
+    //paddingTop: 5,
+  },
+
+  newItemStyle: {
+    marginBottom: 5,
+  },
+
+  addButtonStyle: {
+    height: 40,
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    backgroundColor: 'lightblue',
+    flexDirection: 'row'
+  },
+
+  iconStyle: {
+    fontSize: 15,
+    paddingRight: 5,
   }
 };
 

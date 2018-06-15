@@ -10,15 +10,20 @@ const Global = require('./../../Global');
 class HeaderGreeting extends Component {
 
   state = {
+    username: 'User',
     modalVisible: false,
     totalAmount: 0,
     username: 'name'
   };
 
-  componentWillMount() {
+  async componentWillMount() {
     const uid = Global.UID;
-    Storages.getTotalAmount(uid).then(result => {
-      this.setState({ totalAmount: result });
+    await Storages.getTotalAmount(uid).then(totalAmount => {
+      this.setState({ totalAmount });
+    });
+
+    await Storages.getUsername(uid).then(username => {
+      this.setState({ username });
     });
     Storages.get(uid).then(result => {
       this.setState({ username: result.userData.first_name });

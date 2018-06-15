@@ -24,7 +24,7 @@ const RouterComponent = () => {
           title="Please Login"
         />
         <Drawer
-          //initial
+          // initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
@@ -39,7 +39,7 @@ const RouterComponent = () => {
               hideNavBar
             />
             <Scene
-              initial
+              //initial
               key="addTransaction"
               component={AddTransaction}
               title="Add Transaction"
@@ -84,6 +84,7 @@ const RouterComponent = () => {
               />
 
             <Scene
+              initial
               key="groupList"
               component={GroupList}
               title="Group List"

@@ -2,18 +2,19 @@ import React from 'react';
 import { Text, View } from 'react-native';
 
 const ExpenseDetail = ({ expense }) => {
-  const { amount, time, description } = expense;
+  const { amount, time, description, shareWith } = expense;
   const { cardStyle, amountStyle, timeStyle, descriptionStyle, rightStyle, leftStyle } = styles;
+
   return (
     <View style={cardStyle}>
       <View style={leftStyle}>
           <Text style={amountStyle}>£ {amount} </Text>
       </View>
 
-
       <View style={rightStyle}>
           <Text style={timeStyle}>{time}</Text>
-          <Text style={descriptionStyle}>{description}</Text>
+          <Text style={timeStyle}>{description}</Text>
+          <Text style={descriptionStyle}>{shareWith}</Text>
       </View>
     </View>
   );
@@ -49,7 +50,6 @@ const styles = {
     color: 'white',
     textAlign: 'right',
     fontSize: 12,
-    marginBottom: 5,
   },
   descriptionStyle: {
     color: 'white',
