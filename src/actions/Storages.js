@@ -15,7 +15,7 @@ class Storages {
 
   static set = async (key, value) => {
     try {
-      return await AsyncStorage.setItem(key, JSON.stringify(value));
+      return await AsyncStorage.setItem(key, JSON.stringify(value)).done();
     } catch (error) {
       console.log('set() error');
     }

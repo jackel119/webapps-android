@@ -10,7 +10,10 @@ class ExpenseList extends Component {
 
   async componentWillMount() {
     const uid = Global.UID;
-    await Storages.get(uid).then(result => this.setState({ expenseList: result.trans }));
+    await Storages.get(uid).then(result => {
+      this.setState({ expenseList: result.trans });
+      console.log(10, result.trans);
+    });
   }
 
   renderExpenses() {
