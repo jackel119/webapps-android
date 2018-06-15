@@ -8,15 +8,16 @@ class BillItem extends Component {
 
   render() {
     const id = this.props.data.id;
+    console.log(this.props.data);
 
     return (
       <View>
         <CardSection>
           <Input
-            label={'Item ' + id} 
+            label={'Item ' + id}
             placeholder="Item Name"
             value={this.props.data.name}
-            onChangeText={value => this.props.transactionUpdate({ 
+            onChangeText={value => this.props.transactionUpdate({
             index: id, type: 'name', value })}
           />
         </CardSection>
@@ -24,8 +25,8 @@ class BillItem extends Component {
           <Input
             label="Amount"
             placeholder="Item Amount"
-            value={this.props.data.amount}
-            onChangeText={value => this.props.transactionUpdate({ 
+            value={this.props.data.price}
+            onChangeText={value => this.props.transactionUpdate({
             index: id, type: 'amount', value })}
           />
         </CardSection>
@@ -35,4 +36,3 @@ class BillItem extends Component {
 }
 
 export default connect()(BillItem);
-

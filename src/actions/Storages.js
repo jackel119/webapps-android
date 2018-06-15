@@ -79,6 +79,7 @@ class Storages {
 
   static getTotalAmount(key) {
     return Storages.get(key).then((res) => {
+      console.log(res);
       try {
         let total = 0;
         const txList = res.trans;

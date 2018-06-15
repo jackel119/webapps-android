@@ -75,6 +75,7 @@ class AddTransaction extends Component {
             </CardSection>
             <CardSection>
               <Input
+                style={{ paddingRight: 10 }}
                 label="Amount"
                 placeholder="Item Amount"
                 value={data.price.toString()}
@@ -125,7 +126,7 @@ const styles = {
     paddingHorizontal: 20,
     paddingBottom: 5,
     flex: 1,
-    //backgroundColor: '#000a29'
+    //backgroundColor: 'white'
   },
 
   topStyle: {
