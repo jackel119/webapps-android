@@ -173,8 +173,4 @@ const styles = {
   }
 };
 
-<<<<<<< HEAD
-export default connect(mapStateToProps, { transactionUpdate, addItem, initialiseState})(AddTransaction);
-=======
 export default connect(mapStateToProps, { transactionUpdate, addItem, initialiseState })(AddTransaction);
->>>>>>> fixed double items error

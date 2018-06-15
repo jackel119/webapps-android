@@ -73,8 +73,3 @@ export const initialiseState = () => {
   };
 };
 
-export const initialiseState = () => {
-  return {
-    type: INITIALISE_STATE
-  };
-};
