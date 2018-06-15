@@ -35,7 +35,6 @@ export default class ImageComponent extends Component {
       ]
     })
     }).then((response) => {
-      console.log(response.responses[0].fullTextAnnotation);
       return response.json();
     }).then(res => res.responses[0].fullTextAnnotation.text.split('\n'))
     .then(res => {
@@ -44,14 +43,7 @@ export default class ImageComponent extends Component {
     })
     .then(res => {
       console.log('before going in');
-      Actions.addTransaction({
-        scannedItems: [
-        {
-          name: 'total',
-          price: this.parseReceipt(res)
-        }
-        ]
-      });
+      Actions.addTransaction({ scannedItems: this.parseReceipt(res) });
     })
     .catch((err) => {
       console.error('promise rejected');
@@ -61,10 +53,11 @@ export default class ImageComponent extends Component {
 
 
   parseReceipt(file) {
-    var currencies = ['£', '€', '$'];
+    var currencies = ['£', '€', '$', 'f'];
     var items = [];
     var prices = [];
     var tobreak = false;
+    var chinese_char = /^[\u4E00-\u9FFF\u3400-\u4DFF]+$/;
     for (var line of file) {
       if (currencies.includes(line.charAt(0))) {
         if (/\d/.test(line) || /\d/.test(line.substring(1, line.length))) {
@@ -85,10 +78,23 @@ export default class ImageComponent extends Component {
       }
     }
 
-    console.log('items:', items);
-    console.log('prices:', prices);
+    var result = [];
+    var i;
+    var offset = 0;
 
-    return (prices.slice(-1)[0]);
+    for (i = 0; i < prices.length - 1; i++) {
+      if (items[items.length - i - 2 - offset].match(/[\u3400-\u9FBF]/) || items[items.length - i - 2 - offset].includes('*')) {
+        offset += 1;
+      }
+      result.unshift({
+        name: items[items.length - i - 2 - offset],
+        price: prices[prices.length - i - 2]
+      });
+    }
+    console.log(items, prices);
+    console.log(result);
+
+    return result;
   }
 
   renderButton() {
