@@ -18,13 +18,13 @@ const RouterComponent = () => {
     <Router>
       <Scene key="root" hideNavBar sceneStyle={{ paddingTop: 64 }}>
         <Scene
-          // initial
+          initial
           key="login"
           component={LoginForm}
           title="Please Login"
         />
         <Drawer
-          initial
+          // initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
@@ -84,7 +84,7 @@ const RouterComponent = () => {
               />
 
             <Scene
-              initial
+              // initial
               key="groupList"
               component={GroupList}
               title="Group List"
