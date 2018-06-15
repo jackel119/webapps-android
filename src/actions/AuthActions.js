@@ -26,9 +26,9 @@ export const passwordChanged = (text) => {
 };
 
 export function loginUser({ email, password }) {
-  return (dispatch) => {
+  return async (dispatch) => {
     socket.emit('authentication', { username: email, password });
-    socket.on('authResult', res => {
+    await socket.on('authResult', res => {
       if (res.result) {
         Global.UID = res.data.uid;
         const uid = Global.UID;
@@ -92,9 +92,10 @@ export function loginUser({ email, password }) {
           console.log(txs);
           setTimeout(function(){
             Storages.set(uid, { userData: res.data, trans: txs, friends: friendList });
+            Storages.get(uid).then(re => console.log(1, re));
+            loginUserSucess(dispatch, { email, password });
           }, 10000);
           
-          Storages.get(uid).then(re => console.log(1, re));
 
           // const newList = [...new Set(uidList.filter(x => x))];//remove null
 
@@ -117,7 +118,6 @@ export function loginUser({ email, password }) {
           //   Storages.get(uid).then(re => console.log(1, re));
           // });
         });
-        loginUserSucess(dispatch, { email, password });
       } else {
         loginUserFail(dispatch);
       }
