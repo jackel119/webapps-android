@@ -94,29 +94,7 @@ export function loginUser({ email, password }) {
             Storages.set(uid, { userData: res.data, trans: txs, friends: friendList });
             Storages.get(uid).then(re => console.log(1, re));
             loginUserSucess(dispatch, { email, password });
-          }, 10000);
-          
-
-          // const newList = [...new Set(uidList.filter(x => x))];//remove null
-
-          // socket.emit('getUsersByUID', newList);
-          // socket.on('users', res2 => {
-          //   let newFriend = {};
-          //   console.log(2, res2);  
-          //   for (const friendUID of newList) {
-          //     newFriend = {
-          //       uid: friendUID,
-          //       name: res2[friendUID].first_name,
-          //       email: res2[friendUID].email
-          //     };
-          //     if (!friendList.includes(newFriend)) {
-          //       friendList = friendList.concat(newFriend);
-          //     }
-          //   } 
-          //   // TODO: Storages.setFriendList();
-          //   Storages.set(uid, { userData: res.data, trans: txs, friends: friendList });
-          //   Storages.get(uid).then(re => console.log(1, re));
-          // });
+          }, 0);
         });
       } else {
         loginUserFail(dispatch);

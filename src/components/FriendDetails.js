@@ -12,7 +12,6 @@ const FriendDetail = ({ friend }) => {
 
 
       <View style={rightStyle}>
-          <Text style={groupStyle}>group?</Text>
           <Text style={emailStyle}>{email}</Text>
       </View>
     </View>
@@ -25,7 +24,7 @@ const styles = {
     paddingBottom: 8,
     paddingHorizontal: 20,
     flexDirection: 'row',
-    height: 70,
+    height: 60,
     borderBottomWidth: 0.4,
     borderColor: 'white',
     backgroundColor: '#000a29'
