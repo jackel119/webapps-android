@@ -94,7 +94,7 @@ export function loginUser({ email, password }) {
             Storages.set(uid, { userData: res.data, trans: txs, friends: friendList });
             Storages.get(uid).then(re => console.log(1, re));
             loginUserSucess(dispatch, { email, password });
-          }, 0);
+          }, 8000);
         });
       } else {
         loginUserFail(dispatch);
