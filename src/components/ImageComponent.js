@@ -9,7 +9,8 @@ export default class ImageComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      generating: false
+      generating: false,
+      buttonText: 'Generate Transaction'
     };
   }
 
@@ -18,6 +19,7 @@ export default class ImageComponent extends Component {
     // console.log(this.props);
     // send and get back
     // console.log(this.props.base64);
+
     fetch(config.googleCloud.api + config.googleCloud.apiKey, {
     method: 'POST',
     body: JSON.stringify({
@@ -35,7 +37,6 @@ export default class ImageComponent extends Component {
       ]
     })
     }).then((response) => {
-      console.log(response.responses[0].fullTextAnnotation);
       return response.json();
     }).then(res => res.responses[0].fullTextAnnotation.text.split('\n'))
     .then(res => {
@@ -44,24 +45,16 @@ export default class ImageComponent extends Component {
     })
     .then(res => {
       console.log('before going in');
-      Actions.addTransaction({
-        scannedItems: [
-        {
-          name: 'total',
-          price: this.parseReceipt(res)
-        }
-        ]
-      });
+      Actions.addTransaction({ scannedItems: this.parseReceipt(res) });
     })
-    .catch((err) => {
-      console.error('promise rejected');
-      console.error(err);
+    .catch(() => {
+      this.setState({ generating: false, buttonText: 'Retry Please' });
     });
   }
 
 
   parseReceipt(file) {
-    var currencies = ['£', '€', '$'];
+    var currencies = ['£', '€', '$', 'f'];
     var items = [];
     var prices = [];
     var tobreak = false;
@@ -85,10 +78,23 @@ export default class ImageComponent extends Component {
       }
     }
 
-    console.log('items:', items);
-    console.log('prices:', prices);
+    var result = [];
+    var i;
+    var offset = 0;
 
-    return (prices.slice(-1)[0]);
+    for (i = 0; i < prices.length - 1; i++) {
+      if (items[items.length - i - 2 - offset].match(/[\u3400-\u9FBF]/) || items[items.length - i - 2 - offset] == '*') {
+        offset += 1;
+      }
+      result.unshift({
+        name: items[items.length - i - 2 - offset],
+        price: prices[prices.length - i - 2]
+      });
+    }
+    console.log(items, prices);
+    console.log(result);
+
+    return result;
   }
 
   renderButton() {
@@ -97,7 +103,7 @@ export default class ImageComponent extends Component {
     }
     return (
       <Button onPress={this.onButtonPress.bind(this)}>
-        Generate Transaction
+        {this.state.buttonText}
       </Button>
     );
   }
