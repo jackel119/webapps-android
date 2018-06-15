@@ -37,78 +37,86 @@ class SplitBill extends Component {
   }
 
   renderTop() {
-    // console.log(this.state.splitEqually);
-    // if (this.state.splitEqually) {
-    //   const { selectedItems } = this.state;
-    //   return (
-    //   <View style={styles.container}>
-    //     <MultiSelect
-    //       hideTags
-    //       fixedHeight
-    //       items={this.items}
-    //       uniqueKey="id"
-    //       ref={(component) => { this.multiSelect = component; }}
-    //       onSelectedItemsChange={this.onSelectedItemsChange.bind(this)}
-    //       selectedItems={selectedItems}
-    //       selectText="Pick Friends"
-    //       searchInputPlaceholderText="Search Friends..."
-    //       tagRemoveIconColor="#CCC"
-    //       tagBorderColor="#CCC"
-    //       tagTextColor="#CCC"
-    //       selectedItemTextColor="#CCC"
-    //       selectedItemIconColor="#CCC"
-    //       itemTextColor="#000"
-    //       searchInputStyle={{ color: '#CCC' }}
-    //       submitButtonColor="#CCC"
-    //       submitButtonText="Submit"
-    //     />
-    //   </View>
-    //   );
-    // } else {
-    //   return (
-    //     <View style={styles.container}>
-    //       <Button onPress={() => { this.setState({ splitEqually: true }); }}>
-    //         AA?
-    //       </Button>
-    //     </View>
-    //   );
-    // }
+    console.log(this.state.splitEqually);
+    if (this.state.splitEqually) {
+      const { selectedItems } = this.state;
+      return (
+      <View style={styles.topStyle}>
+        <MultiSelect
+          hideTags
+          fixedHeight
+          items={this.items}
+          uniqueKey="id"
+          ref={(component) => { this.multiSelect = component; }}
+          onSelectedItemsChange={this.onSelectedItemsChange.bind(this)}
+          selectedItems={selectedItems}
+          selectText="   Pick Friends"
+          searchInputPlaceholderText="Search Friends..."
+          tagRemoveIconColor="#CCC"
+          tagBorderColor="#CCC"
+          tagTextColor="#CCC"
+          selectedItemTextColor="#CCC"
+          selectedItemIconColor="#CCC"
+          itemTextColor="#000"
+          searchInputStyle={{ color: '#CCC' }}
+          submitButtonColor="#CCC"
+          submitButtonText="Submit"
+        />
+      </View>
+      );
+    } else {
+      return (
+        <View style={styles.topStyle}>
+          <Button onPress={() => { this.setState({ splitEqually: true }); }}>
+            AA?
+          </Button>
+        </View>
+      );
+    }
   }
 
   render() {
     const renderData = this.props.data.map((data) => {
-    return (
+      return (
         <View style={styles.containerStyle}>
-          //
-          // <View style={{ flexDirection: 'row' }}>
-          //   <Text> {'Item ' + data.id} </Text>
-          //   <Text> {data.name} </Text>
-          //   //<Text> Amount </Text>
-          //   <Text> {data.price} </Text>
-          // </View>
-          //
-          // <View style={{ flexDirection: 'row' }}>
-          //   <Text style={styles.labelStyle}>SharedWith</Text>
-          //   <Picker style={styles.inputStyle}>
-          //     <Picker.Item label="Jack1" value='1' />
-          //     <Picker.Item label="Jack2" value='2' />
-          //   </Picker>
-          // </View>
+          <View style={styles.itemStyle}>
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-end' }}>
+              <Text style={{ fontSize: 16 }}> {data.id}. </Text>
+              <Text style={{ fontSize: 16 }}> {data.name} </Text>
+            </View>
+            <View style={{ justifyContent: 'flex-end' }}>
+              <Text style={{ fontSize: 20 }}> {parseFloat(data.price).toFixed(2)} </Text>
+            </View>
+          </View>
+          <View style={styles.shareStyle}>
+            <Text style={styles.labelStyle}>shared with</Text>
+            <Picker style={styles.inputStyle}>
+              <Picker.Item label="Jack1" value='1' />
+              <Picker.Item label="Jack2" value='2' />
+            </Picker>
+          </View>
         </View>
       );
     });
 
     return (
-      <ScrollView style={{ flex: 1 }}>
-      <View style={{ flex: 0.2, paddingTop: 5 }}>
-        {this.renderTop()}
-      </View>
-      <View style={{ flex: 0.8, paddingTop: 5 }}>
-        <ScrollView>
-          {renderData}
+      <View style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 0.9 }}>
+          <View style={{ flex: 0.2, paddingTop: 5 }}>
+            {this.renderTop()}
+          </View>
+          <View style={{ flex: 0.8, paddingTop: 5 }}>
+            <ScrollView>
+              {renderData}
+            </ScrollView>
+          </View>
         </ScrollView>
+        <View style={{ flex: 0.1 }}>
+          <Button>
+            Submit
+          </Button>
+        </View>
       </View>
-    </ScrollView>
     );
   }
 }
@@ -119,17 +127,35 @@ const styles = {
     paddingRight: 5,
     paddingLeft: 5,
     //fontSize: 18,
-    lineHeight: 23,
-    flex: 1
+    height: 23,
+    flex: 0.4
   },
   labelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
-    flex: 1
+    fontSize: 14,
+    paddingRight: 14,
+    //flex: 1,
   },
   containerStyle: {
     flexDirection: 'column',
-    height: 40
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    backgroundColor: 'white',
+    borderColor: '#ddd',
+    position: 'relative',
+  },
+  itemStyle: {
+    paddingLeft: 20,
+    paddingRight: 30,
+    flexDirection: 'row',
+  },
+  shareStyle: {
+    paddingRight: 10,
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  topStyle: {
+    //paddingHorizontal: 10,
   }
 };
 

@@ -73,14 +73,13 @@ class AddTransaction extends Component {
               />
             </CardSection>
             <CardSection>
-              <Input
-                style={{ paddingRight: 10 }}
-                label="Amount"
-                placeholder="Item Amount"
-                value={data.price.toString()}
-                onChangeText={value => this.props.transactionUpdate({
-                index: data.id, type: 'price', value })}
-              />
+                <Input
+                  label="Amount"
+                  placeholder="Item Amount"
+                  value={data.price.toString()}
+                  onChangeText={value => this.props.transactionUpdate({
+                  index: data.id, type: 'price', value })}
+                />
             </CardSection>
           </View>
         );
@@ -133,7 +132,7 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     borderBottomWidth: 1,
-    backgroundColor: 'lightyellow',
+    backgroundColor: 'lightgrey',
     borderColor: '#ddd',
     position: 'relative',
     paddingRight: 15,
