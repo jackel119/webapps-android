@@ -68,7 +68,7 @@ class SplitBill extends Component {
       <View style={styles.topStyle}>
         <MultiSelect
           hideTags
-          fixedHeight
+          fixedHeight={false}
           items={this.state.friends}
           uniqueKey="id"
           ref={(component) => { this.multiSelect = component; }}
@@ -105,7 +105,7 @@ class SplitBill extends Component {
     <View style={styles.topStyle}>
       <MultiSelect
         hideTags
-        fixedHeight
+        fixedHeight={false}
         items={this.state.friends}
         uniqueKey="id"
         ref={(component) => { this.multiSelect = component; }}
