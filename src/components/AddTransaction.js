@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { CardSection, Button, Input } from './common';
-import { transactionUpdate, addItem } from '../actions';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { transactionUpdate, addItem, initialiseState } from '../actions';
+import { Actions } from 'react-native-router-flux';
 
 class AddTransaction extends Component {
 
@@ -13,17 +13,18 @@ class AddTransaction extends Component {
     this.onAddItem = this.onAddItem.bind(this);
     this.counter = 0;
 
+    this.props.initialiseState();
     if (this.props.scannedItems) {
       for (var item of this.props.scannedItems) {
         this.counter += 1;
         this.props.addItem({ initial: true, id: this.counter, name: item.name, price: item.price });
       }
     } else {
-      // this.counter += 1;
-      // this.props.addItem({ initial: false, id: this.counter });
+      this.counter += 1;
+      this.props.addItem({ initial: false, id: this.counter });
     }
-    //console.log(this.props.data);
   }
+
 
   onAddItem() {
     this.counter += 1;
@@ -59,9 +60,7 @@ class AddTransaction extends Component {
   }
 
   render() {
-    console.log('rendering now', this.props.data);
     let renderAddItem = this.props.data.map((data, index) => {
-        //console.log(data);
         return (
           <View style={styles.newItemStyle} key={index}>
             <CardSection>
@@ -174,4 +173,4 @@ const styles = {
   }
 };
 
-export default connect(mapStateToProps, { transactionUpdate, addItem })(AddTransaction);
+export default connect(mapStateToProps, { transactionUpdate, addItem, initialiseState })(AddTransaction);
