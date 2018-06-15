@@ -50,7 +50,7 @@ class HeaderGreeting extends Component {
             <Text style={usernameStyle}>Jack.</Text>
             <View style={blankStyle} />
             <Text style={white}>You have spent</Text>
-            <Text style={spentStyle}>£12345.67</Text>
+            <Text style={spentStyle}>£116.56</Text>
             <Text style={white}>this week.</Text>
           </View>
 

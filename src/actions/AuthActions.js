@@ -46,8 +46,10 @@ export const loginUser = ({ email, password }) => {
           //Add friends:
           for (const tx of txs) {
             if (tx.from_user !== res.data.uid) {
+              tx.amount = '-' + tx.amount;
               uidList = uidList.concat(tx.from_user);
             } else if (tx.to_user !== res.data.uid) {
+              tx.amount = '+' + tx.amount;
               uidList = uidList.concat(tx.to_user);
             }
           }

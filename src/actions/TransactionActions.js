@@ -1,4 +1,5 @@
 import { socket } from '../Global';
+import { Actions } from 'react-native-router-flux';
 import {
   TRANSACTION_CREATE,
   TRANSACTION_UPDATE,
@@ -55,6 +56,7 @@ export const transactionCreate = ({ to, from, date, currency, amount }) => {
       alert('TO or FROM must be me');
     }
     dispatch({ type: TRANSACTION_CREATE });
+    setTimeout(function() { Actions.homepage(); }, 1000); 
   };
 };
 

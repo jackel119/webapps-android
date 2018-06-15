@@ -16,7 +16,7 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TRANSACTION_INITIATE:
       console.log(action.payload);
-      return { ...state, [action.payload.prop]: action.payload.value, to: 'jkewishnu@163.com', from: 'me', };
+      return { ...state, [action.payload.prop]: action.payload.value };
     case TRANSACTION_UPDATE:
       return { ...state, [action.payload.prop]: action.payload.value };
     case TRANSACTION_CREATE:
