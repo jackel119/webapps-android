@@ -17,22 +17,31 @@ class SplitBill extends Component {
       splitEqually: false,
       items: this.props.data,
       friends: [],
-      total: 0
+      total: 0,
+      groups: []
     };
 
     Storages.get(Global.EMAIL).then(res => {
       console.log(res);
       let result = [];
+      result.push({
+        id: Global.EMAIL,
+        name: 'Me',
+        isGroup: false
+      });
+      this.setState({ groups: res.groups });
       for (var friend of res.friends) {
         result.push({
           id: friend.email,
-          name: friend.first_name
+          name: friend.first_name,
+          isGroup: false
         });
       }
       for (var group of res.groups) {
         result.push({
           id: group.gid,
-          name: group.gname
+          name: group.gname,
+          isGroup: true
         });
       }
       console.log(result);
@@ -49,7 +58,30 @@ class SplitBill extends Component {
   }
 
   onSelectedItemsChange(selectedPeople) {
-    this.setState({ selectedPeople });
+    console.log('before: ', selectedPeople);
+
+    var peopleInvolved = [];
+    for (var selected of selectedPeople) {
+      var index = this.state.friends.findIndex((obj => obj.id == selected));
+      if (index != -1 && this.state.friends[index].isGroup) {
+        for (var group of this.state.groups) {
+          if (group.gid == selected) {
+            console.log('yes');
+            for (var person of group.members) {
+              if (!peopleInvolved.includes(person.email)) {
+                peopleInvolved.push(person.email);
+              }
+            }
+          }
+        }
+        peopleInvolved.push(selected);
+      } else {
+        peopleInvolved.push(selected);
+      }
+    }
+
+    console.log('after: ', peopleInvolved);
+    this.setState({ selectedPeople: peopleInvolved });
     var i;
     for (i = 0; i < this.state.items.length; i++) {
       let temp = this.state.items.slice();
