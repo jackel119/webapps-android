@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, Picker } from 'react-native';
 import MultiSelect from 'react-native-multiple-select';
-import { CardSection, Button } from './common';
+import { Button } from './common';
 
 
 class SplitBill extends Component {

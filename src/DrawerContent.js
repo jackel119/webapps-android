@@ -3,42 +3,74 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, ViewPropTypes, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Storages from './actions/Storages';
+
+const Global = require('./Global');
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    //justifyContent: 'center',
+    //alignItems: 'center',
     backgroundColor: 'transparent',
   },
 
-  barStyle1: {
+  barStyle: {
     height: 50,
     alignItems: 'center',
     paddingHorizontal: 30,
     //justifyContent: 'center',
-    backgroundColor: 'lightblue',
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
     flexDirection: 'row'
   },
 
-  barStyle2: {
+  barStyleActive: {
     height: 50,
     alignItems: 'center',
     paddingHorizontal: 30,
-    backgroundColor: 'white',
+    backgroundColor: 'lightblue',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
     flexDirection: 'row'
+  },
+
+  profileStyle: {
+    height: 90,
+    width: 300,
+    //alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+    //flexDirection: 'column',
   },
 
   textStyle: {
     //fontWeight: 'bold',
-    flex: 1,
+    position: 'absolute',
+    left: 60,
     fontSize: 18,
   },
 
   iconStyle: {
+    position: 'absolute',
+    right: 250,
     fontSize: 20,
-    paddingRight: 10,
     //flex: 1
+  },
+
+  nameStyle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+
+  fullnameStyle: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    paddingLeft: 10,
   },
 });
 
@@ -53,30 +85,79 @@ class DrawerContent extends React.Component {
     drawer: PropTypes.object,
   }
 
+  state = {
+    firstname: 'firstname',
+    lastname: 'lastname',
+    email: 'email@example.com'
+  };
+
+  async componentWillMount() {
+        console.log(this.propTypes);
+    // await Storages.get(Global.EMAIL).then(res => {
+    //   this.setState({ firstname: res.userData.first_name });
+    //   this.setState({ lastname: res.userData.last_name });
+    //   this.setState({ email: res.userData.email });
+    // });
+  }
+
   render() {
+    console.log(Actions.currentScene);
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.barStyle1} onPress={Actions.homepage}>
+        <View style={styles.profileStyle}>
+          <View style={styles.fullnameStyle}>
+            <Text style={styles.nameStyle}>{this.state.firstname} </Text>
+            <Text style={styles.nameStyle}>{this.state.lastname}</Text>
+          </View>
+          <View style={{ alignItems: 'flex-end', paddingTop: 10 }}>
+            <Text>{this.state.email}</Text>
+          </View>
+        </View>
+        <TouchableOpacity
+          style={Actions.currentScene === 'homepage' ?
+            styles.barStyleActive : styles.barStyle}
+          onPress={Actions.homepage}
+        >
           <Icon name="home" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.barStyle2} onPress={Actions.addTransaction}>
+        <TouchableOpacity
+          style={(Actions.currentScene === 'addTransaction' || Actions.currentScene === 'split') ?
+            styles.barStyleActive : styles.barStyle}
+          onPress={Actions.homepage}
+        >
           <Icon name="plus" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Add Transaction</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.barStyle1} onPress={Actions.expensePage}>
+        <TouchableOpacity
+          style={Actions.currentScene === 'expensePage' ?
+            styles.barStyleActive : styles.barStyle}
+          onPress={Actions.homepage}
+        >
           <Icon name="list-alt" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Transactions</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.barStyle2} onPress={Actions.friendList}>
-          <Icon name="users" size={20} style={styles.iconStyle} />
-          <Text style={styles.textStyle}>Friends List</Text>
-        </TouchableOpacity>        
-        <TouchableOpacity style={styles.barStyle1} onPress={Actions.groupList}>
-          <Icon name="users" size={20} style={styles.iconStyle} />
-          <Text style={styles.textStyle}>Group List</Text>
+        <TouchableOpacity
+          style={(Actions.currentScene === 'friendList' || Actions.currentScene === 'addFriend') ?
+            styles.barStyleActive : styles.barStyle}
+          onPress={Actions.homepage}
+        >
+          <Icon name="user" size={20} style={styles.iconStyle} />
+          <Text style={styles.textStyle}>Friends</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.barStyle2} onPress={Actions.setting}>
+        <TouchableOpacity
+          style={Actions.currentScene === 'groupList' ?
+            styles.barStyleActive : styles.barStyle}
+          onPress={Actions.homepage}
+        >
+          <Icon name="users" size={20} style={styles.iconStyle} />
+          <Text style={styles.textStyle}>Groups</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={Actions.currentScene === 'setting' ?
+            styles.barStyleActive : styles.barStyle}
+          onPress={Actions.homepage}
+        >
           <Icon name="cog" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Setting</Text>
         </TouchableOpacity>

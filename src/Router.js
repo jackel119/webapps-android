@@ -18,13 +18,13 @@ const RouterComponent = () => {
     <Router>
       <Scene key="root" hideNavBar sceneStyle={{ paddingTop: 64 }}>
         <Scene
-          initial
+          //initial
           key="login"
           component={LoginForm}
           title="Please Login"
         />
         <Drawer
-          //initial
+          initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
@@ -32,14 +32,14 @@ const RouterComponent = () => {
         >
           <Scene intial key="main">
             <Scene
-              initial
+              //initial
               key="homepage"
               component={Homepage}
               title="Home"
               hideNavBar
             />
             <Scene
-              //initial
+              initial
               key="addTransaction"
               component={AddTransaction}
               title="Add Transaction"
@@ -77,11 +77,11 @@ const RouterComponent = () => {
               rightTitle="Add"
             />
 
-              <Scene
-                key="addFriend"
-                component={AddNewFriends}
-                title="Add Friends"
-              />
+            <Scene
+              key="addFriend"
+              component={AddNewFriends}
+              title="Add Friends"
+            />
 
             <Scene
               //initial
