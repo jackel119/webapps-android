@@ -20,17 +20,22 @@ class SplitBill extends Component {
       total: 0
     };
 
-    const uid = Global.UID;
-    Storages.get(uid).then(res => {
+    Storages.get(Global.EMAIL).then(res => {
       console.log(res);
       let result = [];
       for (var friend of res.friends) {
         result.push({
           id: friend.email,
-          name: friend.firstName
+          name: friend.first_name
         });
       }
-      console.log(res.groups);
+      for (var group of res.groups) {
+        result.push({
+          id: group.gid,
+          name: group.gname
+        });
+      }
+      console.log(result);
       this.setState({ friends: result });
     });
 
