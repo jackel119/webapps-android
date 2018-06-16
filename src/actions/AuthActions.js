@@ -60,9 +60,14 @@ export function loginUser({ email, password }) {
         socket.on('friends', friends => {
           console.log('friends', friends);
           Storages.set(Global.EMAIL, { friends: friends });
-          loginUserSucess(dispatch, { email, password });
+          socket.emit('getGroupsAndUsers');
         });
 
+        socket.on('allGroupsAndUsers', groups => {
+          console.log('groups', groups);
+          Storages.set(Global.EMAIL, { groups: groups });
+          loginUserSucess(dispatch, { email, password });
+        });
       } else {
         loginUserFail(dispatch);
       }
