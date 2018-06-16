@@ -160,6 +160,7 @@ const styles = {
   },
 
   addButtonStyle: {
+    borderRadius: 5,
     height: 40,
     alignItems: 'center',
     paddingHorizontal: 10,

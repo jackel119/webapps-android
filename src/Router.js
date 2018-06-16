@@ -94,7 +94,7 @@ const RouterComponent = () => {
             />
 
             <Scene
-              initial
+              //initial
               key="groupList"
               component={GroupList}
               title="Group List"
