@@ -91,9 +91,8 @@ class DrawerContent extends React.Component {
     email: 'email@example.com'
   };
 
-  async componentWillMount() {
-        console.log(this.propTypes);
-    // await Storages.get(Global.EMAIL).then(res => {
+  componentWillMount() {
+    // Storages.get(Global.EMAIL).then(res => {
     //   this.setState({ firstname: res.userData.first_name });
     //   this.setState({ lastname: res.userData.last_name });
     //   this.setState({ email: res.userData.email });
@@ -124,7 +123,7 @@ class DrawerContent extends React.Component {
         <TouchableOpacity
           style={(Actions.currentScene === 'addTransaction' || Actions.currentScene === 'split') ?
             styles.barStyleActive : styles.barStyle}
-          onPress={Actions.homepage}
+          onPress={Actions.addTransaction}
         >
           <Icon name="plus" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Add Transaction</Text>
@@ -132,7 +131,7 @@ class DrawerContent extends React.Component {
         <TouchableOpacity
           style={Actions.currentScene === 'expensePage' ?
             styles.barStyleActive : styles.barStyle}
-          onPress={Actions.homepage}
+          onPress={Actions.expensePage}
         >
           <Icon name="list-alt" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Transactions</Text>
@@ -140,7 +139,7 @@ class DrawerContent extends React.Component {
         <TouchableOpacity
           style={(Actions.currentScene === 'friendList' || Actions.currentScene === 'addFriend') ?
             styles.barStyleActive : styles.barStyle}
-          onPress={Actions.homepage}
+          onPress={Actions.friendList}
         >
           <Icon name="user" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Friends</Text>
@@ -148,7 +147,7 @@ class DrawerContent extends React.Component {
         <TouchableOpacity
           style={Actions.currentScene === 'groupList' ?
             styles.barStyleActive : styles.barStyle}
-          onPress={Actions.homepage}
+          onPress={Actions.groupList}
         >
           <Icon name="users" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Groups</Text>
@@ -156,7 +155,7 @@ class DrawerContent extends React.Component {
         <TouchableOpacity
           style={Actions.currentScene === 'setting' ?
             styles.barStyleActive : styles.barStyle}
-          onPress={Actions.homepage}
+          onPress={Actions.setting}
         >
           <Icon name="cog" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Setting</Text>
