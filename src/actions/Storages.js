@@ -59,10 +59,10 @@ class Storages {
   //   await Storages.get(key).then(items => {
   //     try {
   //       const newTXlist = newTX.concat(items.trans);
-  //       const result = { 
-  //         userData: items.userData, 
-  //         transaction: newTXlist, 
-  //         friendList: items.friendList, 
+  //       const result = {
+  //         userData: items.userData,
+  //         transaction: newTXlist,
+  //         friendList: items.friendList,
   //         groupList: items.groupList };
   //       Storages.set(key, result);
   //     } catch (error) {
@@ -100,6 +100,33 @@ class Storages {
   // };
 
   static getTotalAmount = async (key) => {
+    var total = 0;
+    await Storages.get(key).then(res => {
+      const txList = res.transactions;
+      for (const tx of txList) {
+          total += parseFloat(tx.amount);
+      }
+    }).catch(() => console.log('getTotalAmount() error'));
+    return total.toFixed(2);
+  };
+
+  static getTotalInOut = async (key) => {
+    var totalIN = 0;
+    var totalOUT = 0;
+    await Storages.get(key).then(res => {
+      const txList = res.transactions;
+      for (const tx of txList) {
+        if (tx.amount >= 0) {
+          totalIN += parseFloat(tx.amount);
+        } else {
+          totalOUT += parseFloat(tx.amount);
+        }
+      }
+    }).catch(() => console.log('getTotalAmount() error'));
+    return { in: totalIN.toFixed(2), out: totalOUT.toFixed(2) };
+  };
+
+  static getTotalOUT = async (key) => {
     var total = 0;
     await Storages.get(key).then(res => {
       const txList = res.transactions;

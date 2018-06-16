@@ -13,16 +13,15 @@ class HeaderGreeting extends Component {
     username: 'User',
     modalVisible: false,
     totalAmount: 0,
-    username: 'name'
   };
 
-  async componentWillMount() {
-    const email = Global.EMAIL;   
-    await Storages.getTotalAmount(email).then(totalAmount => {
+  componentWillMount() {
+    const email = Global.EMAIL;
+    Storages.getTotalAmount(email).then(totalAmount => {
       this.setState({ totalAmount });
     });
 
-    await Storages.getUsername(email).then(username => {
+    Storages.getUsername(email).then(username => {
       this.setState({ username });
     });
     Storages.get(email).then(result => {

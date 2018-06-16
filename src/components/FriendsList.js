@@ -18,7 +18,7 @@ class FriendsList extends Component {
     return this.state.friendsList.map(friend =>
       <FriendDetails key={friend.email} friend={friend} />
     );
-  } 
+  }
 
   render() {
     console.log(this.state);
@@ -32,7 +32,7 @@ class FriendsList extends Component {
 
 const styles = {
   container: {
-    backgroundColor: '#000a29'
+    backgroundColor: '#0a0809'
   },
 };
 
