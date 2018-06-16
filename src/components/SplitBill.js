@@ -3,18 +3,32 @@ import { Text, View, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 import MultiSelect from 'react-native-multiple-select';
 import { Button } from './common';
+import Storages from './../actions/Storages';
+
+const Global = require('./../Global');
 
 
 class SplitBill extends Component {
 
-  constructor(props) {
-    super(props);
-
+  componentWillMount() {
     this.state = {
       selectedPeople: [],
       splitEqually: false,
-      items: this.props.data
+      items: this.props.data,
+      friends: []
     };
+
+    const uid = Global.UID;
+    Storages.get(uid).then(res => {
+      let result = [];
+      for (var friend of res.friends) {
+        result.push({
+          id: friend.uid,
+          name: friend.firstName
+        });
+      }
+      this.setState({ friends: result });
+    });
 
     //update modalVisible for each item
     var i;
@@ -22,22 +36,7 @@ class SplitBill extends Component {
       this.setModalVisibility(i, false);
     }
 
-    this.people =
-      [{ id: '1',
-        name: 'Jack',
-      }, {
-        id: '2',
-        name: 'Cassie',
-      }, {
-        id: '3',
-        name: 'Elain',
-      }, {
-        id: '4',
-        name: 'David',
-      }, {
-        id: '5',
-        name: 'Zicong',
-      }];
+    console.log(this.state.friends);
   }
 
   onSelectedItemsChange(selectedPeople) {
@@ -69,8 +68,8 @@ class SplitBill extends Component {
       <View style={styles.topStyle}>
         <MultiSelect
           hideTags
-          fixedHeight
-          items={this.people}
+          fixedHeight={false}
+          items={this.state.friends}
           uniqueKey="id"
           ref={(component) => { this.multiSelect = component; }}
           onSelectedItemsChange={this.onSelectedItemsChange.bind(this)}
@@ -106,8 +105,8 @@ class SplitBill extends Component {
     <View style={styles.topStyle}>
       <MultiSelect
         hideTags
-        fixedHeight
-        items={this.people}
+        fixedHeight={false}
+        items={this.state.friends}
         uniqueKey="id"
         ref={(component) => { this.multiSelect = component; }}
         onSelectedItemsChange={(selected) => this.onSelectedItemsChangeInner(selected, index)}
