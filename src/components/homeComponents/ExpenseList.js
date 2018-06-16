@@ -9,8 +9,7 @@ class ExpenseList extends Component {
   state = { expenseList: [] };
 
   componentWillMount() {
-    const uid = Global.EMAIL;
-    Storages.get(uid).then(result => {
+    Storages.get(Global.EMAIL).then(result => {
       console.log('result', result);
       this.setState({ expenseList: result.transactions });
     });
