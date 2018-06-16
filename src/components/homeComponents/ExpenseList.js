@@ -16,8 +16,8 @@ class ExpenseList extends Component {
   }
 
   renderExpenses() {
-    return this.state.expenseList.map(expense =>
-      <ExpenseDetail expense={expense} />
+    return this.state.expenseList.map((expense, index) =>
+      <ExpenseDetail key={index} expense={expense} />
     );
   }
 

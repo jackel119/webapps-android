@@ -10,33 +10,37 @@ const Global = require('./../Global');
 
 class SplitBill extends Component {
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     this.state = {
       selectedPeople: [],
       splitEqually: false,
       items: this.props.data,
-      friends: []
+      friends: [],
+      total: 0
     };
 
     const uid = Global.UID;
     Storages.get(uid).then(res => {
+      console.log(res);
       let result = [];
       for (var friend of res.friends) {
         result.push({
-          id: friend.uid,
+          id: friend.email,
           name: friend.firstName
         });
       }
+      console.log(res.groups);
       this.setState({ friends: result });
     });
+
 
     //update modalVisible for each item
     var i;
     for (i = 0; i < this.state.items.length; i++) {
       this.setModalVisibility(i, false);
+      this.total += this.state.items[i].price;
     }
-
-    console.log(this.state.friends);
   }
 
   onSelectedItemsChange(selectedPeople) {
@@ -44,14 +48,29 @@ class SplitBill extends Component {
     var i;
     for (i = 0; i < this.state.items.length; i++) {
       let temp = this.state.items.slice();
-      temp[i].people = selectedPeople;
+      temp[i].split = [];
+      var j;
+      for (j = 0; j < selectedPeople.length; j++) {
+        temp[i].split.push({
+          user: selectedPeople[j],
+          splitAmount: this.state.items[i].price / (selectedPeople.length + 1)
+        });
+      }
       this.setState({ items: temp });
     }
   }
 
   onSelectedItemsChangeInner(selectedPeople, index) {
     let temp = this.state.items.slice();
-    temp[index].people = selectedPeople;
+    temp[index].split = [];
+    temp[index].selectedPeople = selectedPeople;
+    var j;
+    for (j = 0; j < selectedPeople.length; j++) {
+      temp[index].split.push({
+        user: selectedPeople[j],
+        splitAmount: this.state.items[index].price / (selectedPeople.length + 1)
+      });
+    }
     this.setState({ items: temp });
   }
 
@@ -59,6 +78,36 @@ class SplitBill extends Component {
     let temp = this.state.items.slice();
     temp[index].modalVisible = visible;
     this.setState({ items: temp });
+  }
+
+  submitPress() {
+    var people = [];
+    for (var temp of this.state.items) {
+      for (var res of temp.split) {
+        var objIndex = people.findIndex((obj => obj.user == res.user));
+        if (objIndex == -1) {
+          people.push({
+            user: res.user,
+            splitAmount: res.splitAmount
+          });
+        } else {
+          people[objIndex].splitAmount = people[objIndex].splitAmount + res.splitAmount;
+        }
+      }
+    }
+    var result = {};
+    result.groupID = null;
+    result.users = people.map(obj => obj.user);
+    result.description = 'Test description';
+    result.items = this.state.items;
+    result.split = people;
+    result.totalPrice = this.state.total;
+    result.currency = 0;
+    result.author = Global.EMAIL;
+    result.payee = Global.EMAIL;
+    result.timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+    console.log(result);
   }
 
   renderTop() {
@@ -100,7 +149,8 @@ class SplitBill extends Component {
   }
 
   renderInnerSelect(index) {
-    const selectedPeople = this.state.items[index].people;
+    const selectedPeople = this.state.items[index].selectedPeople;
+
     return (
     <View style={styles.topStyle}>
       <MultiSelect
@@ -189,7 +239,7 @@ class SplitBill extends Component {
           </View>
         </ScrollView>
         <View style={{ flex: 0.1 }}>
-          <Button onPress={() => console.log(this.state)}>
+          <Button onPress={this.submitPress.bind(this)}>
             Submit
           </Button>
         </View>
