@@ -12,6 +12,7 @@ import GroupList from './components/GroupList';
 import AddNewFriends from './components/AddNewFriends';
 import DrawerContent from './DrawerContent';
 import SplitBill from './components/SplitBill';
+import BillDetails from './components/BillDetails';
 
 const RouterComponent = () => {
   return (
@@ -57,6 +58,15 @@ const RouterComponent = () => {
               component={ExpensePage}
               title="Transaction History"
             />
+
+
+            <Scene
+              // initial
+              key="billDetails"
+              component={BillDetails}
+              title="Bill Details"
+            />
+
             <Scene
               key="imageDisplay"
               component={ImageComponent}
@@ -84,7 +94,7 @@ const RouterComponent = () => {
             />
 
             <Scene
-              // initial
+              initial
               key="groupList"
               component={GroupList}
               title="Group List"

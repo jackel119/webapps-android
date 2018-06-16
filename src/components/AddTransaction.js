@@ -60,7 +60,7 @@ class AddTransaction extends Component {
   }
 
   render() {
-    let renderAddItem = this.props.data.map((data, index) => {
+    const renderAddItem = this.props.data.map((data, index) => {
         return (
           <View style={styles.newItemStyle} key={index}>
             <View style={styles.cardStyle}>
