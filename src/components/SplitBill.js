@@ -134,7 +134,7 @@ class SplitBill extends Component {
           Modify Split
         </Button>
       );
-    } 
+    }
     return (
       <Button onPress={() => this.setModalVisibility(id - 1, true)}>
         Select People
@@ -158,7 +158,7 @@ class SplitBill extends Component {
           <View style={styles.shareStyle}>
             {this.renderSplit(data.id)}
           </View>
-          <Modal 
+          <Modal
             isVisible={this.state.items[data.id - 1].modalVisible}
             backdropOpacity={0.5}
           >

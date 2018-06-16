@@ -63,7 +63,7 @@ class AddTransaction extends Component {
     let renderAddItem = this.props.data.map((data, index) => {
         return (
           <View style={styles.newItemStyle} key={index}>
-            <CardSection>
+            <View style={styles.cardStyle}>
               <Input
                 label={'Item ' + data.id}
                 placeholder="Item Name"
@@ -71,8 +71,8 @@ class AddTransaction extends Component {
                 onChangeText={value => this.props.transactionUpdate({
                 index: data.id, type: 'name', value })}
               />
-            </CardSection>
-            <CardSection>
+            </View>
+            <View style={styles.cardStyle}>
                 <Input
                   label="Amount"
                   placeholder="Item Amount"
@@ -80,7 +80,7 @@ class AddTransaction extends Component {
                   onChangeText={value => this.props.transactionUpdate({
                   index: data.id, type: 'price', value })}
                 />
-            </CardSection>
+            </View>
           </View>
         );
     });
@@ -164,12 +164,25 @@ const styles = {
     alignItems: 'center',
     paddingHorizontal: 10,
     backgroundColor: 'lightblue',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
   },
 
   iconStyle: {
     fontSize: 15,
     paddingRight: 5,
+  },
+
+  cardStyle: {
+    borderBottomWidth: 1,
+    padding: 5,
+    paddingRight: 15,
+    backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    borderColor: '#ddd',
+    position: 'relative'
   }
 };
 

@@ -77,11 +77,11 @@ const RouterComponent = () => {
               rightTitle="Add"
             />
 
-              <Scene
-                key="addFriend"
-                component={AddNewFriends}
-                title="Add Friends"
-              />
+            <Scene
+              key="addFriend"
+              component={AddNewFriends}
+              title="Add Friends"
+            />
 
             <Scene
               // initial
