@@ -53,20 +53,19 @@ class SplitBill extends Component {
     var i;
     for (i = 0; i < this.state.items.length; i++) {
       this.setModalVisibility(i, false);
-      this.total += this.state.items[i].price;
+      this.state.total += parseFloat(this.state.items[i].price);
     }
   }
 
   onSelectedItemsChange(selectedPeople) {
-    console.log('before: ', selectedPeople);
 
     var peopleInvolved = [];
+    var groupsInvolved = [];
     for (var selected of selectedPeople) {
-      var index = this.state.friends.findIndex((obj => obj.id == selected));
-      if (index != -1 && this.state.friends[index].isGroup) {
+      var id = this.state.friends.findIndex((obj => obj.id == selected));
+      if (id != -1 && this.state.friends[id].isGroup) {
         for (var group of this.state.groups) {
           if (group.gid == selected) {
-            console.log('yes');
             for (var person of group.members) {
               if (!peopleInvolved.includes(person.email)) {
                 peopleInvolved.push(person.email);
@@ -74,23 +73,22 @@ class SplitBill extends Component {
             }
           }
         }
-        peopleInvolved.push(selected);
+        groupsInvolved.push(selected);
       } else {
         peopleInvolved.push(selected);
       }
     }
 
-    console.log('after: ', peopleInvolved);
-    this.setState({ selectedPeople: peopleInvolved });
+    this.setState({ selectedPeople: peopleInvolved.concat(groupsInvolved) });
     var i;
     for (i = 0; i < this.state.items.length; i++) {
       let temp = this.state.items.slice();
       temp[i].split = [];
       var j;
-      for (j = 0; j < selectedPeople.length; j++) {
+      for (j = 0; j < peopleInvolved.length; j++) {
         temp[i].split.push({
-          user: selectedPeople[j],
-          splitAmount: this.state.items[i].price / (selectedPeople.length + 1)
+          user: peopleInvolved[j],
+          splitAmount: this.state.items[i].price / (peopleInvolved.length)
         });
       }
       this.setState({ items: temp });
@@ -100,12 +98,35 @@ class SplitBill extends Component {
   onSelectedItemsChangeInner(selectedPeople, index) {
     let temp = this.state.items.slice();
     temp[index].split = [];
-    temp[index].selectedPeople = selectedPeople;
+    var peopleInvolved = [];
+    var groupsInvolved = [];
+
+    for (var selected of selectedPeople) {
+      var id = this.state.friends.findIndex((obj => obj.id == selected));
+      if (id != -1 && this.state.friends[id].isGroup) {
+        for (var group of this.state.groups) {
+          if (group.gid == selected) {
+            for (var person of group.members) {
+              if (!peopleInvolved.includes(person.email)) {
+                peopleInvolved.push(person.email);
+              }
+            }
+          }
+        }
+        groupsInvolved.push(selected);
+      } else {
+        peopleInvolved.push(selected);
+      }
+    }
+
+    console.log(groupsInvolved, peopleInvolved);
+
+    temp[index].selectedPeople = peopleInvolved.concat(groupsInvolved);
     var j;
-    for (j = 0; j < selectedPeople.length; j++) {
+    for (j = 0; j < peopleInvolved.length; j++) {
       temp[index].split.push({
-        user: selectedPeople[j],
-        splitAmount: this.state.items[index].price / (selectedPeople.length + 1)
+        user: peopleInvolved[j],
+        splitAmount: this.state.items[index].price / (peopleInvolved.length)
       });
     }
     this.setState({ items: temp });
@@ -150,6 +171,7 @@ class SplitBill extends Component {
   renderTop() {
     if (this.state.splitEqually) {
       const { selectedPeople } = this.state;
+      console.log('ON RENDER', selectedPeople);
       return (
       <View style={styles.topStyle}>
         <MultiSelect
