@@ -17,15 +17,15 @@ class HeaderGreeting extends Component {
   };
 
   async componentWillMount() {
-    const uid = Global.UID;
-    await Storages.getTotalAmount(uid).then(totalAmount => {
+    const email = Global.EMAIL;   
+    await Storages.getTotalAmount(email).then(totalAmount => {
       this.setState({ totalAmount });
     });
 
-    await Storages.getUsername(uid).then(username => {
+    await Storages.getUsername(email).then(username => {
       this.setState({ username });
     });
-    Storages.get(uid).then(result => {
+    Storages.get(email).then(result => {
       this.setState({ username: result.userData.first_name });
     });
   }

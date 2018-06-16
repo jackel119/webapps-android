@@ -9,17 +9,16 @@ class FriendsList extends Component {
   state = { friendsList: [] };
 
   componentWillMount() {
-    const uid = Global.UID;
-    Storages.get(uid).then(result => {
+    Storages.get(Global.EMAIL).then(result => {
       this.setState({ friendsList: result.friends });
     });
   }
 
   renderFriends() {
     return this.state.friendsList.map(friend =>
-      <FriendDetails key={friend.uid} friend={friend} />
+      <FriendDetails key={friend.email} friend={friend} />
     );
-  }
+  } 
 
   render() {
     console.log(this.state);
