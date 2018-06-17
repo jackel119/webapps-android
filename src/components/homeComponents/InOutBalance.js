@@ -1,35 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import Storages from './../../actions/Storages';
 
-const InOutBalance = () => {
-  const { headerContentStyle,
-    debitStyle,
-    creditStyle,
-    textStyle,
-    fontStyle } = styles;
+const Global = require('./../../Global');
 
-  return (
-    <View style={headerContentStyle}>
-      <View style={debitStyle}>
-        <Text style={fontStyle}>In</Text>
-        <Text style={textStyle}>£123</Text>
+class InOutBalance extends Component {
+
+  state = {
+    in: 0,
+    out: 0,
+  };
+
+  componentWillMount() {
+    const email = Global.EMAIL;
+    Storages.getTotalInOut(email).then(res => {
+      console.log(res);
+      this.setState({ in: res.in });
+      this.setState({ out: res.out });
+    });
+  }
+
+  render() {
+    const { headerContentStyle,
+      inStyle,
+      outStyle,
+      textStyle,
+      fontStyle } = styles;
+
+    return (
+      <View style={headerContentStyle}>
+        <View style={inStyle}>
+          <Text style={fontStyle}>In</Text>
+          <Text style={textStyle}>£ {this.state.in}</Text>
+        </View>
+
+        <View style={outStyle}>
+          <Text style={fontStyle}>Out</Text>
+          <Text style={textStyle}>£ {this.state.out}</Text>
+        </View>
       </View>
+    );
+  }
 
-      <View style={creditStyle}>
-        <Text style={fontStyle}>Out</Text>
-        <Text style={textStyle}>£456</Text>
-      </View>
-    </View>
-  );
-};
 
-/*f9ba32 */
+}
+
 const styles = {
   headerContentStyle: {
     flexDirection: 'row',
     justifyContent: 'space-around'
   },
-  debitStyle: {
+  inStyle: {
     flex: 1,
     height: 85,
     paddingTop: 5,
@@ -37,7 +58,7 @@ const styles = {
     backgroundColor: '#f9ba32',
     //justifyContent: 'space-around'
   },
-  creditStyle: {
+  outStyle: {
     flex: 1,
     height: 85,
     paddingTop: 5,
@@ -48,7 +69,7 @@ const styles = {
   textStyle: {
     fontFamily: 'TitilliumWeb-Regular',
     //margin: 30,
-    fontSize: 36,
+    fontSize: 30,
     textAlign: 'right',
     //justifyContent: 'flex-start',
     color: 'white',

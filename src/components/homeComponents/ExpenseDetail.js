@@ -29,7 +29,7 @@ const styles = {
     height: 70,
     borderBottomWidth: 0.4,
     borderColor: 'white',
-    backgroundColor: '#000a29'
+    backgroundColor: '#0a0809'
   },
   leftStyle: {
     flex: 1,

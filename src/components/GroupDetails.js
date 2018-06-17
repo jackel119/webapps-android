@@ -9,13 +9,13 @@ class GroupDetail extends Component {
       <FriendDetails key={friend.uid} friend={friend} />);
   }
 
-  render() {    
-    const { groupName, members } = this.props.group;
-    const { cardStyle, nameStyle, groupStyle, emailStyle, rightStyle, leftStyle } = styles;
+  render() {
+    const { gname, members } = this.props.group;
+    const { cardStyle, nameStyle } = styles;
     return (
       <View style={cardStyle}>
         <View style={{}}>
-            <Text style={nameStyle}>{groupName} </Text>
+            <Text style={nameStyle}>{gname} </Text>
         </View>
         <ScrollView style={{ height: 100 }}>
           {this.renderMembers()}
@@ -30,10 +30,10 @@ const styles = {
     paddingTop: 10,
     paddingBottom: 8,
     paddingHorizontal: 20,
-    height: 140,
+    height: 320,
     borderBottomWidth: 0.4,
     borderColor: 'white',
-    backgroundColor: '#000a29',
+    backgroundColor: '#0a0809',
     flexDirection: 'column'
   },
   leftStyle: {
@@ -50,6 +50,7 @@ const styles = {
     color: 'white',
     textAlign: 'left',
     fontSize: 18,
+    paddingBottom: 5
   },
   groupStyle: {
     color: 'white',

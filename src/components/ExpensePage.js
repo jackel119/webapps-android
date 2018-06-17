@@ -10,9 +10,8 @@ class ExpensePage extends Component {
 
 /* Fetch JSON from http */
 	componentWillMount() {
-    const uid = Global.UID;
-		Storages.get(uid)
-			.then(result => this.setState({ expenseList: result.trans }));
+		Storages.get(Global.EMAIL)
+			.then(result => this.setState({ expenseList: result.transactions }));
 
     //An example TX for testing
     // const exampleTX = {
@@ -32,7 +31,7 @@ class ExpensePage extends Component {
 
 	renderExpenses() {
 		return this.state.expenseList.map(expense =>
-			<ExpenseDetail key={expense.txid} expense={expense} />
+			<ExpenseDetail key={expense} expense={expense} />
 		);
 	}
 

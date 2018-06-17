@@ -13,13 +13,22 @@ class Storages {
     }
   };
 
-  static set = async (key, value) => {
+  static init = async (key, value) => {
     try {
       return await AsyncStorage.setItem(key, JSON.stringify(value)).done();
     } catch (error) {
       console.log('set() error');
     }
   };
+
+
+  static set = async (key, value) => {
+    try {
+      return await AsyncStorage.mergeItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.log('setTxs() error');
+    }
+  }
 
   static delete = async (key) => {
     try {
@@ -46,17 +55,21 @@ class Storages {
   };
 
   //Add one new TX
-  static addTX = async (key, newTX) => {
-    await Storages.get(key).then(items => {
-      try {
-        const newTXlist = [newTX].concat(items.trans);
-        const result = { userData: items.userData, trans: newTXlist, friends: items.friends };
-        Storages.set(key, result);
-      } catch (error) {
-        console.log('addTX() error');
-      }
-    });
-  };
+  // static addTX = async (key, newTX) => {
+  //   await Storages.get(key).then(items => {
+  //     try {
+  //       const newTXlist = newTX.concat(items.trans);
+  //       const result = {
+  //         userData: items.userData,
+  //         transaction: newTXlist,
+  //         friendList: items.friendList,
+  //         groupList: items.groupList };
+  //       Storages.set(key, result);
+  //     } catch (error) {
+  //       console.log('addTX() error');
+  //     }
+  //   });
+  // };
 
   static getFriendUID = async (key, email) => {
     await Storages.get(key).then(res => {
@@ -71,25 +84,52 @@ class Storages {
     }).catch(() => console.log(''));
   };
 
-  static getFriendName = async (key, uid) => {
-    var name = 'Invalid Friend';
-    await Storages.get(key).then(res => {
-      console.log('getting FriendName');
-      const friendList = res.friends;
-      for (const friend of friendList) {
-        if (friend.uid === uid) {
-          name = friend.name;
-          break;
-        }
-      }
-    }).catch(() => console.log('getFriendName error'));
-    return name;
-  };
+  // static getFriendName = async (key, uid) => {
+  //   var name = 'Invalid Friend';
+  //   await Storages.get(key).then(res => {
+  //     console.log('getting FriendName');
+  //     const friendList = res.friends;
+  //     for (const friend of friendList) {
+  //       if (friend.uid === uid) {
+  //         name = friend.name;
+  //         break;
+  //       }
+  //     }
+  //   }).catch(() => console.log('getFriendName error'));
+  //   return name;
+  // };
 
   static getTotalAmount = async (key) => {
     var total = 0;
     await Storages.get(key).then(res => {
-      const txList = res.trans;
+      const txList = res.transactions;
+      for (const tx of txList) {
+          total += parseFloat(tx.amount);
+      }
+    }).catch(() => console.log('getTotalAmount() error'));
+    return total.toFixed(2);
+  };
+
+  static getTotalInOut = async (key) => {
+    var totalIN = 0;
+    var totalOUT = 0;
+    await Storages.get(key).then(res => {
+      const txList = res.transactions;
+      for (const tx of txList) {
+        if (tx.amount >= 0) {
+          totalIN += parseFloat(tx.amount);
+        } else {
+          totalOUT += parseFloat(tx.amount);
+        }
+      }
+    }).catch(() => console.log('getTotalAmount() error'));
+    return { in: totalIN.toFixed(2), out: totalOUT.toFixed(2) };
+  };
+
+  static getTotalOUT = async (key) => {
+    var total = 0;
+    await Storages.get(key).then(res => {
+      const txList = res.transactions;
       for (const tx of txList) {
           total += parseFloat(tx.amount);
       }

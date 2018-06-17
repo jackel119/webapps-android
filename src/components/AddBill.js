@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { transactionUpdate, addItem, initialiseState } from '../actions';
 import { Actions } from 'react-native-router-flux';
 
-class AddTransaction extends Component {
+class AddBill extends Component {
 
   constructor(props) {
     super(props);
@@ -35,6 +35,7 @@ class AddTransaction extends Component {
     console.log(this.state.data);
   }
 
+
   convertToNumber(amount) {
     if (amount) {
       return parseFloat(amount);
@@ -60,10 +61,10 @@ class AddTransaction extends Component {
   }
 
   render() {
-    let renderAddItem = this.props.data.map((data, index) => {
+    const renderAddItem = this.props.data.map((data, index) => {
         return (
           <View style={styles.newItemStyle} key={index}>
-            <CardSection>
+            <View style={styles.cardStyle}>
               <Input
                 label={'Item ' + data.id}
                 placeholder="Item Name"
@@ -71,8 +72,8 @@ class AddTransaction extends Component {
                 onChangeText={value => this.props.transactionUpdate({
                 index: data.id, type: 'name', value })}
               />
-            </CardSection>
-            <CardSection>
+            </View>
+            <View style={styles.cardStyle}>
                 <Input
                   label="Amount"
                   placeholder="Item Amount"
@@ -80,7 +81,7 @@ class AddTransaction extends Component {
                   onChangeText={value => this.props.transactionUpdate({
                   index: data.id, type: 'price', value })}
                 />
-            </CardSection>
+            </View>
           </View>
         );
     });
@@ -160,17 +161,31 @@ const styles = {
   },
 
   addButtonStyle: {
+    borderRadius: 5,
     height: 40,
     alignItems: 'center',
     paddingHorizontal: 10,
     backgroundColor: 'lightblue',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
   },
 
   iconStyle: {
     fontSize: 15,
     paddingRight: 5,
+  },
+
+  cardStyle: {
+    borderBottomWidth: 1,
+    padding: 5,
+    paddingRight: 15,
+    backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    borderColor: '#ddd',
+    position: 'relative'
   }
 };
 
-export default connect(mapStateToProps, { transactionUpdate, addItem, initialiseState })(AddTransaction);
+export default connect(mapStateToProps, { transactionUpdate, addItem, initialiseState })(AddBill);

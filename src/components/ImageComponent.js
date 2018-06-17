@@ -45,7 +45,7 @@ export default class ImageComponent extends Component {
     })
     .then(res => {
       console.log('before going in');
-      Actions.addTransaction({ scannedItems: this.parseReceipt(res) });
+      Actions.addBill({ scannedItems: this.parseReceipt(res) });
     })
     .catch(() => {
       this.setState({ generating: false, buttonText: 'Retry Please' });

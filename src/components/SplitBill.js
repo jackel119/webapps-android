@@ -3,56 +3,132 @@ import { Text, View, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 import MultiSelect from 'react-native-multiple-select';
 import { Button } from './common';
+import Storages from './../actions/Storages';
+
+const Global = require('./../Global');
 
 
 class SplitBill extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       selectedPeople: [],
       splitEqually: false,
-      items: this.props.data
+      items: this.props.data,
+      friends: [],
+      total: 0,
+      groups: []
     };
+
+    Storages.get(Global.EMAIL).then(res => {
+      console.log(res);
+      let result = [];
+      result.push({
+        id: Global.EMAIL,
+        name: 'Me',
+        isGroup: false
+      });
+      this.setState({ groups: res.groups });
+      for (var friend of res.friends) {
+        result.push({
+          id: friend.email,
+          name: friend.first_name,
+          isGroup: false
+        });
+      }
+      for (var group of res.groups) {
+        result.push({
+          id: group.gid,
+          name: group.gname,
+          isGroup: true
+        });
+      }
+      console.log(result);
+      this.setState({ friends: result });
+    });
+
 
     //update modalVisible for each item
     var i;
     for (i = 0; i < this.state.items.length; i++) {
       this.setModalVisibility(i, false);
+      this.state.total += parseFloat(this.state.items[i].price);
     }
-
-    this.people =
-      [{ id: '1',
-        name: 'Jack',
-      }, {
-        id: '2',
-        name: 'Cassie',
-      }, {
-        id: '3',
-        name: 'Elain',
-      }, {
-        id: '4',
-        name: 'David',
-      }, {
-        id: '5',
-        name: 'Zicong',
-      }];
   }
 
   onSelectedItemsChange(selectedPeople) {
-    this.setState({ selectedPeople });
+
+    var peopleInvolved = [];
+    var groupsInvolved = [];
+    for (var selected of selectedPeople) {
+      var id = this.state.friends.findIndex((obj => obj.id == selected));
+      if (id != -1 && this.state.friends[id].isGroup) {
+        for (var group of this.state.groups) {
+          if (group.gid == selected) {
+            for (var person of group.members) {
+              if (!peopleInvolved.includes(person.email)) {
+                peopleInvolved.push(person.email);
+              }
+            }
+          }
+        }
+        groupsInvolved.push(selected);
+      } else {
+        peopleInvolved.push(selected);
+      }
+    }
+
+    this.setState({ selectedPeople: peopleInvolved.concat(groupsInvolved) });
     var i;
     for (i = 0; i < this.state.items.length; i++) {
       let temp = this.state.items.slice();
-      temp[i].people = selectedPeople;
+      temp[i].split = [];
+      var j;
+      for (j = 0; j < peopleInvolved.length; j++) {
+        temp[i].split.push({
+          user: peopleInvolved[j],
+          splitAmount: this.state.items[i].price / (peopleInvolved.length)
+        });
+      }
       this.setState({ items: temp });
     }
   }
 
   onSelectedItemsChangeInner(selectedPeople, index) {
     let temp = this.state.items.slice();
-    temp[index].people = selectedPeople;
+    temp[index].split = [];
+    var peopleInvolved = [];
+    var groupsInvolved = [];
+
+    for (var selected of selectedPeople) {
+      var id = this.state.friends.findIndex((obj => obj.id == selected));
+      if (id != -1 && this.state.friends[id].isGroup) {
+        for (var group of this.state.groups) {
+          if (group.gid == selected) {
+            for (var person of group.members) {
+              if (!peopleInvolved.includes(person.email)) {
+                peopleInvolved.push(person.email);
+              }
+            }
+          }
+        }
+        groupsInvolved.push(selected);
+      } else {
+        peopleInvolved.push(selected);
+      }
+    }
+
+    console.log(groupsInvolved, peopleInvolved);
+
+    temp[index].selectedPeople = peopleInvolved.concat(groupsInvolved);
+    var j;
+    for (j = 0; j < peopleInvolved.length; j++) {
+      temp[index].split.push({
+        user: peopleInvolved[j],
+        splitAmount: this.state.items[index].price / (peopleInvolved.length)
+      });
+    }
     this.setState({ items: temp });
   }
 
@@ -62,15 +138,46 @@ class SplitBill extends Component {
     this.setState({ items: temp });
   }
 
+  submitPress() {
+    var people = [];
+    for (var temp of this.state.items) {
+      for (var res of temp.split) {
+        var objIndex = people.findIndex((obj => obj.user == res.user));
+        if (objIndex == -1) {
+          people.push({
+            user: res.user,
+            splitAmount: res.splitAmount
+          });
+        } else {
+          people[objIndex].splitAmount = people[objIndex].splitAmount + res.splitAmount;
+        }
+      }
+    }
+    var result = {};
+    result.groupID = null;
+    result.users = people.map(obj => obj.user);
+    result.description = 'Test description';
+    result.items = this.state.items;
+    result.split = people;
+    result.totalPrice = this.state.total;
+    result.currency = 0;
+    result.author = Global.EMAIL;
+    result.payee = Global.EMAIL;
+    result.timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+    console.log(result);
+  }
+
   renderTop() {
     if (this.state.splitEqually) {
       const { selectedPeople } = this.state;
+      console.log('ON RENDER', selectedPeople);
       return (
       <View style={styles.topStyle}>
         <MultiSelect
           hideTags
-          fixedHeight
-          items={this.people}
+          fixedHeight={false}
+          items={this.state.friends}
           uniqueKey="id"
           ref={(component) => { this.multiSelect = component; }}
           onSelectedItemsChange={this.onSelectedItemsChange.bind(this)}
@@ -101,13 +208,14 @@ class SplitBill extends Component {
   }
 
   renderInnerSelect(index) {
-    const selectedPeople = this.state.items[index].people;
+    const selectedPeople = this.state.items[index].selectedPeople;
+
     return (
     <View style={styles.topStyle}>
       <MultiSelect
         hideTags
-        fixedHeight
-        items={this.people}
+        fixedHeight={false}
+        items={this.state.friends}
         uniqueKey="id"
         ref={(component) => { this.multiSelect = component; }}
         onSelectedItemsChange={(selected) => this.onSelectedItemsChangeInner(selected, index)}
@@ -135,7 +243,7 @@ class SplitBill extends Component {
           Modify Split
         </Button>
       );
-    } 
+    }
     return (
       <Button onPress={() => this.setModalVisibility(id - 1, true)}>
         Select People
@@ -159,7 +267,7 @@ class SplitBill extends Component {
           <View style={styles.shareStyle}>
             {this.renderSplit(data.id)}
           </View>
-          <Modal 
+          <Modal
             isVisible={this.state.items[data.id - 1].modalVisible}
             backdropOpacity={0.5}
           >
@@ -190,7 +298,7 @@ class SplitBill extends Component {
           </View>
         </ScrollView>
         <View style={{ flex: 0.1 }}>
-          <Button onPress={() => console.log(this.state)}>
+          <Button onPress={this.submitPress.bind(this)}>
             Submit
           </Button>
         </View>

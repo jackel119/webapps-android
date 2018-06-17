@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import ExpenseDetail from './ExpenseDetail';
 import Storages from './../../actions/Storages';
 
@@ -8,17 +8,16 @@ const Global = require('./../../Global');
 class ExpenseList extends Component {
   state = { expenseList: [] };
 
-  async componentWillMount() {
-    const uid = Global.UID;
-    await Storages.get(uid).then(result => {
-      this.setState({ expenseList: result.trans });
-      console.log(10, result.trans);
+  componentWillMount() {
+    Storages.get(Global.EMAIL).then(result => {
+      console.log('result', result);
+      this.setState({ expenseList: result.transactions });
     });
   }
 
   renderExpenses() {
-    return this.state.expenseList.map(expense =>
-      <ExpenseDetail key={expense.txid} expense={expense} />
+    return this.state.expenseList.map((expense, index) =>
+      <ExpenseDetail key={index} expense={expense} />
     );
   }
 

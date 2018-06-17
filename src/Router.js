@@ -3,7 +3,7 @@ import { Scene, Router, Drawer, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import Homepage from './components/Homepage';
 import CameraComponent from './components/CameraComponent';
-import AddTransaction from './components/AddTransaction';
+import AddBill from './components/AddBill';
 import ExpensePage from './components/ExpensePage';
 import ImageComponent from './components/ImageComponent';
 import Setting from './components/Setting';
@@ -12,6 +12,7 @@ import GroupList from './components/GroupList';
 import AddNewFriends from './components/AddNewFriends';
 import DrawerContent from './DrawerContent';
 import SplitBill from './components/SplitBill';
+import BillDetails from './components/BillDetails';
 
 const RouterComponent = () => {
   return (
@@ -24,7 +25,7 @@ const RouterComponent = () => {
           title="Please Login"
         />
         <Drawer
-          //initial
+          // initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
@@ -40,9 +41,9 @@ const RouterComponent = () => {
             />
             <Scene
               //initial
-              key="addTransaction"
-              component={AddTransaction}
-              title="Add Transaction"
+              key="addBill"
+              component={AddBill}
+              title="Add Bill"
             />
 
             <Scene
@@ -57,6 +58,15 @@ const RouterComponent = () => {
               component={ExpensePage}
               title="Transaction History"
             />
+
+
+            <Scene
+              // initial
+              key="billDetails"
+              component={BillDetails}
+              title="Bill Details"
+            />
+
             <Scene
               key="imageDisplay"
               component={ImageComponent}
@@ -77,11 +87,11 @@ const RouterComponent = () => {
               rightTitle="Add"
             />
 
-              <Scene
-                key="addFriend"
-                component={AddNewFriends}
-                title="Add Friends"
-              />
+            <Scene
+              key="addFriend"
+              component={AddNewFriends}
+              title="Add Friends"
+            />
 
             <Scene
               //initial
@@ -106,3 +116,4 @@ const RouterComponent = () => {
 };
 
 export default RouterComponent;
+

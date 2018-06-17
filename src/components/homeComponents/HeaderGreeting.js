@@ -13,19 +13,18 @@ class HeaderGreeting extends Component {
     username: 'User',
     modalVisible: false,
     totalAmount: 0,
-    username: 'name'
   };
 
-  async componentWillMount() {
-    const uid = Global.UID;
-    await Storages.getTotalAmount(uid).then(totalAmount => {
+  componentWillMount() {
+    const email = Global.EMAIL;
+    Storages.getTotalAmount(email).then(totalAmount => {
       this.setState({ totalAmount });
     });
 
-    await Storages.getUsername(uid).then(username => {
+    Storages.getUsername(email).then(username => {
       this.setState({ username });
     });
-    Storages.get(uid).then(result => {
+    Storages.get(email).then(result => {
       this.setState({ username: result.userData.first_name });
     });
   }
@@ -102,7 +101,7 @@ class HeaderGreeting extends Component {
                   borderRadius={100}
                   onPress={() => {
                     this.setModalVisible();
-                    Actions.addTransaction();
+                    Actions.addBill();
                   }}
                   iconStyle={{ marginRight: 0 }}
 
