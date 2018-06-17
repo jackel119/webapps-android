@@ -25,7 +25,7 @@ const RouterComponent = () => {
           title="Please Login"
         />
         <Drawer
-          // initial
+          //initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
@@ -116,4 +116,3 @@ const RouterComponent = () => {
 };
 
 export default RouterComponent;
-

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { TouchableOpacity, Text, View, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 import MultiSelect from 'react-native-multiple-select';
 import { Button } from './common';
@@ -209,7 +209,6 @@ class SplitBill extends Component {
 
   renderInnerSelect(index) {
     const selectedPeople = this.state.items[index].selectedPeople;
-
     return (
     <View style={styles.topStyle}>
       <MultiSelect
@@ -239,22 +238,28 @@ class SplitBill extends Component {
   renderSplit(id) {
     if (this.state.splitEqually) {
       return (
-        <Button onPress={() => this.setModalVisibility(id - 1, true)}>
-          Modify Split
-        </Button>
+        <TouchableOpacity
+          style={styles.selectButtonStyle}
+          onPress={() => this.setModalVisibility(id - 1, true)}
+        >
+          <Text style={{ fontSize: 16 }}>Modify Split</Text>
+        </TouchableOpacity>
       );
     }
     return (
-      <Button onPress={() => this.setModalVisibility(id - 1, true)}>
-        Select People
-      </Button>
+      <TouchableOpacity
+        style={styles.selectButtonStyle}
+        onPress={() => this.setModalVisibility(id - 1, true)}
+      >
+        <Text style={{ fontSize: 16 }}>Select People</Text>
+      </TouchableOpacity>
     );
   }
 
   render() {
     const renderData = this.props.data.map((data, index) => {
       return (
-        <View style={styles.containerStyle} key={index}>
+        <View style={styles.cardStyle} key={index}>
           <View style={styles.itemStyle}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-end' }}>
               <Text style={{ fontSize: 16 }}> {data.id}. </Text>
@@ -272,13 +277,24 @@ class SplitBill extends Component {
             backdropOpacity={0.5}
           >
             <View style={{ flex: 1 }}>
-              <Text>{'Item: ' + data.name + '  ' + 'Price: ' + data.price }</Text>
-              {this.renderInnerSelect(data.id - 1)}
-              <Button
-                onPress={() => this.setModalVisibility(data.id - 1, false)}
-              >
-                <Text>Complete Split</Text>
-              </Button>
+              <View>{this.renderInnerSelect(data.id - 1)}</View>
+              <View style={styles.cardStyle}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                  <Text style={{ fontSize: 16 }}>
+                    {'Item: ' + data.name}
+                  </Text>
+                  <Text style={{ fontSize: 16 }}>
+                    {'Price: ' + data.price}
+                  </Text>
+                </View>
+              </View>
+              <View style={{ flex: 0.1 }}>
+                <Button
+                  onPress={() => this.setModalVisibility(data.id - 1, false)}
+                >
+                  <Text>Complete Split</Text>
+                </Button>
+              </View>
             </View>
           </Modal>
         </View>
@@ -291,7 +307,7 @@ class SplitBill extends Component {
           <View style={{ flex: 0.2, paddingTop: 5 }}>
             {this.renderTop()}
           </View>
-          <View style={{ flex: 0.8, paddingTop: 5 }}>
+          <View style={styles.containerStyle}>
             <ScrollView>
               {renderData}
             </ScrollView>
@@ -322,17 +338,27 @@ const styles = {
     //flex: 1,
   },
   containerStyle: {
+    marginTop: 10,
+    paddingHorizontal: 20,
+    paddingBottom: 5,
+    flex: 0.8,
+    //backgroundColor: 'white'
+  },
+  cardStyle: {
+    padding: 5,
     flexDirection: 'column',
     paddingVertical: 8,
     borderBottomWidth: 1,
     backgroundColor: 'white',
     borderColor: '#ddd',
     position: 'relative',
+    marginBottom: 5,
   },
   itemStyle: {
     paddingLeft: 20,
     paddingRight: 30,
     flexDirection: 'row',
+    paddingBottom: 5,
   },
   shareStyle: {
     paddingRight: 10,
@@ -341,8 +367,18 @@ const styles = {
     justifyContent: 'flex-end',
   },
   topStyle: {
-    //paddingHorizontal: 10,
-  }
+    marginBottom: -5,
+  },
+  selectButtonStyle: {
+    borderRadius: 5,
+    height: 40,
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    backgroundColor: 'lightblue',
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
 };
 
 
