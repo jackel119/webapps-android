@@ -4,7 +4,9 @@ import {
   TRANSACTION_UPDATE,
   TRANSACTION_INITIATE,
   ADD_ITEM,
-  INITIALISE_STATE
+  INITIALISE_STATE,
+  UPDATE_TOTAL,
+  UPDATE_DESCRIPTION
 } from './types';
 import Storages from './Storages';
 
@@ -70,6 +72,20 @@ export const addItem = (item) => {
 export const initialiseState = () => {
   return {
     type: INITIALISE_STATE
+  };
+};
+
+export const updateTotal = (value) => {
+  return {
+    type: UPDATE_TOTAL,
+    payload: value
+  };
+};
+
+export const updateDescription = (value) => {
+  return {
+    type: UPDATE_DESCRIPTION,
+    payload: value
   };
 };
 

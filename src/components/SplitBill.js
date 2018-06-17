@@ -15,7 +15,8 @@ class SplitBill extends Component {
     this.state = {
       selectedPeople: [],
       splitEqually: false,
-      items: this.props.data,
+      items: this.props.items,
+      description: this.props.description,
       friends: [],
       total: 0,
       groups: []
@@ -252,7 +253,14 @@ class SplitBill extends Component {
   }
 
   render() {
-    const renderData = this.props.data.map((data, index) => {
+    if (this.state.items.length == 0) {
+      this.state.items.push({
+        id: 1,
+        name: this.props.description,
+        price: this.props.total
+      })
+    }
+    const renderData = this.state.items.map((data, index) => {
       return (
         <View style={styles.containerStyle} key={index}>
           <View style={styles.itemStyle}>

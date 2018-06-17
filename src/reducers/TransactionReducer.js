@@ -4,10 +4,14 @@ import {
   TRANSACTION_INITIATE,
   ADD_ITEM,
   INITIALISE_STATE,
+  UPDATE_TOTAL,
+  UPDATE_DESCRIPTION
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  data: []
+  data: [], 
+  total: 0,
+  description: ''
 };
 
 function updateItem(data, detail) {
@@ -25,17 +29,23 @@ export default (state = INITIAL_STATE, action) => {
     case TRANSACTION_INITIATE:
       return { data: action.payload };
     case TRANSACTION_UPDATE:
-      return { data: updateItem(state.data, action.payload) };
+      return { data: updateItem(state.data, action.payload), total: state.total, description: state.description };
     case TRANSACTION_CREATE:
       return INITIAL_STATE;
     case ADD_ITEM:
       if (action.payload.initial) {
         return { data: [...state.data, {
-          id: action.payload.id, name: action.payload.name, price: action.payload.price }] };
+          id: action.payload.id, name: action.payload.name, price: action.payload.price }], 
+          total: state.total, 
+          description: state.description };
       } 
       return { data: [...state.data, { id: action.payload.id, name: '', price: '' }] };
     case INITIALISE_STATE:
       return { data: [] };
+    case UPDATE_TOTAL:
+      return { data: state.data, total: action.payload, description: state.description };
+    case UPDATE_DESCRIPTION:
+      return { data: state.data, total: state.total, description: action.payload };
     default:
       return state;
   } 

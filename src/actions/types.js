@@ -8,3 +8,5 @@ export const TRANSACTION_UPDATE = 'transaction_update';
 export const TRANSACTION_INITIATE = 'transaction_initiate';
 export const ADD_ITEM = 'add_item';
 export const INITIALISE_STATE = 'initialise_state';
+export const UPDATE_TOTAL = 'update_total';
+export const UPDATE_DESCRIPTION = 'update_description';

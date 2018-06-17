@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { CardSection, Button, Input } from './common';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { transactionUpdate, addItem, initialiseState } from '../actions';
 import { Actions } from 'react-native-router-flux';
+import { CardSection, Button, Input, TextInput } from './common';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { transactionUpdate, addItem, initialiseState, updateTotal, updateDescription } from '../actions';
+
 
 class AddBill extends Component {
 
@@ -19,20 +20,13 @@ class AddBill extends Component {
         this.counter += 1;
         this.props.addItem({ initial: true, id: this.counter, name: item.name, price: item.price });
       }
-    } else {
-      this.counter += 1;
-      this.props.addItem({ initial: false, id: this.counter });
-    }
+    } 
   }
 
 
   onAddItem() {
     this.counter += 1;
     this.props.addItem({ initial: false, id: this.counter });
-  }
-
-  onBottunPress() {
-    console.log(this.state.data);
   }
 
 
@@ -43,8 +37,15 @@ class AddBill extends Component {
     return 0;
   }
 
+  convertToString(number) {
+    if (number) {
+      return number.toString();
+    }
+    return '';
+  }
+
   submit() {
-    Actions.split({ data: this.props.data });
+    Actions.split({ items: this.props.data, description: this.props.description, total: this.props.total });
   }
 
   renderTop() {
@@ -52,10 +53,24 @@ class AddBill extends Component {
     for (var item of this.props.data) {
       total += this.convertToNumber(item.price);
     }
+
+    if (!(this.props.data.length == 0)) {
+      this.props.updateTotal(total);
+    }
+
     return (
       <View style={styles.topStyle} >
-        <Text style={styles.totalAmountStyle}> Total Amount </Text>
-        <Text style={styles.totalAmountNumber}> {total.toFixed(2)} </Text>
+        <Input
+          label='Total Amount'
+          value={this.convertToString(this.props.total)}
+          onChangeText={value => this.props.updateTotal(value)}
+        />
+        <Input
+          label='Description'
+          placeholder='Description'
+          value={this.props.description}
+          onChangeText={value => this.props.updateDescription(value)}
+        />
       </View>
     );
   }
@@ -87,7 +102,7 @@ class AddBill extends Component {
     });
     return (
       <View style={styles.containerStyle}>
-        <View style={{ flex: 0.8 }}>
+        <View style={{ flex: 0.7 }}>
           <ScrollView>
             <View>
               {renderAddItem}
@@ -101,22 +116,22 @@ class AddBill extends Component {
             </View>
           </ScrollView>
         </View>
-        <View style={{ flex: 0.1 }}>
+        <View style={{ flex: 0.2 }}>
           {this.renderTop()}
         </View>
         <View style={{ flex: 0.1 }}>
           <Button onPress={this.submit.bind(this)}>
             Submit
-          </Button>
+          </Button> 
         </View>
-      </View>
+      </View> 
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { data } = state.receipt;
-  return { data };
+  const { data, total, description } = state.receipt;
+  return { data, total, description };
 };
 
 const styles = {
@@ -188,4 +203,4 @@ const styles = {
   }
 };
 
-export default connect(mapStateToProps, { transactionUpdate, addItem, initialiseState })(AddBill);
+export default connect(mapStateToProps, { transactionUpdate, addItem, initialiseState, updateTotal, updateDescription })(AddBill);
