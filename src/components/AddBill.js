@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { CardSection, Button, Input, TextInput } from './common';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { transactionUpdate, addItem, initialiseState, updateTotal, updateDescription } from '../actions';
+import { Button, Input } from './common';
+import { transactionUpdate, addItem, initialiseState,
+  updateTotal, updateDescription } from '../actions';
 
 
 class AddBill extends Component {
@@ -20,7 +21,7 @@ class AddBill extends Component {
         this.counter += 1;
         this.props.addItem({ initial: true, id: this.counter, name: item.name, price: item.price });
       }
-    } 
+    }
   }
 
 
@@ -45,7 +46,10 @@ class AddBill extends Component {
   }
 
   submit() {
-    Actions.split({ items: this.props.data, description: this.props.description, total: this.props.total });
+    Actions.split({
+      items: this.props.data,
+      description: this.props.description,
+      total: this.props.total });
   }
 
   renderTop() {
@@ -53,24 +57,37 @@ class AddBill extends Component {
     for (var item of this.props.data) {
       total += this.convertToNumber(item.price);
     }
+    total = total.toFixed(2);
 
-    if (!(this.props.data.length == 0)) {
+    if (!(this.props.data.length === 0)) {
       this.props.updateTotal(total);
     }
 
     return (
-      <View style={styles.topStyle} >
-        <Input
-          label='Total Amount'
-          value={this.convertToString(this.props.total)}
-          onChangeText={value => this.props.updateTotal(value)}
-        />
-        <Input
-          label='Description'
-          placeholder='Description'
-          value={this.props.description}
-          onChangeText={value => this.props.updateDescription(value)}
-        />
+      <View style={{ height: 90 }}>
+        <View style={styles.desStyle} >
+          <TextInput
+            underlineColorAndroid='rgba(0,0,0,0)'
+            placeholder='Description...'
+            maxLength={40}
+            autoCorrect={false}
+            style={styles.desinputStyle}
+            value={this.props.description}
+            onChangeText={value => this.props.updateDescription(value)}
+          />
+        </View>
+        <View style={styles.totalAmountStyle} >
+          <View style={{ flex: 2 }} />
+          <Text style={styles.labelStyle}>Total Amount</Text>
+          <TextInput
+            underlineColorAndroid='rgba(0,0,0,0)'
+            placeholder='0.00'
+            autoCorrect={false}
+            style={styles.inputStyle}
+            value={this.convertToString(this.props.total)}
+            onChangeText={value => this.props.updateTotal(value)}
+          />
+        </View>
       </View>
     );
   }
@@ -122,9 +139,9 @@ class AddBill extends Component {
         <View style={{ flex: 0.1 }}>
           <Button onPress={this.submit.bind(this)}>
             Submit
-          </Button> 
+          </Button>
         </View>
-      </View> 
+      </View>
     );
   }
 }
@@ -140,35 +157,50 @@ const styles = {
     paddingHorizontal: 20,
     paddingBottom: 5,
     flex: 1,
-    //backgroundColor: 'white'
   },
 
-  topStyle: {
+  totalAmountStyle: {
+    flex: 1,
     paddingVertical: 8,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    borderBottomWidth: 1,
     backgroundColor: 'lightgrey',
-    borderColor: '#ddd',
     position: 'relative',
     paddingRight: 15,
     alignItems: 'flex-end',
   },
-
-  totalAmountStyle: {
+  desStyle: {
+    flex: 1,
+    paddingVertical: 5,
+    justifyContent: 'flex-start',
+    backgroundColor: 'white',
+    position: 'relative',
+    paddingHorizontal: 15,
+    borderWidth: 1,
+    borderColor: 'lightgrey',
+  },
+  inputStyle: {
+    color: 'indianred',
+    fontWeight: 'bold',
+    height: 30,
+    paddingBottom: -10,
+    fontSize: 18,
+    flex: 1
+  },
+  desinputStyle: {
+    color: 'lightslategrey',
+    height: 30,
+    paddingBottom: 3,
+    paddingHorizontal: 5,
     fontSize: 16,
-    paddingRight: 15,
   },
-
-  totalAmountNumber: {
-    fontSize: 20,
+  labelStyle: {
+    paddingRight: 10,
   },
-
   addItemStyle: {
     flexDirection: 'row',
     flex: 1,
     height: 40,
-    //paddingTop: 5,
   },
 
   newItemStyle: {
