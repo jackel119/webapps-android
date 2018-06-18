@@ -25,7 +25,6 @@ class ExpenseList extends Component {
     return (
       <ScrollView>
         {this.renderExpenses()}
-        <View style={{ height: 300 }} />
       </ScrollView>
     );
   }

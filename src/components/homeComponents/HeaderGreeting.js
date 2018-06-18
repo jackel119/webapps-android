@@ -119,6 +119,7 @@ const styles = {
   },
 
   containerStyle: {
+    height: 300,
     paddingTop: 20,
     paddingHorizontal: 20
   },
@@ -151,7 +152,7 @@ const styles = {
     color: 'white',
     opacity: 0.9
   },
-  
+
   iconContainerStyle: {
     flex: 1,
     flexDirection: 'row',
