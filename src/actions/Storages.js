@@ -54,23 +54,6 @@ class Storages {
     }
   };
 
-  //Add one new TX
-  // static addTX = async (key, newTX) => {
-  //   await Storages.get(key).then(items => {
-  //     try {
-  //       const newTXlist = newTX.concat(items.trans);
-  //       const result = {
-  //         userData: items.userData,
-  //         transaction: newTXlist,
-  //         friendList: items.friendList,
-  //         groupList: items.groupList };
-  //       Storages.set(key, result);
-  //     } catch (error) {
-  //       console.log('addTX() error');
-  //     }
-  //   });
-  // };
-
   static getFriendUID = async (key, email) => {
     await Storages.get(key).then(res => {
       console.log('getting FriendUID');
@@ -84,25 +67,10 @@ class Storages {
     }).catch(() => console.log(''));
   };
 
-  // static getFriendName = async (key, uid) => {
-  //   var name = 'Invalid Friend';
-  //   await Storages.get(key).then(res => {
-  //     console.log('getting FriendName');
-  //     const friendList = res.friends;
-  //     for (const friend of friendList) {
-  //       if (friend.uid === uid) {
-  //         name = friend.name;
-  //         break;
-  //       }
-  //     }
-  //   }).catch(() => console.log('getFriendName error'));
-  //   return name;
-  // };
-
   static getTotalAmount = async (key) => {
     var total = 0;
     await Storages.get(key).then(res => {
-      const txList = res.transactions;
+      const txList = res.transactionBillMap;
       for (const tx of txList) {
           total += parseFloat(tx.amount);
       }
@@ -114,7 +82,7 @@ class Storages {
     var totalIN = 0;
     var totalOUT = 0;
     await Storages.get(key).then(res => {
-      const txList = res.transactions;
+      const txList = res.transactionBillMap;
       for (const tx of txList) {
         if (tx.amount >= 0) {
           totalIN += parseFloat(tx.amount);
@@ -129,7 +97,7 @@ class Storages {
   static getTotalOUT = async (key) => {
     var total = 0;
     await Storages.get(key).then(res => {
-      const txList = res.transactions;
+      const txList = res.transactionBillMap;
       for (const tx of txList) {
           total += parseFloat(tx.amount);
       }

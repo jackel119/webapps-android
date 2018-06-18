@@ -11,7 +11,7 @@ class ExpenseList extends Component {
   componentWillMount() {
     Storages.get(Global.EMAIL).then(result => {
       console.log('result', result);
-      this.setState({ expenseList: result.transactions });
+      this.setState({ expenseList: result.transactionBillMap });
     });
   }
 

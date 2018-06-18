@@ -14,7 +14,6 @@ class InOutBalance extends Component {
   componentWillMount() {
     const email = Global.EMAIL;
     Storages.getTotalInOut(email).then(res => {
-      console.log(res);
       this.setState({ in: res.in });
       this.setState({ out: res.out });
     });
