@@ -113,7 +113,10 @@ class DrawerContent extends React.Component {
           <Text style={styles.textStyle}>Home</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={(Actions.currentScene === 'addBill' || Actions.currentScene === 'split') ?
+          style={(Actions.currentScene === 'addBill'
+          || Actions.currentScene === 'split'
+          || Actions.currentScene === 'camera'
+          || Actions.currentScene === 'imageDisplay') ?
             styles.barStyleActive : styles.barStyle}
           onPress={Actions.addBill}
         >
