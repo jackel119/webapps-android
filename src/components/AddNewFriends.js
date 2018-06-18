@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput } from 'react-native';
+import { View, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button } from './common';
+import { socket } from '../Global';
 
 class AddNewFriends extends Component {
+
+  componentWillMount() {
+    this.state = {
+      email: ''
+    };
+  }
+
+  add() {
+    console.log(this.state.email);
+    socket.emit('addFriend', this.state.email);
+  }
+
   render() {
     const { inputStyle, iconStyle, containerStyle } = styles;
     return (
@@ -10,14 +24,15 @@ class AddNewFriends extends Component {
         <View style={containerStyle}>
           <Icon name="search" size={20} style={iconStyle} />
           <TextInput
-            placeholder="Add New Friends"
+            placeholder="email"
             style={inputStyle}
+            value={this.state.email}
+            onChangeText={res => this.setState({ email: res })}
           />
         </View>
-
-        <View style={{ flex: 10, borderTopWidth: 0.6 }}>
-          <Text>Friend Reqests</Text>
-        </View>
+        <Button onPress={this.add.bind(this)}>
+          Send Request
+        </Button>
       </View>
     );
   }
