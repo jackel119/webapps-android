@@ -10,8 +10,6 @@ const Global = require('./Global');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //justifyContent: 'center',
-    //alignItems: 'center',
     backgroundColor: 'transparent',
   },
 
@@ -19,7 +17,6 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: 'center',
     paddingHorizontal: 30,
-    //justifyContent: 'center',
     backgroundColor: 'white',
     borderBottomWidth: 1,
     borderColor: '#ddd',
@@ -39,17 +36,14 @@ const styles = StyleSheet.create({
   profileStyle: {
     height: 90,
     width: 300,
-    //alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
     backgroundColor: 'white',
     borderBottomWidth: 1,
     borderColor: '#ddd',
-    //flexDirection: 'column',
   },
 
   textStyle: {
-    //fontWeight: 'bold',
     position: 'absolute',
     left: 60,
     fontSize: 18,
@@ -59,7 +53,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 250,
     fontSize: 20,
-    //flex: 1
   },
 
   nameStyle: {
@@ -92,15 +85,14 @@ class DrawerContent extends React.Component {
   };
 
   componentWillMount() {
-    // Storages.get(Global.EMAIL).then(res => {
-    //   this.setState({ firstname: res.userData.first_name });
-    //   this.setState({ lastname: res.userData.last_name });
-    //   this.setState({ email: res.userData.email });
-    // });
+    Storages.get(Global.EMAIL).then(res => {
+      this.setState({ firstname: res.userData.first_name });
+      this.setState({ lastname: res.userData.last_name });
+      this.setState({ email: res.userData.email });
+    });
   }
 
   render() {
-    console.log(Actions.currentScene);
     return (
       <View style={styles.container}>
         <View style={styles.profileStyle}>
@@ -121,7 +113,10 @@ class DrawerContent extends React.Component {
           <Text style={styles.textStyle}>Home</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={(Actions.currentScene === 'addBill' || Actions.currentScene === 'split') ?
+          style={(Actions.currentScene === 'addBill'
+          || Actions.currentScene === 'split'
+          || Actions.currentScene === 'camera'
+          || Actions.currentScene === 'imageDisplay') ?
             styles.barStyleActive : styles.barStyle}
           onPress={Actions.addBill}
         >

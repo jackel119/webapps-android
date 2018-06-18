@@ -1,12 +1,12 @@
 import React, { Component} from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import FriendDetails from './FriendDetails';
+import FriendinGroup from './FriendinGroup';
 
 class GroupDetail extends Component {
 
   renderMembers() {
     return this.props.group.members.map(friend =>
-      <FriendDetails key={friend.uid} friend={friend} />);
+      <FriendinGroup key={friend.uid} friend={friend} />);
   }
 
   render() {
@@ -17,7 +17,7 @@ class GroupDetail extends Component {
         <View style={{}}>
             <Text style={nameStyle}>{gname} </Text>
         </View>
-        <ScrollView style={{ height: 100 }}>
+        <ScrollView style={{ height: 120 }}>
           {this.renderMembers()}
         </ScrollView>
       </View>
@@ -27,13 +27,13 @@ class GroupDetail extends Component {
 
 const styles = {
   cardStyle: {
+    marginBottom: 2,
     paddingTop: 10,
     paddingBottom: 8,
     paddingHorizontal: 20,
-    height: 320,
-    borderBottomWidth: 0.4,
-    borderColor: 'white',
-    backgroundColor: '#0a0809',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+    backgroundColor: 'white',
     flexDirection: 'column'
   },
   leftStyle: {
@@ -47,23 +47,12 @@ const styles = {
     alignItems: 'flex-end',
   },
   nameStyle: {
-    color: 'white',
     textAlign: 'left',
     fontSize: 18,
-    paddingBottom: 5
+    fontWeight: 'bold',
+    //paddingBottom: 5,
+    marginBottom: 10,
   },
-  groupStyle: {
-    color: 'white',
-    textAlign: 'right',
-    fontSize: 12,
-    marginBottom: 5,
-  },
-  emailStyle: {
-    color: 'white',
-    fontSize: 14,
-    textAlign: 'right',
-    fontFamily: 'TitilliumWeb-Regular',
-  }
 };
 
 export default GroupDetail;
