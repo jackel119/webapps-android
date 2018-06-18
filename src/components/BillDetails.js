@@ -3,47 +3,35 @@ import { View, Text } from 'react-native';
 
 class BillDetails extends Component {
   state = { 
-    description: 'description',
-    itemList: [
-      {
-        itemname: 'apple',
-        price: 1.5,
-        split: [
-          { useremail: 'useremail', splitAmount: 'splitAmount' },
-          { useremail: 'useremail', splitAmount: 'splitAmount' }
-        ]
-      },
-      {
-        itemname: 'apple',
-        price: 1.5,
-        split: [
-          { useremail: 'useremail', splitAmount: 'splitAmount' },
-          { useremail: 'useremail', splitAmount: 'splitAmount' }
-        ]
-      },
-      {
-        itemname: 'apple',
-        price: 1.5,
-        split: [
-          { useremail: 'useremail', splitAmount: 'splitAmount' },
-          { useremail: 'useremail', splitAmount: 'splitAmount' }
-        ]
-      },
-      {
-        itemname: 'apple',
-        price: 1.5,
-        split: [
-          { useremail: 'useremail', splitAmount: 'splitAmount' },
-          { useremail: 'useremail', splitAmount: 'splitAmount' }
-        ]
-      }
-    ]
+    author: '',
+    description: '',
+    groupID: '',
+    payee: '',
+    totalPrice: 0,
+    timestamp: '',
+    items: [],
+    split: []
+  }
+
+  componentWillMount() {
+    console.log('bill details', this.props.billDetails);
+    const { author, description, groupID, items, payee, split, timestamp, totalPrice } = this.props.billDetails;
+    this.state = {
+      author,
+      description,
+      groupID,
+      payee,
+      totalPrice,
+      timestamp,
+      items,
+      split
+    };
+    console.log('state', this.state);
   } 
 
   renderItems() {
-    console.log(this.state.itemList);
-    return this.state.itemList.map(item => 
-      <ItemDetail item={item} />
+    return this.state.items.map(item => 
+      <ItemDetail key={item.id} item={item} />
     );
   }
 
@@ -54,6 +42,15 @@ class BillDetails extends Component {
           <Text>description: {this.state.description} </Text>
         </View>
         <View>
+          <Text>payee: {this.state.payee} </Text>
+        </View>
+        <View>
+          <Text>totalPrice: {this.state.totalPrice} </Text>
+        </View>
+        <View>
+          <Text>timestamp: {this.state.timestamp} </Text>
+        </View>
+        <View>
           {this.renderItems()}
         </View>
       </View>
@@ -62,12 +59,12 @@ class BillDetails extends Component {
 }
 
 const ItemDetail = ({ item }) => {
-  const { itemname, price, split } = item;
+  const { name, price, split } = item;
   return (
     <View style={{ borderTopWidth: 0.5 }}>
       <View style={{ flexDirection: 'row' }}>
         <View style={{ flex: 1 }}>
-          <Text>{itemname}</Text>
+          <Text>{name}</Text>
         </View>
         <View style={{ flex: 1 }}>
           <Text>{price}</Text>
@@ -85,10 +82,10 @@ const renderSplitUser = ({ split }) => {
   return split.map(user => 
     <View>
       <View>
-        <Text>{user.useremail}</Text>
+        <Text>{user.user}</Text>
       </View>
       <View>
-        <Text>{user.splitAmount}</Text>
+        <Text>£ {parseFloat(user.splitAmount).toFixed(2)}</Text>
       </View>
     </View>
   );

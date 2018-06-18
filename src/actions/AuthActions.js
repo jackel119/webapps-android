@@ -16,7 +16,7 @@ export const emailChanged = (text) => {
     type: EMAIL_CHANGED,
     payload: text
   };
-};
+}; 
 
 export const passwordChanged = (text) => {
   return {
@@ -44,16 +44,27 @@ export function loginUser({ email, password }) {
         socket.on('allGroupsAndUsers', groups => {
           console.log('groups', groups);
           Storages.set(Global.EMAIL, { groups: groups });
-          Storages.get(Global.EMAIL).then(res => console.log('storage', res));
+          socket.emit('getBills');
         });
 
-        socket.emit('getBills');
         socket.on('allBills', async bills => {
           console.log('bills', bills);
           var transactionBillMap = []; 
           for (const bill of bills) {
             var myfriend = null; 
             if (bill.bdata.payee === Global.EMAIL) {
+              // for (const item of bill.bdata.items) {
+              //   for (const spliter of item.split) {
+              //     // console.log('spliter', spliter);
+              //     if (spliter.user === Global.EMAIL) {
+              //       spliter.name = 'myself';
+              //     } else {
+              //       spliter.name = 'not myself';
+              //     }
+              //     // console.log('after spliter', spliter);
+              //   } 
+              // }
+
               for (const spliter of bill.bdata.split) {
                 await Storages.getFriendByEmail(Global.EMAIL, spliter.user)
                   .then(friend => myfriend = friend);
@@ -66,9 +77,10 @@ export function loginUser({ email, password }) {
                   time: bill.bdata.timestamp,
                   description: bill.bdata.description,
                   shareWith: 'Paid for ' + myfriend.first_name,
-                  billDetails: bill
+                  billDetails: bill.bdata
                 };
                 transactionBillMap.push(transaction);
+                console.log('transactionBillMap', transactionBillMap);
               } 
             } else {
               await Storages.getFriendByEmail(Global.EMAIL, bill.bdata.payee)
@@ -84,7 +96,7 @@ export function loginUser({ email, password }) {
                     time: bill.bdata.timestamp,
                     description: bill.bdata.description,
                     shareWith: 'Paid by ' + myfriend.first_name,
-                    billDetails: bill
+                    billDetails: bill.bdata
                   };
                   transactionBillMap.push(transaction);
                 }
@@ -93,6 +105,7 @@ export function loginUser({ email, password }) {
           }
           Storages.set(Global.EMAIL, { transactionBillMap: transactionBillMap });
           console.log('transactionBillMap', transactionBillMap); 
+          Storages.get(Global.EMAIL).then(res => console.log('storage', res));
           loginUserSucess(dispatch, { email, password });
         });
       } else {

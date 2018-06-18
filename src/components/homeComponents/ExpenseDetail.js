@@ -1,12 +1,17 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+
 
 const ExpenseDetail = ({ expense }) => {
-  const { amount, time, description, shareWith } = expense;
+  const { amount, time, description, shareWith, billDetails } = expense;
   const { cardStyle, amountStyle, timeStyle, descriptionStyle, rightStyle, leftStyle } = styles;
 
   return (
-    <View style={cardStyle}>
+    <TouchableOpacity 
+      onPress={() => Actions.billDetails({ billDetails })}
+      style={cardStyle}
+    >
       <View style={leftStyle}>
           <Text style={amountStyle}>{amount[0]} £ {parseFloat(amount.substring(1)).toFixed(2)} </Text>
       </View>
@@ -16,7 +21,7 @@ const ExpenseDetail = ({ expense }) => {
           <Text style={timeStyle}>{description}</Text>
           <Text style={descriptionStyle}>{shareWith}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
