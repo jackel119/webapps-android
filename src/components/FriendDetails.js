@@ -17,7 +17,7 @@ const FriendDetail = ({ friend }) => {
             <Text style={emailStyle}>{email}</Text>
         </View>
       </View>
-    </View>
+    </View> 
   );
 };
 

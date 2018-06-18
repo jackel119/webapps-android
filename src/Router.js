@@ -4,7 +4,7 @@ import LoginForm from './components/LoginForm';
 import Homepage from './components/Homepage';
 import CameraComponent from './components/CameraComponent';
 import AddBill from './components/AddBill';
-import ExpensePage from './components/ExpensePage';
+import TransactionHistory from './components/TransactionHistory';
 import ImageComponent from './components/ImageComponent';
 import Setting from './components/Setting';
 import FriendsList from './components/FriendsList';
@@ -13,6 +13,7 @@ import AddNewFriends from './components/AddNewFriends';
 import DrawerContent from './DrawerContent';
 import SplitBill from './components/SplitBill';
 import BillDetails from './components/BillDetails';
+import BillHistory from './components/BillHistory';
 import CameraRollComponent from './components/CameraRollComponent';
 
 const RouterComponent = () => {
@@ -57,9 +58,15 @@ const RouterComponent = () => {
             />
 
             <Scene
-              key="expensePage"
-              component={ExpensePage}
+              key="transactionHistory"
+              component={TransactionHistory}
               title="Transaction History"
+            />
+
+            <Scene
+              key="billHistory"
+              component={BillHistory}
+              title="Bill History"
             />
 
 

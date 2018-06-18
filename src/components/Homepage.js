@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StatusBar, Image } from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
-import { InOutBalance, ExpenseList, HeaderGreeting } from './homeComponents';
+import { InOutBalance, TransactionList, HeaderGreeting } from './homeComponents';
 
 const Homepage = () => {
 	return (
@@ -24,7 +24,7 @@ const Homepage = () => {
 					</View>
 				)}
 			>
-				<ExpenseList />
+				<TransactionList />
 			</ParallaxScrollView>
 		</View>
 	);

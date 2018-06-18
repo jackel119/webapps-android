@@ -1,35 +1,39 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
-const ExpensePageDetail = ({ expense }) => {
-  const { amount, time, description, shareWith } = expense;
+const TransactionDetails = ({ transaction }) => {
+  const { amount, time, description, shareWith, billDetails } = transaction;
   const { cardStyle, amountStyle, timeStyle, descriptionStyle, rightStyle, leftStyle } = styles;
 
   return (
-    <View style={cardStyle}>
+    <TouchableOpacity 
+      onPress={() => Actions.billDetails({ billDetails })}
+      style={cardStyle}
+    >
       <View style={leftStyle}>
           <Text style={amountStyle}>{amount[0]} £ {parseFloat(amount.substring(1)).toFixed(2)} </Text>
       </View>
+
       <View style={rightStyle}>
           <Text style={timeStyle}>{time}</Text>
           <Text style={timeStyle}>{description}</Text>
           <Text style={descriptionStyle}>{shareWith}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = {
   cardStyle: {
-    borderRadius: 5,
-    paddingVertical: 5,
+    paddingTop: 10,
+    paddingBottom: 8,
     paddingHorizontal: 20,
-    height: 70,
-    borderBottomWidth: 1,
-    borderColor: '#ddd',
-    backgroundColor: 'white',
     flexDirection: 'row',
-    marginBottom: 2,
+    height: 70,
+    borderBottomWidth: 0.4,
+    borderColor: 'white',
+    backgroundColor: '#0a0809'
   },
   leftStyle: {
     flex: 1,
@@ -42,18 +46,21 @@ const styles = {
     alignItems: 'flex-end',
   },
   amountStyle: {
+    color: 'white',
     textAlign: 'left',
     fontSize: 24,
   },
   timeStyle: {
+    color: 'white',
     textAlign: 'right',
     fontSize: 12,
   },
   descriptionStyle: {
+    color: 'white',
     fontSize: 18,
     textAlign: 'right',
     fontFamily: 'TitilliumWeb-Regular',
   }
 };
 
-export default ExpensePageDetail;
+export default TransactionDetails;

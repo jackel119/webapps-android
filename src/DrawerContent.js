@@ -124,12 +124,20 @@ class DrawerContent extends React.Component {
           <Text style={styles.textStyle}>Add Bill</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={Actions.currentScene === 'expensePage' ?
+          style={Actions.currentScene === 'transactionHistory' ?
             styles.barStyleActive : styles.barStyle}
-          onPress={Actions.expensePage}
+          onPress={Actions.transactionHistory}
         >
           <Icon name="list-alt" size={20} style={styles.iconStyle} />
-          <Text style={styles.textStyle}>Transactions</Text>
+          <Text style={styles.textStyle}>Transaction History</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={Actions.currentScene === 'billHistory' ?
+            styles.barStyleActive : styles.barStyle}
+          onPress={Actions.billHistory}
+        >
+          <Icon name="list-alt" size={20} style={styles.iconStyle} />
+          <Text style={styles.textStyle}>Bill History</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={(Actions.currentScene === 'friendList' || Actions.currentScene === 'addFriend') ?

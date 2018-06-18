@@ -1,25 +1,23 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { Text, View, TouchableOpacity } from 'react-native';
 
-
-const ExpenseDetail = ({ expense }) => {
-  const { amount, time, description, shareWith, billDetails } = expense;
+const BillHistoryItem = ({ bill }) => {
+  const { payee, time, description, totalPrice } = bill;
   const { cardStyle, amountStyle, timeStyle, descriptionStyle, rightStyle, leftStyle } = styles;
 
   return (
     <TouchableOpacity 
-      onPress={() => Actions.billDetails({ billDetails })}
+      onPress={() => Actions.billDetails({ bill })}
       style={cardStyle}
     >
       <View style={leftStyle}>
-          <Text style={amountStyle}>{amount[0]} £ {parseFloat(amount.substring(1)).toFixed(2)} </Text>
+          <Text style={amountStyle}>{description}</Text>
       </View>
-
       <View style={rightStyle}>
           <Text style={timeStyle}>{time}</Text>
-          <Text style={timeStyle}>{description}</Text>
-          <Text style={descriptionStyle}>{shareWith}</Text>
+          <Text style={timeStyle}>payee: {payee}</Text>
+          <Text style={descriptionStyle}>totalPrice: £ {totalPrice}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -27,14 +25,15 @@ const ExpenseDetail = ({ expense }) => {
 
 const styles = {
   cardStyle: {
-    paddingTop: 10,
-    paddingBottom: 8,
+    borderRadius: 5,
+    paddingVertical: 5,
     paddingHorizontal: 20,
-    flexDirection: 'row',
     height: 70,
-    borderBottomWidth: 0.4,
-    borderColor: 'white',
-    backgroundColor: '#0a0809'
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    marginBottom: 2,
   },
   leftStyle: {
     flex: 1,
@@ -47,21 +46,18 @@ const styles = {
     alignItems: 'flex-end',
   },
   amountStyle: {
-    color: 'white',
     textAlign: 'left',
     fontSize: 24,
   },
   timeStyle: {
-    color: 'white',
     textAlign: 'right',
     fontSize: 12,
   },
   descriptionStyle: {
-    color: 'white',
     fontSize: 18,
     textAlign: 'right',
     fontFamily: 'TitilliumWeb-Regular',
   }
 };
 
-export default ExpenseDetail;
+export default BillHistoryItem;

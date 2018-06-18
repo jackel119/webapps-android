@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
-import ExpenseDetail from './ExpenseDetail';
+import TransactionDetails from './TransactionDetails';
 import Storages from './../../actions/Storages';
 
 const Global = require('./../../Global');
 
-class ExpenseList extends Component {
+class TransactionList extends Component {
   state = { expenseList: [] };
 
   componentWillMount() {
@@ -16,8 +16,8 @@ class ExpenseList extends Component {
   }
 
   renderExpenses() {
-    return this.state.expenseList.map((expense, index) =>
-      <ExpenseDetail key={index} expense={expense} />
+    return this.state.expenseList.map((transaction, index) =>
+      <TransactionDetails key={index} transaction={transaction} />
     );
   }
 
@@ -30,4 +30,4 @@ class ExpenseList extends Component {
   }
 }
 
-export { ExpenseList };
+export { TransactionList };

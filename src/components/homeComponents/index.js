@@ -1,3 +1,3 @@
 export * from './InOutBalance';
-export * from './ExpenseList';
+export * from './TransactionList';
 export * from './HeaderGreeting';

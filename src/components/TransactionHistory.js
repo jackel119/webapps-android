@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import { ScrollView, View, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
-import ExpensePageDetail from './ExpensePageDetail';
+import TransactionHistoryItem from './TransactionHistoryItem';
 import Storages from './../actions/Storages';
 
 const Global = require('./../Global');
 
-class ExpensePage extends Component {
-	state = { expenseList: [] };
+class TransactionHistory extends Component {
+	state = { transactionList: [] };
 
 	componentWillMount() {
 		Storages.get(Global.EMAIL).then(result => {
       console.log('result', result);
-      this.setState({ expenseList: result.transactionBillMap });
+      this.setState({ transactionList: result.transactionBillMap });
     });
 	}
 
-	renderExpenses() {
-		return this.state.expenseList.map((expense, index) =>
-			<ExpensePageDetail key={index} expense={expense} />
+	renderTransactions() {
+		return this.state.transactionList.map((transaction, index) =>
+			<TransactionHistoryItem key={index} transaction={transaction} />
 		);
 	}
 
@@ -29,10 +29,10 @@ class ExpensePage extends Component {
 			<View style={styles.container}>
 				<TouchableOpacity style={styles.addButtonStyle} onPress={Actions.addBill}>
 					<Icon name="plus" color='white' size={20} style={styles.iconStyle} />
-					<Text style={{ fontSize: 18, color: 'white', fontWeight: 'bold' }}> Add New</Text>
+					<Text style={{ fontSize: 18, color: 'white', fontWeight: 'bold' }}> Add Bill</Text>
 				</TouchableOpacity>
 				<ScrollView>
-					{this.renderExpenses()}
+					{this.renderTransactions()}
 				</ScrollView>
 			</View>
 		);
@@ -57,4 +57,4 @@ const styles = {
 };
 
 
-export default ExpensePage;
+export default TransactionHistory;
