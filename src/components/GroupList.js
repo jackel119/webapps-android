@@ -34,7 +34,10 @@ class GroupList extends Component {
 
 const styles = {
   container: {
-    // backgroundColor: '#000a29'
+    //marginTop: 10,
+    paddingHorizontal: 10,
+    paddingBottom: 5,
+    flex: 1,
   },
 };
 
