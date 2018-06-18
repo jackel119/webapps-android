@@ -101,7 +101,7 @@ export function loginUser({ email, password }) {
                   transactionBillMap.push(transaction);
                 }
               }  
-            }
+            } 
           }
           Storages.set(Global.EMAIL, { transactionBillMap: transactionBillMap });
           console.log('transactionBillMap', transactionBillMap); 
