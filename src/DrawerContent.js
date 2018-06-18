@@ -100,7 +100,6 @@ class DrawerContent extends React.Component {
   }
 
   render() {
-    console.log(Actions.currentScene);
     return (
       <View style={styles.container}>
         <View style={styles.profileStyle}>

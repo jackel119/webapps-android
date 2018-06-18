@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import ExpenseDetail from './ExpenseDetail';
 import Storages from './../../actions/Storages';
 
@@ -25,6 +25,7 @@ class ExpenseList extends Component {
     return (
       <ScrollView>
         {this.renderExpenses()}
+        <View style={{ height: 300 }} />
       </ScrollView>
     );
   }

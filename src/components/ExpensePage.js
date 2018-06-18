@@ -12,21 +12,6 @@ class ExpensePage extends Component {
 	componentWillMount() {
 		Storages.get(Global.EMAIL)
 			.then(result => this.setState({ expenseList: result.transactions }));
-
-    //An example TX for testing
-    // const exampleTX = {
-    //       txid: '1',
-    //       from_user: 'uid',
-    //       to_user: '3',
-    //       currency: 0,
-    //       amount: 'howMuch',
-    //       time: 'dateCreated loooooooog',
-    //       description: 'description',
-    //       status: 0,
-    //       gid: null
-    //     };
-
-    // this.setState({ expenseList: [exampleTX] });
 	}
 
 	renderExpenses() {
@@ -47,7 +32,7 @@ class ExpensePage extends Component {
 
 const styles = {
   container: {
-    backgroundColor: '#000a29'
+    backgroundColor: '#0a0809'
   },
 };
 
