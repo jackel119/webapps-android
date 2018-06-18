@@ -20,7 +20,9 @@ class SplitBill extends Component {
       description: this.props.description,
       friends: [],
       total: 0,
-      groups: []
+      groups: [],
+      modalVisible: false,
+      splitted: false
     };
 
     Storages.get(Global.EMAIL).then(res => {
@@ -176,36 +178,59 @@ class SplitBill extends Component {
   }
 
   renderTop() {
-    if (this.state.splitEqually) {
+    console.log(this.state);
+    if (this.state.splitEqually && !(this.state.splitted)) {
       const { selectedPeople } = this.state;
       return (
-      <View style={styles.topStyle}>
-        <MultiSelect
-          hideTags
-          fixedHeight={false}
-          items={this.state.friends}
-          uniqueKey="id"
-          ref={(component) => { this.multiSelect = component; }}
-          onSelectedItemsChange={this.onSelectedItemsChange.bind(this)}
-          selectedItems={selectedPeople}
-          selectText="   Pick Friends"
-          searchInputPlaceholderText="Search Friends..."
-          tagRemoveIconColor="#CCC"
-          tagBorderColor="#CCC"
-          tagTextColor="#CCC"
-          selectedItemTextColor="#CCC"
-          selectedItemIconColor="#CCC"
-          itemTextColor="#000"
-          searchInputStyle={{ color: '#CCC' }}
-          submitButtonColor="#CCC"
-          submitButtonText="Submit"
-        />
-      </View>
+      <Modal
+        isVisible={this.state.modalVisible}
+        backdropOpacity={0.5}
+      >
+        <View style={{ flex: 1 }}>
+          <ScrollView style={styles.topStyle}>
+            <MultiSelect
+              hideTags
+              fixedHeight={false}
+              items={this.state.friends}
+              uniqueKey="id"
+              ref={(component) => { this.multiSelect = component; }}
+              onSelectedItemsChange={this.onSelectedItemsChange.bind(this)}
+              selectedItems={selectedPeople}
+              selectText="   Pick Friends"
+              searchInputPlaceholderText="Search Friends..."
+              tagRemoveIconColor="#CCC"
+              tagBorderColor="#CCC"
+              tagTextColor="#CCC"
+              selectedItemTextColor="#CCC"
+              selectedItemIconColor="#CCC"
+              itemTextColor="#000"
+              searchInputStyle={{ color: '#CCC' }}
+              submitButtonColor="#CCC"
+              submitButtonText="Submit"
+            />
+            <View style={{ flex: 0.1 }}>
+              <Button
+                onPress={() => this.setState({ modalVisible: false, splitted: true })}
+              >
+                <Text>Complete Split</Text>
+              </Button>
+            </View>
+          </ScrollView>
+        </View>
+      </Modal>
+      );
+    } else if (this.state.splitted) {
+      return (
+        <View style={styles.containerStyle}>
+          <Button onPress={() => { this.setState({ splitEqually: true, modalVisible: true, splitted: false }); }}>
+            Modify Split
+          </Button>
+        </View>
       );
     } else {
       return (
-        <View style={styles.topStyle}>
-          <Button onPress={() => { this.setState({ splitEqually: true }); }}>
+        <View style={styles.containerStyle}>
+          <Button onPress={() => { this.setState({ splitEqually: true, modalVisible: true }); }}>
             Split Equally?
           </Button>
         </View>
@@ -216,7 +241,7 @@ class SplitBill extends Component {
   renderInnerSelect(index) {
     const selectedPeople = this.state.items[index].selectedPeople;
     return (
-    <View style={styles.topStyle}>
+    <ScrollView style={styles.topStyle}>
       <MultiSelect
         hideTags
         fixedHeight={false}
@@ -237,7 +262,7 @@ class SplitBill extends Component {
         submitButtonColor="#CCC"
         submitButtonText="Submit"
       />
-    </View>
+    </ScrollView>
     );
   }
 
@@ -268,7 +293,7 @@ class SplitBill extends Component {
         id: 1,
         name: this.props.description,
         price: this.props.total
-      })
+      });
     }
     const renderData = this.state.items.map((data, index) => {
       return (
