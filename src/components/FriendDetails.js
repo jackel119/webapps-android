@@ -3,16 +3,19 @@ import { Text, View } from 'react-native';
 
 const FriendDetail = ({ friend }) => {
   const { email, first_name, last_name } = friend;
-  const { cardStyle, nameStyle, emailStyle, rightStyle, leftStyle } = styles;
+  const { cardStyle, nameStyle, emailStyle, topStyle, bottomStyle } = styles;
   return (
     <View style={cardStyle}>
-      <View style={leftStyle}>
-          <Text style={nameStyle}>{first_name} {last_name} </Text>
+      <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center'}}>
+        <View style={{ borderRadius: 100, height: 40, width: 40, backgroundColor: 'greenyellow' }}/>
       </View>
-
-
-      <View style={rightStyle}>
-          <Text style={emailStyle}>{email}</Text>
+      <View style={{ flex: 3 }}>
+        <View style={topStyle}>
+            <Text style={nameStyle}>{first_name} {last_name} </Text>
+        </View>
+        <View style={bottomStyle}>
+            <Text style={emailStyle}>{email}</Text>
+        </View>
       </View>
     </View>
   );
@@ -20,32 +23,30 @@ const FriendDetail = ({ friend }) => {
 
 const styles = {
   cardStyle: {
-    paddingTop: 10,
-    paddingBottom: 8,
+    borderRadius: 5,
+    paddingVertical: 5,
     paddingHorizontal: 20,
-    flexDirection: 'row',
     height: 60,
-    borderBottomWidth: 0.4,
-    borderColor: 'white',
-    backgroundColor: '#0a0809'
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    marginBottom: 2,
   },
-  leftStyle: {
+  topStyle: {
     flex: 1,
-    justifyContent: 'flex-end',
   },
-  rightStyle: {
+  bottomStyle: {
     flex: 2,
     flexDirection: 'column',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
   },
   nameStyle: {
-    color: 'white',
     textAlign: 'left',
-    fontSize: 18,
+    fontSize: 17,
   },
   emailStyle: {
-    color: 'white',
     fontSize: 14,
     textAlign: 'right',
     fontFamily: 'TitilliumWeb-Regular',

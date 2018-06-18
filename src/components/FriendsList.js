@@ -32,7 +32,7 @@ class FriendsList extends Component {
 
 const styles = {
   container: {
-    backgroundColor: '#0a0809'
+    paddingHorizontal: 5,
   },
 };
 
