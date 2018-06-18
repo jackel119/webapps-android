@@ -107,8 +107,8 @@ class AddBill extends Component {
             </View>
             <View style={styles.cardStyle}>
                 <Input
-                  label="Amount"
-                  placeholder="Item Amount"
+                  label="Price"
+                  placeholder="Item Price"
                   value={data.price.toString()}
                   onChangeText={value => this.props.transactionUpdate({
                   index: data.id, type: 'price', value })}

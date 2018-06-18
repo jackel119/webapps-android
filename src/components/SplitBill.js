@@ -4,6 +4,7 @@ import Modal from 'react-native-modal';
 import MultiSelect from 'react-native-multiple-select';
 import { Button } from './common';
 import Storages from './../actions/Storages';
+import { socket } from '../Global';
 
 const Global = require('./../Global');
 
@@ -23,7 +24,6 @@ class SplitBill extends Component {
     };
 
     Storages.get(Global.EMAIL).then(res => {
-      console.log(res);
       let result = [];
       result.push({
         id: Global.EMAIL,
@@ -45,7 +45,6 @@ class SplitBill extends Component {
           isGroup: true
         });
       }
-      console.log(result);
       this.setState({ friends: result });
     });
 
@@ -85,12 +84,14 @@ class SplitBill extends Component {
     for (i = 0; i < this.state.items.length; i++) {
       let temp = this.state.items.slice();
       temp[i].split = [];
+
       var j;
       for (j = 0; j < peopleInvolved.length; j++) {
         temp[i].split.push({
           user: peopleInvolved[j],
           splitAmount: this.state.items[i].price / (peopleInvolved.length)
         });
+        temp[i].selectedPeople = peopleInvolved.concat(groupsInvolved);
       }
       this.setState({ items: temp });
     }
@@ -119,8 +120,6 @@ class SplitBill extends Component {
         peopleInvolved.push(selected);
       }
     }
-
-    console.log(groupsInvolved, peopleInvolved);
 
     temp[index].selectedPeople = peopleInvolved.concat(groupsInvolved);
     var j;
@@ -158,7 +157,12 @@ class SplitBill extends Component {
     result.groupID = null;
     result.users = people.map(obj => obj.user);
     result.description = this.state.description;
-    result.items = this.state.items;
+    result.items = this.state.items.map(res => ({
+      id: res.id,
+      name: res.name,
+      price: res.price,
+      split: res.split
+    }));
     result.split = people;
     result.totalPrice = this.state.total;
     result.currency = 0;
@@ -166,13 +170,14 @@ class SplitBill extends Component {
     result.payee = Global.EMAIL;
     result.timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
-    console.log(result);
+    console.log('client sent: ', result);
+    socket.emit('addBill', result);
+    socket.on('newBill', data => console.log('backend sent: ', data));
   }
 
   renderTop() {
     if (this.state.splitEqually) {
       const { selectedPeople } = this.state;
-      console.log('ON RENDER', selectedPeople);
       return (
       <View style={styles.topStyle}>
         <MultiSelect
