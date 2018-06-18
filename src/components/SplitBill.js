@@ -55,7 +55,7 @@ class SplitBill extends Component {
     var i;
     for (i = 0; i < this.state.items.length; i++) {
       this.setModalVisibility(i, false);
-      this.state.total += parseFloat(this.state.items[i].price).toFixed(2);
+      this.state.total += parseFloat(this.state.items[i].price);
     }
   }
 
@@ -91,7 +91,7 @@ class SplitBill extends Component {
       for (j = 0; j < peopleInvolved.length; j++) {
         temp[i].split.push({
           user: peopleInvolved[j],
-          splitAmount: (this.state.items[i].price / (peopleInvolved.length)).toFixed(2)
+          splitAmount: (this.state.items[i].price / (peopleInvolved.length))
         });
         temp[i].selectedPeople = peopleInvolved.concat(groupsInvolved);
       }
@@ -128,7 +128,7 @@ class SplitBill extends Component {
     for (j = 0; j < peopleInvolved.length; j++) {
       temp[index].split.push({
         user: peopleInvolved[j],
-        splitAmount: (this.state.items[index].price / (peopleInvolved.length)).toFixed(2)
+        splitAmount: (this.state.items[index].price / (peopleInvolved.length))
       });
     }
     this.setState({ items: temp });
