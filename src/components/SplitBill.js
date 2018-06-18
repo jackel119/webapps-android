@@ -158,8 +158,8 @@ class SplitBill extends Component {
     var result = {};
     result.groupID = null;
     result.users = people.map(obj => obj.user);
-    if (!result.users.includes(Global.email)) {
-      result.users.push(Global.email);
+    if (!result.users.includes(Global.EMAIL)) {
+      result.users.push(Global.EMAIL);
     }
     result.description = this.state.description;
     result.items = this.state.items.map(res => ({
