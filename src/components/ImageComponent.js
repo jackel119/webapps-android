@@ -12,6 +12,7 @@ export default class ImageComponent extends Component {
       generating: false,
       buttonText: 'Generate Transaction'
     };
+    console.log(this.props.uri);
   }
 
   onButtonPress() {
@@ -26,7 +27,7 @@ export default class ImageComponent extends Component {
       "requests": [
         {
           "image": {
-            "content": this.props.base64
+            "content": this.props.uri
           },
           "features": [
             {

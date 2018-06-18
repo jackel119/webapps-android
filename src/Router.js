@@ -13,19 +13,20 @@ import AddNewFriends from './components/AddNewFriends';
 import DrawerContent from './DrawerContent';
 import SplitBill from './components/SplitBill';
 import BillDetails from './components/BillDetails';
+import CameraRollComponent from './components/CameraRollComponent';
 
 const RouterComponent = () => {
   return (
     <Router>
       <Scene key="root" hideNavBar sceneStyle={{ paddingTop: 64 }}>
         <Scene
-          initial
+          //initial
           key="login"
           component={LoginForm}
           title="Please Login"
         />
         <Drawer
-          //initial
+          initial
           hideNavBar
           key="drawer"
           contentComponent={DrawerContent}
@@ -33,7 +34,7 @@ const RouterComponent = () => {
         >
           <Scene intial key="main">
             <Scene
-              initial
+              //initial
               key="homepage"
               component={Homepage}
               title="Home"
@@ -108,6 +109,13 @@ const RouterComponent = () => {
               key="setting"
               component={Setting}
               title="Setting"
+            />
+
+            <Scene
+              initial
+              key="cameraRoll"
+              component={CameraRollComponent}
+              title="CameraRoll"
             />
 
           </Scene>
