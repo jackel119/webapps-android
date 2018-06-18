@@ -11,6 +11,7 @@ const Homepage = () => {
 				style={{ flex: 1, backgroundColor: 'white', overflow: 'hidden' }}
 				parallaxHeaderHeight={385}
 				contentBackgroundColor={'#0a0809'}
+				isForegroundTouchable
 				renderBackground={() =>
 				<Image
 					style={{ width: null, height: 300 }}
@@ -25,10 +26,10 @@ const Homepage = () => {
 						</View>
 					</View>
 				)}
-				renderStickyHeader={() => (
-					<InOutBalance />
-				)}
-				stickyHeaderHeight={85}
+				// renderStickyHeader={() => (
+				// 	<InOutBalance />
+				// )}
+				// stickyHeaderHeight={85}
 			>
 				<ExpenseList />
 			</ParallaxScrollView>
