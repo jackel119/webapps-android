@@ -10,7 +10,6 @@ const Global = require('./../Global');
 class ExpensePage extends Component {
 	state = { expenseList: [] };
 
-/* Fetch JSON from http */
 	componentWillMount() {
 		Storages.get(Global.EMAIL).then(result => {
       console.log('result', result);
@@ -19,8 +18,8 @@ class ExpensePage extends Component {
 	}
 
 	renderExpenses() {
-		return this.state.expenseList.map(expense =>
-			<ExpensePageDetail key={expense} expense={expense} />
+		return this.state.expenseList.map((expense, index) =>
+			<ExpensePageDetail key={index} expense={expense} />
 		);
 	}
 
