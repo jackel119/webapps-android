@@ -8,7 +8,7 @@ const ExpenseDetail = ({ expense }) => {
   return (
     <View style={cardStyle}>
       <View style={leftStyle}>
-          <Text style={amountStyle}>£ {amount} </Text>
+          <Text style={amountStyle}>{amount[0]} £ {parseFloat(amount.substring(1)).toFixed(2)} </Text>
       </View>
 
       <View style={rightStyle}>

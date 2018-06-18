@@ -51,21 +51,33 @@ class Storages {
       return await AsyncStorage.clear();
     } catch (error) {
       console.log('clearAll() error');
-    }
+    } 
   };
 
-  static getFriendUID = async (key, email) => {
+  static getFriendByEmail = async(key, email) => {
+    var myfriend = null;
     await Storages.get(key).then(res => {
-      console.log('getting FriendUID');
-      const friendList = res.friends;
-      for (const friend of friendList) {
+      for (const friend of res.friends) {
         if (friend.email === email) {
-          return friend.uid;
+          myfriend = friend;
         }
       }
-      console.log('You dont have this friend!');
-    }).catch(() => console.log(''));
-  };
+    }).catch(() => console.log('getFriendByEmail() error'));
+    return myfriend;
+  }
+
+  // static getFriendUID = async (key, email) => {
+  //   await Storages.get(key).then(res => {
+  //     console.log('getting FriendUID');
+  //     const friendList = res.friends;
+  //     for (const friend of friendList) {
+  //       if (friend.email === email) {
+  //         return friend.uid;
+  //       }
+  //     }
+  //     console.log('You dont have this friend!');
+  //   }).catch(() => console.log(''));
+  // };
 
   static getTotalAmount = async (key) => {
     var total = 0;

@@ -14,7 +14,7 @@ class AddNewFriends extends Component {
 
   add() {
     console.log(this.state.email);
-    socket.emit('addFriend', this.state.email);
+    socket.emit('addFriend', this.state.email); 
   }
 
   render() {
