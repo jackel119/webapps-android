@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
-import ExpenseDetail from './homeComponents/ExpenseDetail';
+import { ScrollView, View, TouchableOpacity, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Actions } from 'react-native-router-flux';
+import ExpensePageDetail from './ExpensePageDetail';
 import Storages from './../actions/Storages';
 
 const Global = require('./../Global');
@@ -16,24 +18,41 @@ class ExpensePage extends Component {
 
 	renderExpenses() {
 		return this.state.expenseList.map(expense =>
-			<ExpenseDetail key={expense} expense={expense} />
+			<ExpensePageDetail key={expense} expense={expense} />
 		);
 	}
 
 	render() {
 		console.log(this.state);
 		return (
-			<ScrollView style={styles.container}>
-				{this.renderExpenses()}
-			</ScrollView>
+			<View style={styles.container}>
+				<TouchableOpacity style={styles.addButtonStyle} onPress={Actions.addBill}>
+					<Icon name="plus" color='white' size={20} style={styles.iconStyle} />
+					<Text style={{ fontSize: 18, color: 'white', fontWeight: 'bold' }}> Add New</Text>
+				</TouchableOpacity>
+				<ScrollView>
+					{this.renderExpenses()}
+				</ScrollView>
+			</View>
 		);
 	}
 }
 
 const styles = {
   container: {
-    backgroundColor: '#0a0809'
+    paddingHorizontal: 5,
   },
+	addButtonStyle: {
+		marginVertical: 5,
+		borderRadius: 5,
+		height: 40,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: 'sandybrown',
+		flexDirection: 'row',
+		borderBottomWidth: 1,
+		borderColor: '#ddd',
+	},
 };
 
 
