@@ -8,7 +8,7 @@ class CameraComponent extends Component {
     if (this.camera) {
       const options = { quality: 0.5, base64: true};
       const data = await this.camera.takePictureAsync(options);
-      Actions.imageDisplay(data);
+      Actions.imageDisplay(data, { CameraRoll: false });
       // {base, height, width, uri}
     }
   }
@@ -29,7 +29,13 @@ class CameraComponent extends Component {
             style={styles.capture}
             onPress={this.takePicture.bind(this)}
           >
-            PRESS HERE
+            Take Picture
+          </Text>
+          <Text
+            style={styles.capture}
+            onPress={() => Actions.cameraRoll()}
+          >
+            Camera Roll
           </Text>
         </RNCamera>
       </View>

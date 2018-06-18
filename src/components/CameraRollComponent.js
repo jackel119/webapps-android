@@ -23,7 +23,7 @@ export default class CameraRollComponent extends Component {
 
   confirm() {
     console.log(this.state.curr);
-    Actions.imageDisplay({ uri: this.state.curr.uri });
+    Actions.imageDisplay({ uri: this.state.curr.uri, cameraRoll: true });
   }
 
   render() {
