@@ -30,11 +30,6 @@ export default class ImageComponent extends Component {
     // console.log(this.props);
     // send and get back
     // console.log(this.props.base64);
-    console.log('reached');
-    RNFS.readFile(this.props.uri, 'base64')
-      .then(res => {
-        console.log(res);
-    });
     fetch(config.googleCloud.api + config.googleCloud.apiKey, {
     method: 'POST',
     body: JSON.stringify({
