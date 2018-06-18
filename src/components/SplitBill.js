@@ -187,7 +187,7 @@ class SplitBill extends Component {
         backdropOpacity={0.5}
       >
         <View style={{ flex: 1 }}>
-          <View style={styles.topStyle}>
+          <ScrollView style={styles.topStyle}>
             <MultiSelect
               hideTags
               fixedHeight={false}
@@ -215,7 +215,7 @@ class SplitBill extends Component {
                 <Text>Complete Split</Text>
               </Button>
             </View>
-          </View>
+          </ScrollView>
         </View>
       </Modal>
       );
@@ -241,7 +241,7 @@ class SplitBill extends Component {
   renderInnerSelect(index) {
     const selectedPeople = this.state.items[index].selectedPeople;
     return (
-    <View style={styles.topStyle}>
+    <ScrollView style={styles.topStyle}>
       <MultiSelect
         hideTags
         fixedHeight={false}
@@ -262,7 +262,7 @@ class SplitBill extends Component {
         submitButtonColor="#CCC"
         submitButtonText="Submit"
       />
-    </View>
+    </ScrollView>
     );
   }
 
