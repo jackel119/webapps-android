@@ -221,7 +221,7 @@ class SplitBill extends Component {
       );
     } else if (this.state.splitted) {
       return (
-        <View style={styles.topStyle}>
+        <View style={styles.containerStyle}>
           <Button onPress={() => { this.setState({ splitEqually: true, modalVisible: true, splitted: false }); }}>
             Modify Split
           </Button>
@@ -229,7 +229,7 @@ class SplitBill extends Component {
       );
     } else {
       return (
-        <View style={styles.topStyle}>
+        <View style={styles.containerStyle}>
           <Button onPress={() => { this.setState({ splitEqually: true, modalVisible: true }); }}>
             Split Equally?
           </Button>
