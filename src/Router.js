@@ -44,6 +44,8 @@ const RouterComponent = () => {
               key="addBill"
               component={AddBill}
               title="Add Bill"
+              onRight={() => Actions.camera()}
+              rightTitle="Camera"
             />
 
             <Scene
