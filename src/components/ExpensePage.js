@@ -11,7 +11,7 @@ class ExpensePage extends Component {
 /* Fetch JSON from http */
 	componentWillMount() {
 		Storages.get(Global.EMAIL)
-			.then(result => this.setState({ expenseList: result.transactions }));
+			.then(result => this.setState({ expenseList: result.transactionBillMap }));
 
     //An example TX for testing
     // const exampleTX = {
