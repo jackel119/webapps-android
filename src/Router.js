@@ -13,6 +13,7 @@ import AddNewFriends from './components/AddNewFriends';
 import DrawerContent from './DrawerContent';
 import SplitBill from './components/SplitBill';
 import BillDetails from './components/BillDetails';
+import CameraRollComponent from './components/CameraRollComponent';
 
 const RouterComponent = () => {
   return (
@@ -108,6 +109,13 @@ const RouterComponent = () => {
               key="setting"
               component={Setting}
               title="Setting"
+            />
+
+            <Scene
+              // initial
+              key="cameraRoll"
+              component={CameraRollComponent}
+              title="CameraRoll"
             />
 
           </Scene>

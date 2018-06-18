@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Image, Text } from 'react-native';
+import RNFS from 'react-native-fs';
 import { Button, CardSection, Card, Spinner } from './common';
 import config from '../../config.json';
 
@@ -10,8 +11,18 @@ export default class ImageComponent extends Component {
     super(props);
     this.state = {
       generating: false,
-      buttonText: 'Generate Transaction'
+      buttonText: 'Generate Transaction',
+      uri: '',
+      cameraRoll: true
     };
+    if (this.state.cameraRoll) {
+      RNFS.readFile(this.props.uri, 'base64')
+        .then(res => {
+          this.setState({ base64: res });
+      });
+    } else {
+      this.setState({ base64: this.props.base64 });
+    } 
   }
 
   onButtonPress() {
@@ -19,14 +30,13 @@ export default class ImageComponent extends Component {
     // console.log(this.props);
     // send and get back
     // console.log(this.props.base64);
-
     fetch(config.googleCloud.api + config.googleCloud.apiKey, {
     method: 'POST',
     body: JSON.stringify({
       "requests": [
         {
           "image": {
-            "content": this.props.base64
+            "content": this.state.base64
           },
           "features": [
             {
