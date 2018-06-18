@@ -35,6 +35,19 @@ class BillDetails extends Component {
     );
   }
 
+  renderSplit() {
+    return this.state.split.map(split =>
+      <View key={split.user}>
+        <View>
+          <Text>{split.user}</Text>
+        </View>
+        <View>
+          <Text>£ {parseFloat(split.splitAmount).toFixed(2)}</Text>
+        </View>
+      </View>
+    );
+  }
+
   render() {
     return (
       <View>
@@ -52,6 +65,12 @@ class BillDetails extends Component {
         </View>
         <View>
           {this.renderItems()}
+        </View>
+        <View>
+          <Text>Summary</Text>
+        </View>
+        <View>
+          {this.renderSplit()}
         </View>
       </View>
     );
@@ -72,15 +91,15 @@ const ItemDetail = ({ item }) => {
       </View>
       <Text style={{ alignSelf: 'center' }}>Split with</Text>
       <View style={{ alignSelf: 'flex-end', paddingRight: 20 }}>
-        {renderSplitUser({ split })}
+        {renderItemSplit({ split })}
       </View>
     </View>
   );
 };
 
-const renderSplitUser = ({ split }) => {
+const renderItemSplit = ({ split }) => {
   return split.map(user => 
-    <View>
+    <View key={user.user}>
       <View>
         <Text>{user.user}</Text>
       </View>

@@ -75,6 +75,8 @@ export default class ImageComponent extends Component {
         }
       } else if (/^\d*\.?\d*$/.test(line)) {
         prices.push(line);
+      } else if (tobreak) {
+        break;
       } else {
         items.push(line);
       }
