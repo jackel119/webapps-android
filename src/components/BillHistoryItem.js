@@ -3,19 +3,19 @@ import { Actions } from 'react-native-router-flux';
 import { Text, View, TouchableOpacity } from 'react-native';
 
 const BillHistoryItem = ({ bill }) => {
-  const { payee, time, description, totalPrice } = bill;
+  const { payee, timestamp, description, totalPrice } = bill;
   const { cardStyle, amountStyle, timeStyle, descriptionStyle, rightStyle, leftStyle } = styles;
 
   return (
     <TouchableOpacity 
-      onPress={() => Actions.billDetails({ bill })}
+      onPress={() => Actions.billDetails({ billDetails: bill })}
       style={cardStyle}
     >
       <View style={leftStyle}>
           <Text style={amountStyle}>{description}</Text>
       </View>
       <View style={rightStyle}>
-          <Text style={timeStyle}>{time}</Text>
+          <Text style={timeStyle}>{timestamp}</Text>
           <Text style={timeStyle}>payee: {payee}</Text>
           <Text style={descriptionStyle}>totalPrice: £ {totalPrice}</Text>
       </View>
