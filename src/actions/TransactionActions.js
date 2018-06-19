@@ -6,7 +6,8 @@ import {
   ADD_ITEM,
   INITIALISE_STATE,
   UPDATE_TOTAL,
-  UPDATE_DESCRIPTION
+  UPDATE_DESCRIPTION,
+  UPDATE_DATE
 } from './types';
 import Storages from './Storages';
 
@@ -88,4 +89,12 @@ export const updateDescription = (value) => {
     payload: value
   };
 };
+
+export const updateDate = (value) => {
+  return {
+    type: UPDATE_DATE,
+    payload: value
+  };
+};
+
 

@@ -25,6 +25,8 @@ class SplitBill extends Component {
       splitted: false
     };
 
+    console.log(this.props);
+
     Storages.get(Global.EMAIL).then(res => {
       let result = [];
       result.push({

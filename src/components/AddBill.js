@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button, Input } from './common';
 import { transactionUpdate, addItem, initialiseState,
-  updateTotal, updateDescription } from '../actions';
+  updateTotal, updateDescription, updateDate } from '../actions';
 
 
 class AddBill extends Component {
@@ -49,7 +49,8 @@ class AddBill extends Component {
     Actions.split({
       items: this.props.data,
       description: this.props.description,
-      total: this.props.total });
+      total: this.props.total,
+      billDate: this.props.billDate });
   }
 
   renderTop() {
@@ -64,7 +65,7 @@ class AddBill extends Component {
     }
 
     return (
-      <View style={{ height: 90 }}>
+      <View style={{ height: 135 }}>
         <View style={styles.desStyle} >
           <TextInput
             underlineColorAndroid='rgba(0,0,0,0)'
@@ -74,6 +75,17 @@ class AddBill extends Component {
             style={styles.desinputStyle}
             value={this.props.description}
             onChangeText={value => this.props.updateDescription(value)}
+          />
+        </View>
+         <View style={styles.desStyle} >
+          <TextInput
+            underlineColorAndroid='rgba(0,0,0,0)'
+            placeholder='Date...'
+            maxLength={40}
+            autoCorrect={false}
+            style={styles.desinputStyle}
+            value={this.props.billDate}
+            onChangeText={value => this.props.updateDate(value)}
           />
         </View>
         <View style={styles.totalAmountStyle} >
@@ -119,7 +131,7 @@ class AddBill extends Component {
     });
     return (
       <View style={styles.containerStyle}>
-        <View style={{ flex: 0.7 }}>
+        <View style={{ flex: 0.65 }}>
           <ScrollView>
             <View>
               {renderAddItem}
@@ -133,7 +145,7 @@ class AddBill extends Component {
             </View>
           </ScrollView>
         </View>
-        <View style={{ flex: 0.2 }}>
+        <View style={{ flex: 0.25 }}>
           {this.renderTop()}
         </View>
         <View style={{ flex: 0.1 }}>
@@ -147,8 +159,8 @@ class AddBill extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { data, total, description } = state.receipt;
-  return { data, total, description };
+  const { data, total, description, billDate } = state.receipt;
+  return { data, total, description, billDate };
 };
 
 const styles = {
@@ -235,4 +247,4 @@ const styles = {
   }
 };
 
-export default connect(mapStateToProps, { transactionUpdate, addItem, initialiseState, updateTotal, updateDescription })(AddBill);
+export default connect(mapStateToProps, { transactionUpdate, addItem, initialiseState, updateTotal, updateDescription, updateDate })(AddBill);
