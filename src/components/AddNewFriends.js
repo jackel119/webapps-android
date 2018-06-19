@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { View, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from './common';
+import Storages from './../actions/Storages';
 import { socket } from '../Global';
+
+const Global = require('./../Global');
 
 class AddNewFriends extends Component {
 
@@ -15,6 +18,11 @@ class AddNewFriends extends Component {
   add() {
     console.log(this.state.email);
     socket.emit('addFriend', this.state.email); 
+    socket.emit('getFriends');
+    socket.on('friends', friends => {
+      console.log('friends', friends);
+      Storages.set(Global.EMAIL, { friends });
+    }); 
   }
 
   render() {

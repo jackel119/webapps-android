@@ -37,18 +37,18 @@ export function loginUser({ email, password }) {
         socket.emit('getFriends');
         socket.on('friends', friends => {
           console.log('friends', friends);
-          Storages.set(Global.EMAIL, { friends: friends });
+          Storages.set(Global.EMAIL, { friends });
           socket.emit('getGroupsAndUsers');
         }); 
 
         socket.on('allGroupsAndUsers', groups => {
           console.log('groups', groups);
-          Storages.set(Global.EMAIL, { groups: groups });
+          Storages.set(Global.EMAIL, { groups });
           socket.emit('getBills');
         });
 
         socket.on('allBills', async bills => {
-          Storages.set(Global.EMAIL, { bills: bills });
+          Storages.set(Global.EMAIL, { bills });
           console.log('bills', bills);
           var transactionBillMap = []; 
           for (const bill of bills) {
