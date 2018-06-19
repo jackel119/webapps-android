@@ -20,7 +20,7 @@ const TransactionDetails = ({ transaction }) => {
           <Text style={timeStyle}>{description}</Text>
           <Text style={descriptionStyle}>{shareWith}</Text>
       </View>
-    </TouchableOpacity>
+    </TouchableOpacity> 
   );
 };
 

@@ -89,7 +89,7 @@ export function loginUser({ email, password }) {
                   const transaction = {
                     fromEmail: Global.EMAIL, 
                     toEmail: Global.EMAIL,
-                    amount: '+' + spliter.splitAmount,
+                    amount: ' ' + spliter.splitAmount,
                     time: bill.bdata.timestamp,
                     description: bill.bdata.description,
                     shareWith: 'Paid for myself',
@@ -97,7 +97,7 @@ export function loginUser({ email, password }) {
                   };
                   transactionBillMap.push(transaction);
                 }
-              } 
+              }
             } else {
               await Storages.getFriendByEmail(Global.EMAIL, bill.bdata.payee)
                 .then(friend => {
