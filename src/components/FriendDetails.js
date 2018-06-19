@@ -3,21 +3,24 @@ import { Text, View } from 'react-native';
 
 const FriendDetail = ({ friend }) => {
   const { email, first_name, last_name } = friend;
-  const { cardStyle, nameStyle, emailStyle, topStyle, bottomStyle } = styles;
+  const { cardStyle, nameStyle, emailStyle, topStyle, bottomStyle, userIconStyle } = styles;
+  const Initial = friend.first_name[0];
   return (
     <View style={cardStyle}>
-      <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center'}}>
-        <View style={{ borderRadius: 100, height: 40, width: 40, backgroundColor: 'greenyellow' }}/>
+      <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
+        <View style={userIconStyle}>
+          <Text style={{ color: 'white', fontSize: 22 }}>{Initial}</Text>
+        </View>
       </View>
       <View style={{ flex: 3 }}>
         <View style={topStyle}>
-            <Text style={nameStyle}>{first_name} {last_name} </Text>
+          <Text style={nameStyle}>{first_name} {last_name} </Text>
         </View>
         <View style={bottomStyle}>
             <Text style={emailStyle}>{email}</Text>
         </View>
       </View>
-    </View> 
+    </View>
   );
 };
 
@@ -50,6 +53,14 @@ const styles = {
     fontSize: 14,
     textAlign: 'right',
     fontFamily: 'TitilliumWeb-Regular',
+  },
+  userIconStyle: {
+    borderRadius: 100,
+    height: 40,
+    width: 40,
+    backgroundColor: 'greenyellow',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 };
 
