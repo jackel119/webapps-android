@@ -88,7 +88,7 @@ export function loginUser({ email, password }) {
                   const transaction = {
                     fromEmail: Global.EMAIL, 
                     toEmail: Global.EMAIL,
-                    amount: spliter.splitAmount.toString(),
+                    amount: ' ' + spliter.splitAmount,
                     time: bill.bdata.timestamp,
                     description: bill.bdata.description,
                     shareWith: 'Paid for myself',
