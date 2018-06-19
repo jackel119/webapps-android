@@ -221,7 +221,8 @@ class SplitBill extends Component {
         transactionBillMap.push(transaction);
       }
       console.log('transactionBillMap', transactionBillMap);
-      await Storages.addBill(Global.EMAIL, transactionBillMap);
+      await Storages.addTransactionBill(Global.EMAIL, transactionBillMap);
+      await Storages.addBill(Global.EMAIL, data);
     });
   }
 
