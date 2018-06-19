@@ -3,7 +3,6 @@ import { TouchableOpacity, Text, View, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 import MultiSelect from 'react-native-multiple-select';
 import { Actions } from 'react-native-router-flux';
-import { Button } from './common';
 import Storages from './../actions/Storages';
 import { socket } from '../Global';
 
@@ -64,14 +63,13 @@ class SplitBill extends Component {
   }
 
   onSelectedItemsChange(selectedPeople) {
-
     var peopleInvolved = [];
     var groupsInvolved = [];
     for (var selected of selectedPeople) {
-      var id = this.state.friends.findIndex((obj => obj.id == selected));
-      if (id != -1 && this.state.friends[id].isGroup) {
+      var id = this.state.friends.findIndex((obj => obj.id === selected));
+      if (id !== -1 && this.state.friends[id].isGroup) {
         for (var group of this.state.groups) {
-          if (group.gid == selected) {
+          if (group.gid === selected) {
             for (var person of group.members) {
               if (!peopleInvolved.includes(person.email)) {
                 peopleInvolved.push(person.email);
@@ -110,10 +108,10 @@ class SplitBill extends Component {
     var groupsInvolved = [];
 
     for (var selected of selectedPeople) {
-      var id = this.state.friends.findIndex((obj => obj.id == selected));
-      if (id != -1 && this.state.friends[id].isGroup) {
+      var id = this.state.friends.findIndex((obj => obj.id === selected));
+      if (id !== -1 && this.state.friends[id].isGroup) {
         for (var group of this.state.groups) {
-          if (group.gid == selected) {
+          if (group.gid === selected) {
             for (var person of group.members) {
               if (!peopleInvolved.includes(person.email)) {
                 peopleInvolved.push(person.email);
@@ -148,8 +146,8 @@ class SplitBill extends Component {
     var people = [];
     for (var temp of this.state.items) {
       for (var res of temp.split) {
-        var objIndex = people.findIndex((obj => obj.user == res.user));
-        if (objIndex == -1) {
+        var objIndex = people.findIndex((obj => obj.user === res.user));
+        if (objIndex === -1) {
           people.push({
             user: res.user,
             splitAmount: res.splitAmount
@@ -188,8 +186,7 @@ class SplitBill extends Component {
     });
   }
 
-  renderTop() {
-    console.log(this.state);
+  renderselect() {
     if (this.state.splitEqually && !(this.state.splitted)) {
       const { selectedPeople } = this.state;
       return (
@@ -220,30 +217,44 @@ class SplitBill extends Component {
               submitButtonText="Submit"
             />
             <View style={{ flex: 0.1 }}>
-              <Button
+              <TouchableOpacity
+                style={styles.topButtonStyle}
                 onPress={() => this.setState({ modalVisible: false, splitted: true })}
               >
-                <Text>Complete Split</Text>
-              </Button>
+                <Text style={styles.topTextStyle}>Complete Split</Text>
+              </TouchableOpacity>
             </View>
           </ScrollView>
         </View>
       </Modal>
       );
-    } else if (this.state.splitted) {
+    }
+  }
+
+  renderTop() {
+    console.log(this.state);
+    if (this.state.splitted) {
       return (
-        <View style={styles.containerStyle}>
-          <Button onPress={() => { this.setState({ splitEqually: true, modalVisible: true, splitted: false }); }}>
-            Modify Split
-          </Button>
+        <View>
+          <TouchableOpacity
+            style={styles.topButtonStyle}
+            onPress={() => {
+              this.setState({ splitEqually: true, modalVisible: true, splitted: false });
+            }}
+          >
+            <Text style={styles.topTextStyle}>Modify Split</Text>
+          </TouchableOpacity>
         </View>
       );
     } else {
       return (
-        <View style={styles.containerStyle}>
-          <Button onPress={() => { this.setState({ splitEqually: true, modalVisible: true }); }}>
-            Split Equally?
-          </Button>
+        <View>
+          <TouchableOpacity
+            style={styles.topButtonStyle}
+            onPress={() => { this.setState({ splitEqually: true, modalVisible: true }); }}
+          >
+            <Text style={styles.topTextStyle}>Split Equally?</Text>
+          </TouchableOpacity>
         </View>
       );
     }
@@ -309,31 +320,41 @@ class SplitBill extends Component {
   renderSubmit() {
     if (this.state.submitVisible) {
       return (
-        <View style={{ flexDirection: 'column' }}>
-          <Text>  
-            Successfully Added Bill
-          </Text>
-          <View style={{ flexDirection: 'row' }}>
-            <Button onPress={this.homepageNav.bind(this)}>
-              Back to Homepage
-            </Button>
-            <Button onPress={this.billNav.bind(this)}>
-              Add another Bill 
-            </Button>
+        <View style={{ flexDirection: 'row' }}>
+          <View style={{ flex: 1 }}>
+            <TouchableOpacity
+              style={[styles.submitButtonStyle, { backgroundColor: 'yellowgreen' }]}
+              onPress={this.homepageNav.bind(this)}
+            >
+              <Text style={styles.submitTextStyle}>Back to Homepage</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{ flex: 1 }}>
+            <TouchableOpacity
+              style={[styles.submitButtonStyle, { backgroundColor: 'yellowgreen' }]}
+              onPress={this.billNav.bind(this)}
+            >
+              <Text style={styles.submitTextStyle}>Add another Bill</Text>
+            </TouchableOpacity>
           </View>
         </View>
       );
     } else {
       return (
-        <Button onPress={this.submitPress.bind(this)}>
-          Submit
-        </Button>
+        <View>
+          <TouchableOpacity
+            style={[styles.submitButtonStyle, { backgroundColor: 'sandybrown' }]}
+            onPress={this.submitPress.bind(this)}
+          >
+            <Text style={styles.submitTextStyle}>Submit</Text>
+          </TouchableOpacity>
+        </View>
       );
     }
   }
 
   render() {
-    if (this.state.items.length == 0) {
+    if (this.state.items.length === 0) {
       this.state.items.push({
         id: 1,
         name: this.props.description,
@@ -372,11 +393,12 @@ class SplitBill extends Component {
                 </View>
               </View>
               <View style={{ flex: 0.1 }}>
-                <Button
+                <TouchableOpacity
+                  style={styles.topButtonStyle}
                   onPress={() => this.setModalVisibility(data.id - 1, false)}
                 >
-                  <Text>Complete Split</Text>
-                </Button>
+                  <Text style={styles.topTextStyle}>Complete Split</Text>
+                </TouchableOpacity>
               </View>
             </View>
           </Modal>
@@ -386,8 +408,9 @@ class SplitBill extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <ScrollView style={{ flex: 0.8 }}>
-          <View style={{ flex: 0.2, paddingTop: 5 }}>
+        <View>{this.renderselect()}</View>
+        <View style={{ flex: 0.85 }}>
+          <View style={{ paddingTop: 5 }}>
             {this.renderTop()}
           </View>
           <View style={styles.containerStyle}>
@@ -395,8 +418,8 @@ class SplitBill extends Component {
               {renderData}
             </ScrollView>
           </View>
-        </ScrollView>
-        <View style={{ flex: 0.2 }}>
+        </View>
+        <View style={{ flex: 0.15, justifyContent: 'flex-end' }}>
           {this.renderSubmit()}
         </View>
       </View>
@@ -419,10 +442,9 @@ const styles = {
     //flex: 1,
   },
   containerStyle: {
-    marginTop: 10,
+    marginVertical: 10,
     paddingHorizontal: 20,
     paddingBottom: 5,
-    flex: 0.8,
     //backgroundColor: 'white'
   },
   cardStyle: {
@@ -453,14 +475,44 @@ const styles = {
   selectButtonStyle: {
     borderRadius: 5,
     height: 40,
+    width: 120,
     alignItems: 'center',
+    justifyContent: 'center',
     paddingHorizontal: 10,
     backgroundColor: 'lightblue',
-    flexDirection: 'row',
     borderBottomWidth: 1,
     borderColor: '#ddd',
   },
+  submitButtonStyle: {
+    marginHorizontal: 5,
+    borderRadius: 5,
+    height: 50,
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
+  submitTextStyle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  topButtonStyle: {
+    marginHorizontal: 5,
+    borderRadius: 5,
+    height: 50,
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    backgroundColor: 'khaki',
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
+  topTextStyle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+  },
 };
-
 
 export default SplitBill;

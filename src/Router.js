@@ -35,7 +35,7 @@ const RouterComponent = () => {
         >
           <Scene intial key="main">
             <Scene
-              initial
+              //initial
               key="homepage"
               component={Homepage}
               title="Home"

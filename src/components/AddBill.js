@@ -131,7 +131,7 @@ class AddBill extends Component {
     });
     return (
       <View style={styles.containerStyle}>
-        <View style={{ flex: 0.65 }}>
+        <View style={{ height: 395 }}>
           <ScrollView>
             <View>
               {renderAddItem}
@@ -145,13 +145,16 @@ class AddBill extends Component {
             </View>
           </ScrollView>
         </View>
-        <View style={{ flex: 0.25 }}>
+        <View style={{ marginVertical: 5 }}>
           {this.renderTop()}
         </View>
-        <View style={{ flex: 0.1 }}>
-          <Button onPress={this.submit.bind(this)}>
-            Submit
-          </Button>
+        <View>
+          <TouchableOpacity
+            style={styles.submitButtonStyle}
+            onPress={this.submit.bind(this)}
+          >
+            <Text style={styles.submitTextStyle}>Comfirm</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -165,7 +168,7 @@ const mapStateToProps = (state) => {
 
 const styles = {
   containerStyle: {
-    marginTop: 10,
+    marginVertical: 10,
     paddingHorizontal: 20,
     paddingBottom: 5,
     flex: 1,
@@ -178,7 +181,7 @@ const styles = {
     justifyContent: 'flex-end',
     backgroundColor: 'lightgrey',
     position: 'relative',
-    paddingRight: 15,
+    paddingRight: 10,
     alignItems: 'flex-end',
   },
   desStyle: {
@@ -244,7 +247,22 @@ const styles = {
     flexDirection: 'row',
     borderColor: '#ddd',
     position: 'relative'
-  }
+  },
+  submitButtonStyle: {
+    marginHorizontal: 5,
+    borderRadius: 5,
+    height: 50,
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    backgroundColor: 'sandybrown',
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
+  submitTextStyle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 };
 
 export default connect(mapStateToProps, { transactionUpdate, addItem, initialiseState, updateTotal, updateDescription, updateDate })(AddBill);
