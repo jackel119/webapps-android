@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Button } from './common';
 import Storages from './../actions/Storages';
 import { socket } from '../Global';
 
@@ -17,30 +16,31 @@ class AddNewFriends extends Component {
 
   add() {
     console.log(this.state.email);
-    socket.emit('addFriend', this.state.email); 
+    socket.emit('addFriend', this.state.email);
     socket.emit('getFriends');
     socket.on('friends', friends => {
       console.log('friends', friends);
       Storages.set(Global.EMAIL, { friends });
-    }); 
+    });
   }
 
   render() {
-    const { inputStyle, iconStyle, containerStyle } = styles;
+    const { inputStyle, iconStyle, containerStyle,
+      searchStyle, submitButtonStyle, submitTextStyle } = styles;
     return (
-      <View style={{ flex: 1 }}>
-        <View style={containerStyle}>
+      <View style={containerStyle}>
+        <View style={searchStyle}>
           <Icon name="search" size={20} style={iconStyle} />
           <TextInput
-            placeholder="email"
+            placeholder="friend's email"
             style={inputStyle}
             value={this.state.email}
             onChangeText={res => this.setState({ email: res })}
           />
         </View>
-        <Button onPress={this.add.bind(this)}>
-          Send Request
-        </Button>
+        <TouchableOpacity style={submitButtonStyle} onPress={this.add.bind(this)}>
+          <Text style={submitTextStyle}>Send Request</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -49,8 +49,7 @@ class AddNewFriends extends Component {
 const styles = {
   inputStyle: {
     color: '#000',
-    paddingRight: 5,
-    paddingLeft: 5,
+    paddingHorizontal: 5,
     fontSize: 18,
     lineHeight: 23,
     flex: 10
@@ -61,11 +60,35 @@ const styles = {
     flex: 1
   },
   containerStyle: {
-    height: 40,
-    flex: 1,
+    marginVertical: 10,
+    paddingHorizontal: 20,
+    flex: 1
+  },
+  searchStyle: {
+    height: 60,
     flexDirection: 'row',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+    marginBottom: 10,
+    padding: 5,
+    backgroundColor: 'white',
+    borderRadius: 5,
+  },
+  submitButtonStyle: {
+    marginHorizontal: 5,
+    borderRadius: 5,
+    height: 50,
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    backgroundColor: 'yellowgreen',
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
+  submitTextStyle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+  },
 };
 
 export default AddNewFriends;

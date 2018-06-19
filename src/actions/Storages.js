@@ -55,10 +55,17 @@ class Storages {
     } 
   }; 
 
-  static addBill = async(key, newBill) => {
+  static addTransactionBill = async(key, newBill) => {
     Storages.get(key).then(res => {
       const newMap = (newBill).concat(res.transactionBillMap);
       Storages.set(key, { transactionBillMap: newMap });
+    }).catch(() => console.log('addTransactionBill() error'));
+  };
+
+  static addBill = async(key, newBill) => {
+    Storages.get(key).then(res => {
+      (res.bills).push(newBill);
+      Storages.set(key, { bills: res.bills });
     }).catch(() => console.log('addBill() error'));
   };
 
