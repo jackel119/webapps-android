@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
 });
 
 class GraphComponent extends Component {
+  state = {};
   componentWillMount() {
     Storages.get(Global.EMAIL).then(res => {
       console.log('transactionBillMap', res.transactionBillMap);
@@ -23,77 +24,34 @@ class GraphComponent extends Component {
       var outls = [];
       console.log('inls', inls);
       console.log('outls', outls);
+      var i = 0;
+      var j = 0;
       (res.transactionBillMap).map(tx => {
-        if (tx.amount[0] === '+'){
-          inls.push({ date: tx.time, amount: tx.amount });
+        if (tx.amount[0] === '+') {
+          inls.push({ date: i, amount: parseFloat(tx.amount) });
+          i++;
         } else if (tx.amount[0] === '-') {
-          outls.push({ date: tx.time, amount: tx.amount });
+          outls.push({ date: j, amount: tx.amount });
+          j++;
         }
       });
+      this.setState({ inls: [inls], outls });
       console.log('inls', inls);
       console.log('outls', outls);
+      console.log('state', this.state);
     });
   }
 
   render() {
-    let data = [
-      [{
-        "x": 0,
-        "y": 4
-      }, {
-        "x": 1,
-        "y": 40
-      }, {
-        "x": 2,
-        "y": 7
-      }, {
-        "x": 3,
-        "y": 73
-      }, {
-        "x": 4,
-        "y": 58
-      }, {
-        "x": 5,
-        "y": 40
-      }, {
-        "x": 6,
-        "y": 72
-      }]
-    ]
-     let data2 = [
-      [{
-        "x": 0,
-        "y": 47
-      }, {
-        "x": 1,
-        "y": 48
-      }, {
-        "x": 2,
-        "y": 77
-      }, {
-        "x": 3,
-        "y": 73
-      }, {
-        "x": 4,
-        "y": 25
-      }, {
-        "x": 5,
-        "y": 57
-      }, {
-        "x": 6,
-        "y": 72
-      }]
-    ]
-
     let options = {
-      width: 250,
+      width: 300,
       height: 250,
       color: '#2980B9',
       margin: {
         top: 10,
         left: 35,
         bottom: 30,
-        right: 10
+        // right: 10
       },
       animate: {
         type: 'delayed',
@@ -106,15 +64,6 @@ class GraphComponent extends Component {
         showTicks: true,
         zeroAxis: false,
         orient: 'bottom',
-        tickValues: [
-          {value:'name1'},
-          {value:'name2'},
-          {value:'name3'},
-          {value:'name4'},
-          {value:'name5'},
-          {value:'name6'},
-          {value:'name7'}
-        ],
         label: {
           fontFamily: 'Arial',
           fontSize: 8,
@@ -139,11 +88,10 @@ class GraphComponent extends Component {
       }
 
     };
-
     return (
       <View style={styles.container}>
-        <StockLine data={data} options={options} xKey='x' yKey='y' />
-        <StockLine data={data2} options={options} xKey='x' yKey='y' />
+        <StockLine data={this.state.inls} options={options} xKey='date' yKey='amount' />
+        <StockLine data={this.state.inls} options={options} xKey='date' yKey='amount' />
       </View>
     );
   }

@@ -178,18 +178,18 @@ class DrawerContent extends React.Component {
         >
           <Icon name="line-chart" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Graph</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> 
         <TouchableOpacity
           style={Actions.currentScene === 'setting' ?
             styles.barStyleActive : styles.barStyle}
-          onPress={Actions.setting}
+          onPress={() => alert('Pretend that you have changed Password.')}
         >
           <Icon name="cog" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Change Password</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.barStyle}
-          onPress={Actions.login}
+          onPress={() => alert('Pretend that you have logged out.')}
         >
           <Icon name="sign-out" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Log Out</Text>
