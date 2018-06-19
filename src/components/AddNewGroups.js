@@ -44,6 +44,11 @@ class AddNewGroups extends Component {
     console.log(result);
     socket.emit('createNewGroup', result);
     socket.on('createGroupSuccess', res => console.log(res));
+    socket.emit('getGroupsAndUsers');
+    socket.on('allGroupsAndUsers', groups => {
+      console.log('groups', groups);
+      Storages.set(Global.EMAIL, { groups: groups });
+    });
   }
 
   render() {
