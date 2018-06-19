@@ -65,10 +65,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   userIconStyle: {
-    borderRadius: 100,
-    height: 50,
-    width: 50,
-    backgroundColor: 'greenyellow',
     justifyContent: 'center',
     alignItems: 'center',
   }
@@ -104,7 +100,12 @@ class DrawerContent extends React.Component {
       <View style={styles.container}>
         <View style={styles.profileStyle}>
           <View style={{ flex: 1 }}>
-            <View style={styles.userIconStyle} />
+            <View style={styles.userIconStyle}>
+              <Image
+                style={{ borderRadius: 100, height: 50, width: 50 }}
+                source={require('./components/Img/myicon.jpg')}
+              />
+            </View>
           </View>
           <View style={{ flex: 3 }}>
             <View style={styles.fullnameStyle}>

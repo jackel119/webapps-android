@@ -130,7 +130,7 @@ const styles = {
 
   greetingStyle: {
     fontFamily: 'Drugs',
-    fontSize: 34,
+    fontSize: 40,
     textAlign: 'left',
     color: 'white',
     opacity: 0.9
