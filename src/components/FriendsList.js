@@ -33,6 +33,7 @@ class FriendsList extends Component {
 const styles = {
   container: {
     paddingHorizontal: 5,
+    flex: 1
   },
 };
 

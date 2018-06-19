@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import { Text, View, TouchableOpacity } from 'react-native';
 
 const BillHistoryItem = ({ bill }) => {
-  const { payee, billDate, description, totalPrice } = bill;
+  const { payeeName, billDate, description, totalPrice } = bill;
   const { cardStyle, amountStyle, timeStyle, descriptionStyle, rightStyle, leftStyle } = styles;
 
   return (
@@ -16,8 +16,8 @@ const BillHistoryItem = ({ bill }) => {
       </View>
       <View style={rightStyle}>
           <Text style={timeStyle}>{billDate}</Text>
-          <Text style={timeStyle}>payee: {payee}</Text>
-          <Text style={descriptionStyle}>totalPrice: £ {totalPrice}</Text>
+          <Text style={timeStyle}>payee: {payeeName}</Text>
+          <Text style={descriptionStyle}>totalPrice: £ {parseFloat(totalPrice).toFixed(2)}</Text>
       </View>
     </TouchableOpacity>
   );

@@ -48,24 +48,12 @@ export function loginUser({ email, password }) {
         });
 
         socket.on('allBills', async bills => {
-          Storages.set(Global.EMAIL, { bills });
           console.log('bills', bills);
           var transactionBillMap = []; 
           for (const bill of bills) {
             var myfriend = null; 
             if (bill.bdata.payee === Global.EMAIL) {
-              // for (const item of bill.bdata.items) {
-              //   for (const spliter of item.split) {
-              //     // console.log('spliter', spliter);
-              //     if (spliter.user === Global.EMAIL) {
-              //       spliter.name = 'myself';
-              //     } else {
-              //       spliter.name = 'not myself';
-              //     }
-              //     // console.log('after spliter', spliter);
-              //   } 
-              // }
-
+              bill.bdata.payeeName = 'Me';
               for (const spliter of bill.bdata.split) {
 
                 if (spliter.user !== Global.EMAIL) {
@@ -102,6 +90,7 @@ export function loginUser({ email, password }) {
                 .then(friend => {
                   myfriend = friend;
                 }); 
+              bill.bdata.payeeName = myfriend.first_name + myfriend.last_name;
               for (const spliter of bill.bdata.split) {
                 if (spliter.user === Global.EMAIL) {
                   const transaction = {
@@ -121,6 +110,7 @@ export function loginUser({ email, password }) {
             } 
           }
           Storages.set(Global.EMAIL, { transactionBillMap: transactionBillMap });
+          Storages.set(Global.EMAIL, { bills });
           console.log('transactionBillMap', transactionBillMap); 
           Storages.get(Global.EMAIL).then(res => console.log('storage', res));
           loginUserSucess(dispatch, { email, password });
