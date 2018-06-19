@@ -20,7 +20,13 @@ import GraphComponent from './components/GraphComponent';
 
 const RouterComponent = () => {
   return (
-    <Router>
+    <Router
+      tintColor='steelblue'
+      navigationBarStyle={styles.navBar}
+      titleStyle={styles.navBarTitle}
+      rightButtonStyle={styles.rightButton}
+      rightButtonTextStyle={styles.rightButtonText}
+    >
       <Scene key="root" hideNavBar sceneStyle={{ paddingTop: 64 }}>
         <Scene
           initial
@@ -145,6 +151,31 @@ const RouterComponent = () => {
       </Scene>
     </Router>
   );
+};
+
+const styles = {
+  navBar: {
+    //backgroundColor: 'greenyellow',
+    //flex: 1,
+    // flexDirection: 'row',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+  },
+  navBarTitle: {
+    flex: 3,
+    textAlign: 'center',
+    color: 'slategrey',
+    fontSize: 24,
+    //fontWeight: 'normal',
+  },
+  rightButtonText: {
+    color: 'steelblue',
+    fontSize: 20,
+  },
+  rightButton: {
+    flex: 1,
+    paddingHorizontal: 5,
+  },
 };
 
 export default RouterComponent;

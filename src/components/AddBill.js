@@ -174,7 +174,7 @@ const mapStateToProps = (state) => {
 
 const styles = {
   containerStyle: {
-    marginVertical: 10,
+    marginVertical: 5,
     paddingHorizontal: 20,
     paddingBottom: 5,
     flex: 1,

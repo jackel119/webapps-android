@@ -188,8 +188,7 @@ class DrawerContent extends React.Component {
           <Text style={styles.textStyle}>Change Password</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={Actions.currentScene === 'setting' ?
-            styles.barStyleActive : styles.barStyle}
+          style={styles.barStyle}
           onPress={Actions.login}
         >
           <Icon name="sign-out" size={20} style={styles.iconStyle} />
