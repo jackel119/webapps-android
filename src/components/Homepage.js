@@ -7,7 +7,7 @@ const Homepage = () => {
 	return (
 		<View style={{ flex: 1 }}>
 			<ParallaxScrollView
-				style={{ flex: 1, backgroundColor: 'white', overflow: 'hidden', paddingTop: 10 }}
+				style={{ flex: 1, backgroundColor: 'white', overflow: 'hidden' }}
 				parallaxHeaderHeight={385}
 				contentBackgroundColor={'#0a0809'}
 				isForegroundTouchable

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ImageBackground, View, Text, TextInput, StatusBar, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { ImageBackground, View, Text, TextInput,
+	StatusBar, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Spinner } from './common';
@@ -52,8 +53,14 @@ class LoginForm extends Component {
       style={styles.imageStyle}
 			>
 			<View style={styles.containerStyle}>
-				<View style={{ justifyContent: 'center', alignItems: 'center', flex: 0.6 }}>
-					<Text style={{ fontSize: 50, color: 'white', fontWeight: 'bold' }}>SHARETrack</Text>
+				<View
+					style={{ flexDirection: 'row',
+					justifyContent: 'center',
+					alignItems: 'center',
+					flex: 0.6 }}
+				>
+					<Text style={styles.logo1Style}>SHARET</Text>
+					<Text style={styles.logo2Style}>rack</Text>
 				</View>
 				<KeyboardAvoidingView style={styles.loginStyle} behavior="padding">
 					<StatusBar barStyle="dark-content" />
@@ -155,10 +162,20 @@ const styles = {
 		marginBottom: 2,
 		marginTop: 5,
 		height: 40,
-		backgroundColor: 'rgba(255, 255, 255, 0.4)',
+		backgroundColor: 'rgba(255, 255, 255, 0.3)',
 		justifyContent: 'center',
 		position: 'relative',
-	}
+	},
+	logo1Style: {
+		fontSize: 54,
+		color: 'white',
+		fontFamily: 'AlegreyaSansSC-BoldItalic',
+	},
+	logo2Style: {
+		fontSize: 50,
+		color: 'white',
+		fontFamily: 'TitilliumWeb-Regular',
+	},
 };
 
 const mapStateToProps = state => {

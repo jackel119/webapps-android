@@ -130,10 +130,10 @@ const styles = {
 
   greetingStyle: {
     fontFamily: 'Drugs',
-    fontSize: 40,
+    fontSize: 42,
     textAlign: 'left',
     color: 'white',
-    opacity: 0.9
+    paddingLeft: 20,
   },
 
   usernameStyle: {
