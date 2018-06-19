@@ -8,18 +8,17 @@ import Storages from './../actions/Storages';
 const Global = require('./../Global');
 
 class BillHistory extends Component {
-  state = { transactionBillMap: [] };
+  state = { bills: [] };
 
   componentWillMount() {
     Storages.get(Global.EMAIL).then(result => {
-      console.log('result', result);
-      this.setState({ transactionBillMap: result.transactionBillMap });
+      this.setState({ bills: result.bills.map(res => res.bdata) });
     });
   }
 
   renderBills() {
-    return this.state.transactionBillMap.map((transactionBillMap, index) =>
-      <BillHistoryItem key={index} bill={transactionBillMap.billDetails} />
+    return this.state.bills.map((bill, index) =>
+      <BillHistoryItem key={index} bill={bill} />
     );
   }
 

@@ -10,11 +10,13 @@ import Setting from './components/Setting';
 import FriendsList from './components/FriendsList';
 import GroupList from './components/GroupList';
 import AddNewFriends from './components/AddNewFriends';
+import AddNewGroups from './components/AddNewGroups';
 import DrawerContent from './DrawerContent';
 import SplitBill from './components/SplitBill';
 import BillDetails from './components/BillDetails';
 import BillHistory from './components/BillHistory';
 import CameraRollComponent from './components/CameraRollComponent';
+import GraphComponent from './components/GraphComponent';
 
 const RouterComponent = () => {
   return (
@@ -108,8 +110,14 @@ const RouterComponent = () => {
               key="groupList"
               component={GroupList}
               title="Group List"
-              onRight={() => alert("Add Group")}
+              onRight={() => Actions.addGroup()}
               rightTitle="Add"
+            />
+
+            <Scene
+              key="addGroup"
+              component={AddNewGroups}
+              title="Add Groups"
             />
 
             <Scene
@@ -123,6 +131,13 @@ const RouterComponent = () => {
               key="cameraRoll"
               component={CameraRollComponent}
               title="CameraRoll"
+            />
+
+            <Scene
+              //initial
+              key="graph"
+              component={GraphComponent}
+              title="Graph"
             />
 
           </Scene>
