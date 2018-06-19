@@ -3,6 +3,7 @@ import { View, ScrollView, Text, TextInput, TouchableOpacity } from 'react-nativ
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Input } from './common';
 import { transactionUpdate, addItem, initialiseState,
   updateTotal, updateDescription, updateDate } from '../actions';
@@ -130,7 +131,12 @@ class AddBill extends Component {
         );
     });
     return (
-      <View style={styles.containerStyle}>
+      <KeyboardAwareScrollView
+      style={styles.containerStyle}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={false}
+      >
         <View style={{ height: 395 }}>
           <ScrollView>
             <View>
@@ -156,7 +162,7 @@ class AddBill extends Component {
             <Text style={styles.submitTextStyle}>Comfirm</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
