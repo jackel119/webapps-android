@@ -65,7 +65,7 @@ class HeaderGreeting extends Component {
           <View style={blankStyle} />
           <Text style={white}>You have spent</Text>
           <Text style={spentStyle}>{this.state.totalAmount}</Text>
-          <Text style={white}>this week.</Text>
+          <Text style={white}>this month.</Text>
         </View>
 
         <Modal
