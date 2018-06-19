@@ -26,6 +26,7 @@ class AddNewGroups extends Component {
           name: friend.first_name
         });
       }
+      console.log(res);
       this.setState({ friends: result });
     });
   }
@@ -42,6 +43,7 @@ class AddNewGroups extends Component {
     result.members.push(Global.EMAIL);
     console.log(result);
     socket.emit('createNewGroup', result);
+    socket.on('createGroupSuccess', res => console.log(res));
   }
 
   render() {
