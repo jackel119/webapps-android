@@ -49,16 +49,31 @@ export function loginUser({ email, password }) {
 
         socket.on('allBills', async bills => {
           console.log('bills', bills);
+
+
           var transactionBillMap = []; 
           for (const bill of bills) {
+            for (const item of bill.bdata.items) {
+              for (var spliter1 of item.split) {
+                if (spliter1.user === Global.EMAIL) {
+                  spliter1.user = { email: Global.EMAIL, first_name: 'Me', last_name: '' };
+                } else {
+                  await Storages.getFriendByEmail(Global.EMAIL, spliter1.user)
+                    .then(friend => {
+                      spliter1.user = friend;
+                    });
+                }
+              }
+            } 
+
             var myfriend = null; 
             if (bill.bdata.payee === Global.EMAIL) {
               bill.bdata.payeeName = 'Me';
-              for (const spliter of bill.bdata.split) {
-
+              for (var spliter of bill.bdata.split) {
                 if (spliter.user !== Global.EMAIL) {
                   await Storages.getFriendByEmail(Global.EMAIL, spliter.user)
                     .then(friend => myfriend = friend);
+                  spliter.user = myfriend;
                   const transaction = {
                     fromEmail: Global.EMAIL, 
                     toEmail: myfriend.email,
@@ -71,11 +86,11 @@ export function loginUser({ email, password }) {
                     billDetails: bill.bdata
                   };
                   transactionBillMap.push(transaction);
-                  // console.log('transactionBillMap', transactionBillMap);
                 } else {
+                  spliter.user = { email: Global.EMAIL, first_name: 'Me', last_name: '' };
                   const transaction = {
                     fromEmail: Global.EMAIL, 
-                    toEmail: Global.EMAIL,
+                    toEmail: Global.EMAIL, 
                     amount: ' ' + spliter.splitAmount,
                     time: bill.bdata.billDate,
                     description: bill.bdata.description,
@@ -90,9 +105,12 @@ export function loginUser({ email, password }) {
                 .then(friend => {
                   myfriend = friend;
                 }); 
-              bill.bdata.payeeName = myfriend.first_name + myfriend.last_name;
+              console.log('myfriend', myfriend);
+              bill.bdata.payeeName = myfriend.first_name + ' ' + myfriend.last_name;
+
               for (const spliter of bill.bdata.split) {
                 if (spliter.user === Global.EMAIL) {
+                  spliter.user = { email: Global.EMAIL, first_name: 'Me', last_name: '' };
                   const transaction = {
                     fromEmail: myfriend.email,
                     fromFirstName: myfriend.first_name,
@@ -104,12 +122,16 @@ export function loginUser({ email, password }) {
                     shareWith: 'Paid by ' + myfriend.first_name,
                     billDetails: bill.bdata
                   };
+                  console.log('transaction', transaction);
                   transactionBillMap.push(transaction);
+                } else {
+                  await Storages.getFriendByEmail(Global.EMAIL, spliter.user)
+                    .then(friend => spliter.user = friend);
                 }
               }  
-            } 
+            }
           }
-          Storages.set(Global.EMAIL, { transactionBillMap: transactionBillMap });
+          Storages.set(Global.EMAIL, { transactionBillMap });
           Storages.set(Global.EMAIL, { bills });
           console.log('transactionBillMap', transactionBillMap); 
           Storages.get(Global.EMAIL).then(res => console.log('storage', res));

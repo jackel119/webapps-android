@@ -70,11 +70,12 @@ class Storages {
   };
 
   static getFriendByEmail = async(key, email) => {
-    var myfriend = null;
+    var myfriend = { email, first_name: 'Not my friend', last_name: '' };
     await Storages.get(key).then(res => {
       for (const friend of res.friends) {
         if (friend.email === email) {
           myfriend = friend;
+          break;
         }
       }
     }).catch(() => console.log('getFriendByEmail() error'));

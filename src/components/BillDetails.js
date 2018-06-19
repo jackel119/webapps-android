@@ -2,26 +2,17 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 
 class BillDetails extends Component {
-  state = {
-    author: '',
-    description: '',
-    groupID: '',
-    payee: '',
-    totalPrice: 0,
-    timestamp: '',
-    items: [],
-    split: []
-  }
+  state = {}
 
   componentWillMount() {
     console.log('bill details', this.props.billDetails);
     const { author, description, groupID, items,
-      payee, split, billDate, totalPrice } = this.props.billDetails;
+      payeeName, split, billDate, totalPrice } = this.props.billDetails;
     this.state = {
       author,
       description,
       groupID,
-      payee,
+      payeeName,
       totalPrice,
       billDate,
       items,
@@ -38,8 +29,11 @@ class BillDetails extends Component {
 
   renderSplit() {
     return this.state.split.map(split =>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }} key={split.user}>
-        <Text>{split.user}</Text>
+      <View 
+        style={{ flexDirection: 'row', justifyContent: 'space-between' }} 
+        key={split.user.email}
+      >
+        <Text>{split.user.first_name} {split.user.last_name}</Text>
         <Text>£ {parseFloat(split.splitAmount).toFixed(2)}</Text>
       </View>
     );
@@ -56,15 +50,15 @@ class BillDetails extends Component {
               </Text>
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-              <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'peru' }}>total price: </Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'peru' }}>Total Price: </Text>
               <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'peru' }}>
                 {this.state.totalPrice}
               </Text>
             </View>
           </View>
           <View style={{ alignItems: 'flex-end', paddingRight: 5 }}>
-            <Text>payee:  {this.state.payee} </Text>
-            <Text>timestamp:  {this.state.timestamp} </Text>
+            <Text>Payee: {this.state.payeeName} </Text>
+            <Text>Date of bill: {this.state.billDate} </Text>
           </View>
         </View>
         <ScrollView style={styles.listStyle}>
@@ -114,10 +108,10 @@ const renderItemSplit = ({ split }) => {
   return split.map(user =>
     <View
     style={{ flexDirection: 'row', justifyContent: 'space-between' }}
-    key={user.user}
+    key={user.user.email}
     >
       <View>
-        <Text>{user.user}</Text>
+        <Text>{user.user.first_name} {user.user.last_name}</Text>
       </View>
       <View>
         <Text>£ {parseFloat(user.splitAmount).toFixed(2)}</Text>
