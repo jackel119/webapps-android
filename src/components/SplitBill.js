@@ -188,7 +188,7 @@ class SplitBill extends Component {
       console.log('backend sent: ', data);
       this.setState({ submitVisible: true });
       var transactionBillMap = [];
-      for (const spliter of data.bill.split) {
+      for (const spliter of data.bdata.split) {
         console.log('spliter', spliter);
         var transaction = {}; 
         var myfriend = null; 
@@ -202,20 +202,20 @@ class SplitBill extends Component {
             toFirstName: myfriend.first_name,
             toLastName: myfriend.last_name,
             amount: '+' + spliter.splitAmount,
-            time: data.bill.billDate,
-            description: data.bill.description,
+            time: data.bdata.billDate,
+            description: data.bdata.description,
             shareWith: 'Paid for ' + myfriend.first_name,
-            billDetails: data.bill
-          }; 
+            billDetails: data.bdata
+          };
         } else {
           transaction = {
             fromEmail: Global.EMAIL, 
             toEmail: Global.EMAIL,
             amount: ' ' + spliter.splitAmount,
-            time: data.bill.billDate,
-            description: data.bill.description,
+            time: data.bdata.billDate,
+            description: data.bdata.description,
             shareWith: 'Paid for myself',
-            billDetails: data.bill
+            billDetails: data.bdata
           };
         }
         transactionBillMap.push(transaction);
