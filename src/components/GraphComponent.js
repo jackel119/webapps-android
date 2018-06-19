@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
 
 class GraphComponent extends Component {
   componentWillMount() {
+    this.state = {
+      in: [],
+      out: []
+    };
     Storages.get(Global.EMAIL).then(res => {
       console.log('transactionBillMap', res.transactionBillMap);
       var inls = [];
@@ -30,8 +34,40 @@ class GraphComponent extends Component {
           outls.push({ date: tx.time, amount: tx.amount });
         }
       });
-      console.log('inls', inls);
-      console.log('outls', outls);
+      var inRes = [];
+      var outRes = [];
+      var inData = [];
+      var outData = [];
+
+      console.log(inls);
+      for (var item of inls) {
+        var id = parseInt(item.date.substring(0, 2));
+        var amount = Math.round(+parseFloat(item.amount).toFixed(2));
+        var index = inData.findIndex(obj => obj.x == id);
+        if (index == -1) {
+          inData.push({
+            "x": id,
+            "y": amount
+          });
+        } else {
+          inData[index].y = inData[index].y + amount;
+        }
+      }
+      inData.push({
+        "x": 0,
+        "y": 10
+      });
+      inData.push({
+        "x": 6,
+        "y": 10
+      })
+      inData.sort(function(a, b){
+        return a.x == b.x ? 0 : +(a.x > b.x) || -1;
+      });
+      inData = inData.slice(0, 6);
+      inRes.push(inData);
+      console.log(inData);
+      this.setState({ in: inRes });
     });
   }
 
@@ -106,15 +142,6 @@ class GraphComponent extends Component {
         showTicks: true,
         zeroAxis: false,
         orient: 'bottom',
-        tickValues: [
-          {value:'name1'},
-          {value:'name2'},
-          {value:'name3'},
-          {value:'name4'},
-          {value:'name5'},
-          {value:'name6'},
-          {value:'name7'}
-        ],
         label: {
           fontFamily: 'Arial',
           fontSize: 8,
@@ -139,11 +166,11 @@ class GraphComponent extends Component {
       }
 
     };
-
+    console.log(data);
+    console.log(this.state.in);
     return (
       <View style={styles.container}>
-        <StockLine data={data} options={options} xKey='x' yKey='y' />
-        <StockLine data={data2} options={options} xKey='x' yKey='y' />
+        <StockLine data={this.state.in} options={options} xKey="x" yKey="y" />
       </View>
     );
   }
