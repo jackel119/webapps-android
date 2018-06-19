@@ -116,6 +116,7 @@ class DrawerContent extends React.Component {
           style={(Actions.currentScene === 'addBill'
           || Actions.currentScene === 'split'
           || Actions.currentScene === 'camera'
+          || Actions.currentScene === 'cameraRoll'
           || Actions.currentScene === 'imageDisplay') ?
             styles.barStyleActive : styles.barStyle}
           onPress={Actions.addBill}
@@ -141,7 +142,8 @@ class DrawerContent extends React.Component {
           <Text style={styles.textStyle}>Bill History</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={(Actions.currentScene === 'friendList' || Actions.currentScene === 'addFriend') ?
+          style={(Actions.currentScene === 'friendList'
+          || Actions.currentScene === 'addFriend') ?
             styles.barStyleActive : styles.barStyle}
           onPress={Actions.friendList}
         >
@@ -149,7 +151,7 @@ class DrawerContent extends React.Component {
           <Text style={styles.textStyle}>Friends</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={Actions.currentScene === 'groupList' ?
+          style={(Actions.currentScene === 'groupList' || Actions.currentScene === 'addGroup') ?
             styles.barStyleActive : styles.barStyle}
           onPress={Actions.groupList}
         >
@@ -161,7 +163,7 @@ class DrawerContent extends React.Component {
             styles.barStyleActive : styles.barStyle}
           onPress={Actions.graph}
         >
-          <Icon name="cog" size={20} style={styles.iconStyle} />
+          <Icon name="line-chart" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Graph</Text>
         </TouchableOpacity>
         <TouchableOpacity
