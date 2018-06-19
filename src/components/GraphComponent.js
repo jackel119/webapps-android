@@ -1,8 +1,10 @@
-
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import { StockLine } from 'react-native-pathjs-charts';
+import Storages from './../actions/Storages';
+
+const Global = require('./../Global');
 
 const styles = StyleSheet.create({
   container: {
@@ -14,31 +16,75 @@ const styles = StyleSheet.create({
 });
 
 class GraphComponent extends Component {
+  componentWillMount() {
+    Storages.get(Global.EMAIL).then(res => {
+      console.log('transactionBillMap', res.transactionBillMap);
+      var inls = [];
+      var outls = [];
+      console.log('inls', inls);
+      console.log('outls', outls);
+      (res.transactionBillMap).map(tx => {
+        if (tx.amount[0] === '+'){
+          inls.push({ date: tx.time, amount: tx.amount });
+        } else if (tx.amount[0] === '-') {
+          outls.push({ date: tx.time, amount: tx.amount });
+        }
+      });
+      console.log('inls', inls);
+      console.log('outls', outls);
+    });
+  }
+
   render() {
     let data = [
       [{
         "x": 0,
-        "y": 47782
+        "y": 4
       }, {
         "x": 1,
-        "y": 48497
+        "y": 40
       }, {
         "x": 2,
-        "y": 77128
+        "y": 7
       }, {
         "x": 3,
-        "y": 73413
+        "y": 73
       }, {
         "x": 4,
-        "y": 58257
+        "y": 58
       }, {
         "x": 5,
-        "y": 40579
+        "y": 40
       }, {
         "x": 6,
-        "y": 72893
+        "y": 72
       }]
     ]
+     let data2 = [
+      [{
+        "x": 0,
+        "y": 47
+      }, {
+        "x": 1,
+        "y": 48
+      }, {
+        "x": 2,
+        "y": 77
+      }, {
+        "x": 3,
+        "y": 73
+      }, {
+        "x": 4,
+        "y": 25
+      }, {
+        "x": 5,
+        "y": 57
+      }, {
+        "x": 6,
+        "y": 72
+      }]
+    ]
+
     let options = {
       width: 250,
       height: 250,
@@ -91,11 +137,13 @@ class GraphComponent extends Component {
           fill: '#34495E'
         }
       }
+
     };
 
     return (
       <View style={styles.container}>
         <StockLine data={data} options={options} xKey='x' yKey='y' />
+        <StockLine data={data2} options={options} xKey='x' yKey='y' />
       </View>
     );
   }

@@ -98,9 +98,9 @@ class Storages {
     await Storages.get(key).then(res => {
       const txList = res.transactionBillMap;
       for (const tx of txList) {
-        if (tx.amount >= 0) {
+        if (tx.amount[0] === '+') {
           totalIN += parseFloat(tx.amount);
-        } else {
+        } else if (tx.amount[0] === '-') {
           totalOUT += parseFloat(tx.amount);
         }
       }
@@ -108,16 +108,16 @@ class Storages {
     return { in: totalIN.toFixed(2), out: totalOUT.toFixed(2) };
   };
 
-  static getTotalOUT = async (key) => {
-    var total = 0;
-    await Storages.get(key).then(res => {
-      const txList = res.transactionBillMap;
-      for (const tx of txList) {
-          total += parseFloat(tx.amount);
-      }
-    }).catch(() => console.log('getTotalAmount() error'));
-    return total.toFixed(2);
-  };
+  // static getTotalOUT = async (key) => {
+  //   var total = 0;
+  //   await Storages.get(key).then(res => {
+  //     const txList = res.transactionBillMap;
+  //     for (const tx of txList) {
+  //         total += parseFloat(tx.amount);
+  //     }
+  //   }).catch(() => console.log('getTotalAmount() error'));
+  //   return total.toFixed(2);
+  // };
 
     static getUsername = async (key) => {
     var username = '';
