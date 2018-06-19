@@ -17,7 +17,7 @@ class GroupDetail extends Component {
         <View style={{}}>
             <Text style={nameStyle}>{gname} </Text>
         </View>
-        <ScrollView style={{ height: 120 }}>
+        <ScrollView style={{ height: 140 }}>
           {this.renderMembers()}
         </ScrollView>
       </View>

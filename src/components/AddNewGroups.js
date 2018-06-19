@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, TextInput } from 'react-native';
+import { View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import MultiSelect from 'react-native-multiple-select';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Button } from './common';
 import { socket } from '../Global';
 import Storages from './../actions/Storages';
 
@@ -76,20 +75,23 @@ class AddNewGroups extends Component {
             submitButtonColor="#CCC"
             submitButtonText="Submit"
           />
-          <View styke={{ flex: 0.1 }}>
+          <View style={styles.searchStyle}>
+            <Icon name="search" size={20} style={[styles.iconStyle, { flex: 1 }]} />
             <TextInput
-              placeholder="Group Name"
+              placeholder="Group name"
               style={styles.inputStyle}
               value={this.state.groupName}
               onChangeText={res => this.setState({ groupName: res })}
             />
           </View>
-          <View style={{ flex: 0.1 }}>
-            <Button
+          <View>
+            <TouchableOpacity
+              style={styles.submitButtonStyle}
               onPress={this.onAdd.bind(this)}
             >
-              <Text>Add Group</Text>
-            </Button>
+              <Icon name="plus" size={20} style={[styles.iconStyle, { paddingRight: 10 }]} />
+              <Text style={styles.submitTextStyle}>Create Group</Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
@@ -109,14 +111,38 @@ const styles = {
   iconStyle: {
     fontSize: 18,
     paddingLeft: 20,
-    flex: 1
   },
   containerStyle: {
-    height: 40,
-    flex: 1,
+    marginVertical: 10,
+    paddingHorizontal: 20,
+    flex: 1
+  },
+  searchStyle: {
+    height: 60,
     flexDirection: 'row',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+    marginBottom: 10,
+    padding: 5,
+    backgroundColor: 'white',
+    borderRadius: 5,
+  },
+  submitButtonStyle: {
+    marginHorizontal: 5,
+    borderRadius: 5,
+    height: 50,
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+    backgroundColor: 'yellowgreen',
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
+  submitTextStyle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+  },
 };
 
 export default AddNewGroups;

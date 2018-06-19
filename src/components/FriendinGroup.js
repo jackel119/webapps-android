@@ -24,7 +24,7 @@ const styles = {
     paddingTop: 5,
     paddingBottom: 8,
     paddingHorizontal: 20,
-    height: 60,
+    height: 70,
     borderBottomWidth: 1,
     borderColor: 'white',
     backgroundColor: '#ededed'
