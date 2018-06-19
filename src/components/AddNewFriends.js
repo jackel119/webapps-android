@@ -14,7 +14,7 @@ class AddNewFriends extends Component {
 
   add() {
     console.log(this.state.email);
-    socket.emit('addFriend', this.state.email); 
+    socket.emit('addFriend', this.state.email);
   }
 
   render() {
@@ -57,7 +57,17 @@ const styles = {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center'
-  }
+  },
+  containerStyle: {
+    marginVertical: 10,
+    paddingHorizontal: 20,
+    flex: 1
+  },
+  searchStyle: {
+    height: 40,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
 };
 
 export default AddNewFriends;
