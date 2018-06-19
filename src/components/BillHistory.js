@@ -42,6 +42,7 @@ class BillHistory extends Component {
 const styles = {
   container: {
     paddingHorizontal: 5,
+    flex: 1,
   },
   addButtonStyle: {
     marginVertical: 5,
