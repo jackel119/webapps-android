@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, ViewPropTypes, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ViewPropTypes, TouchableOpacity, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Storages from './actions/Storages';
@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
   },
-
   barStyle: {
     height: 50,
     alignItems: 'center',
@@ -32,17 +31,17 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     flexDirection: 'row'
   },
-
   profileStyle: {
     height: 90,
     width: 300,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 20,
     backgroundColor: 'white',
     borderBottomWidth: 1,
     borderColor: '#ddd',
   },
-
   textStyle: {
     position: 'absolute',
     left: 60,
@@ -65,6 +64,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingLeft: 10,
   },
+  userIconStyle: {
+    borderRadius: 100,
+    height: 50,
+    width: 50,
+    backgroundColor: 'greenyellow',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 class DrawerContent extends React.Component {
@@ -96,12 +103,17 @@ class DrawerContent extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.profileStyle}>
-          <View style={styles.fullnameStyle}>
-            <Text style={styles.nameStyle}>{this.state.firstname} </Text>
-            <Text style={styles.nameStyle}>{this.state.lastname}</Text>
+          <View style={{ flex: 1 }}>
+            <View style={styles.userIconStyle} />
           </View>
-          <View style={{ alignItems: 'flex-end', paddingTop: 10 }}>
-            <Text>{this.state.email}</Text>
+          <View style={{ flex: 3 }}>
+            <View style={styles.fullnameStyle}>
+              <Text style={styles.nameStyle}>{this.state.firstname} </Text>
+              <Text style={styles.nameStyle}>{this.state.lastname}</Text>
+            </View>
+            <View style={{ alignItems: 'flex-end', paddingTop: 10 }}>
+              <Text>{this.state.email}</Text>
+            </View>
           </View>
         </View>
         <TouchableOpacity
@@ -172,7 +184,15 @@ class DrawerContent extends React.Component {
           onPress={Actions.setting}
         >
           <Icon name="cog" size={20} style={styles.iconStyle} />
-          <Text style={styles.textStyle}>Setting</Text>
+          <Text style={styles.textStyle}>Change Password</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={Actions.currentScene === 'setting' ?
+            styles.barStyleActive : styles.barStyle}
+          onPress={Actions.setting}
+        >
+          <Icon name="sign-out" size={20} style={styles.iconStyle} />
+          <Text style={styles.textStyle}>Log Out</Text>
         </TouchableOpacity>
       </View >
     );
