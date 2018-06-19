@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TouchableOpacity, Text, View, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 import MultiSelect from 'react-native-multiple-select';
+import { Actions } from 'react-native-router-flux';
 import { Button } from './common';
 import Storages from './../actions/Storages';
 import { socket } from '../Global';
@@ -22,7 +23,8 @@ class SplitBill extends Component {
       total: 0,
       groups: [],
       modalVisible: false,
-      splitted: false
+      splitted: false,
+      submitVisible: false
     };
 
     console.log(this.props);
@@ -176,10 +178,14 @@ class SplitBill extends Component {
     result.author = Global.EMAIL;
     result.payee = Global.EMAIL;
     result.timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    result.billDate = this.props.billDate;
 
     console.log('client sent: ', result);
     socket.emit('addBill', result);
-    socket.on('newBill', data => console.log('backend sent: ', data));
+    socket.on('newBill', data => {
+      console.log('backend sent: ', data);
+      this.setState({ submitVisible: true });
+    });
   }
 
   renderTop() {
@@ -292,6 +298,40 @@ class SplitBill extends Component {
     );
   }
 
+  homepageNav() {
+    Actions.homepage();
+  }
+
+  billNav() {
+    Actions.addBill();
+  }
+
+  renderSubmit() {
+    if (this.state.submitVisible) {
+      return (
+        <View style={{ flexDirection: 'column' }}>
+          <Text>  
+            Successfully Added Bill
+          </Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Button onPress={this.homepageNav.bind(this)}>
+              Back to Homepage
+            </Button>
+            <Button onPress={this.billNav.bind(this)}>
+              Add another Bill 
+            </Button>
+          </View>
+        </View>
+      );
+    } else {
+      return (
+        <Button onPress={this.submitPress.bind(this)}>
+          Submit
+        </Button>
+      );
+    }
+  }
+
   render() {
     if (this.state.items.length == 0) {
       this.state.items.push({
@@ -346,7 +386,7 @@ class SplitBill extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <ScrollView style={{ flex: 0.9 }}>
+        <ScrollView style={{ flex: 0.8 }}>
           <View style={{ flex: 0.2, paddingTop: 5 }}>
             {this.renderTop()}
           </View>
@@ -356,10 +396,8 @@ class SplitBill extends Component {
             </ScrollView>
           </View>
         </ScrollView>
-        <View style={{ flex: 0.1 }}>
-          <Button onPress={this.submitPress.bind(this)}>
-            Submit
-          </Button>
+        <View style={{ flex: 0.2 }}>
+          {this.renderSubmit()}
         </View>
       </View>
     );

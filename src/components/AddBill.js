@@ -80,7 +80,7 @@ class AddBill extends Component {
          <View style={styles.desStyle} >
           <TextInput
             underlineColorAndroid='rgba(0,0,0,0)'
-            placeholder='Date...'
+            placeholder='Date: DD/MM/YYYY'
             maxLength={40}
             autoCorrect={false}
             style={styles.desinputStyle}
