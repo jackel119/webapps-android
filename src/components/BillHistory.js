@@ -13,7 +13,6 @@ class BillHistory extends Component {
   componentWillMount() {
     Storages.get(Global.EMAIL).then(result => {
       this.setState({ bills: result.bills.map(res => res.bdata) });
-      console.log('billlllls', this.state.bills);
     });
   }
 
@@ -24,7 +23,6 @@ class BillHistory extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.addButtonStyle} onPress={Actions.addBill}>

@@ -12,7 +12,6 @@ class GroupList extends Component {
 
   componentWillMount() {
     Storages.get(Global.EMAIL).then(result => {
-      console.log('result', result);
       this.setState({ groupList: result.groups });
     });
   }

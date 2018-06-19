@@ -21,7 +21,6 @@ class FriendsList extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <ScrollView style={styles.container}>
         {this.renderFriends()}

@@ -7,20 +7,20 @@ class GroupDetail extends Component {
 
   renderMembers() {
     return this.props.group.members.map(friend =>
-      <FriendinGroup key={friend.uid} friend={friend} />);
+      <FriendinGroup key={friend.email} friend={friend} />);
   }
 
   render() {
-    const { gname, members } = this.props.group;
+    const { gname } = this.props.group;
     const { cardStyle, nameStyle } = styles;
     return (
       <View style={cardStyle}>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Text style={nameStyle}>{gname} </Text>
-            <TouchableOpacity style={styles.editButtonStyle}>
-              <Icon name="edit" size={20} style={styles.iconStyle} />
-              <Text>edit</Text>
-            </TouchableOpacity>
+          <Text style={nameStyle}>{gname} </Text>
+          <TouchableOpacity style={styles.editButtonStyle}>
+            <Icon name="edit" size={20} style={styles.iconStyle} />
+            <Text>edit</Text>
+          </TouchableOpacity>
         </View>
         <ScrollView style={{ height: 140 }}>
           {this.renderMembers()}
