@@ -67,7 +67,7 @@ export function loginUser({ email, password }) {
 
               for (const spliter of bill.bdata.split) {
 
-                if (spliter.user != Global.EMAIL) {
+                if (spliter.user !== Global.EMAIL) {
                   console.log(spliter);
                   await Storages.getFriendByEmail(Global.EMAIL, spliter.user)
                     .then(friend => myfriend = friend);
@@ -83,7 +83,18 @@ export function loginUser({ email, password }) {
                     billDetails: bill.bdata
                   };
                   transactionBillMap.push(transaction);
-                  console.log('transactionBillMap', transactionBillMap);
+                  // console.log('transactionBillMap', transactionBillMap);
+                } else {
+                  const transaction = {
+                    fromEmail: Global.EMAIL, 
+                    toEmail: Global.EMAIL,
+                    amount: '+' + spliter.splitAmount,
+                    time: bill.bdata.timestamp,
+                    description: bill.bdata.description,
+                    shareWith: 'Paid for myself',
+                    billDetails: bill.bdata
+                  };
+                  transactionBillMap.push(transaction);
                 }
               } 
             } else {
