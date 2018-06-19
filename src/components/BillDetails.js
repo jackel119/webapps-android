@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 
 class BillDetails extends Component {
-  state = { 
+  state = {
     author: '',
     description: '',
     groupID: '',
@@ -15,7 +15,8 @@ class BillDetails extends Component {
 
   componentWillMount() {
     console.log('bill details', this.props.billDetails);
-    const { author, description, groupID, items, payee, split, timestamp, totalPrice } = this.props.billDetails;
+    const { author, description, groupID, items,
+      payee, split, timestamp, totalPrice } = this.props.billDetails;
     this.state = {
       author,
       description,
@@ -27,50 +28,55 @@ class BillDetails extends Component {
       split
     };
     console.log('state', this.state);
-  } 
+  }
 
   renderItems() {
-    return this.state.items.map(item => 
+    return this.state.items.map(item =>
       <ItemDetail key={item.id} item={item} />
     );
   }
 
   renderSplit() {
     return this.state.split.map(split =>
-      <View key={split.user}>
-        <View>
-          <Text>{split.user}</Text>
-        </View>
-        <View>
-          <Text>£ {parseFloat(split.splitAmount).toFixed(2)}</Text>
-        </View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }} key={split.user}>
+        <Text>{split.user}</Text>
+        <Text>£ {parseFloat(split.splitAmount).toFixed(2)}</Text>
       </View>
     );
   }
 
   render() {
     return (
-      <View>
-        <View>
-          <Text>description: {this.state.description} </Text>
+      <View style={styles.containerStyle}>
+        <View style={styles.topStyle}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <View>
+              <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'cadetblue' }}>
+                {this.state.description}
+              </Text>
+            </View>
+            <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'peru' }}>total price: </Text>
+              <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'peru' }}>
+                {this.state.totalPrice}
+              </Text>
+            </View>
+          </View>
+          <View style={{ alignItems: 'flex-end', paddingRight: 5 }}>
+            <Text>payee:  {this.state.payee} </Text>
+            <Text>timestamp:  {this.state.timestamp} </Text>
+          </View>
         </View>
-        <View>
-          <Text>payee: {this.state.payee} </Text>
-        </View>
-        <View>
-          <Text>totalPrice: {this.state.totalPrice} </Text>
-        </View>
-        <View>
-          <Text>timestamp: {this.state.timestamp} </Text>
-        </View>
-        <View>
+        <ScrollView style={styles.listStyle}>
           {this.renderItems()}
-        </View>
-        <View>
-          <Text>Summary</Text>
-        </View>
-        <View>
-          {this.renderSplit()}
+        </ScrollView>
+        <View style={styles.bottomStyle}>
+          <View style={{ flex: 0.3 }}>
+            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Summary</Text>
+          </View>
+          <View style={{ flex: 0.7, paddingTop: 10 }}>
+            {this.renderSplit()}
+          </View>
         </View>
       </View>
     );
@@ -80,26 +86,36 @@ class BillDetails extends Component {
 const ItemDetail = ({ item }) => {
   const { name, price, split } = item;
   return (
-    <View style={{ borderTopWidth: 0.5 }}>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={{ flex: 1 }}>
-          <Text>{name}</Text>
-        </View>
-        <View style={{ flex: 1 }}>
-          <Text>{price}</Text>
-        </View>
+    <View style={styles.itemStyle}>
+      <View
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingBottom: 5,
+        borderBottomWidth: 1,
+        borderColor: '#ddd', }}
+      >
+        <Text style={{ fontSize: 18 }}>{name}</Text>
+        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{price}</Text>
       </View>
-      <Text style={{ alignSelf: 'center' }}>Split with</Text>
-      <View style={{ alignSelf: 'flex-end', paddingRight: 20 }}>
-        {renderItemSplit({ split })}
+      <View style={{ paddingTop: 5, paddingHorizontal: 15, flexDirection: 'row' }}>
+        <View style={{ flex: 0.3 }}>
+          <Text style={{ alignSelf: 'flex-start' }}>Split with</Text>
+        </View>
+        <View style={{ paddingRight: 5, flex: 0.7 }}>
+          {renderItemSplit({ split })}
+        </View>
       </View>
     </View>
   );
 };
 
 const renderItemSplit = ({ split }) => {
-  return split.map(user => 
-    <View key={user.user}>
+  return split.map(user =>
+    <View
+    style={{ flexDirection: 'row', justifyContent: 'space-between' }}
+    key={user.user}
+    >
       <View>
         <Text>{user.user}</Text>
       </View>
@@ -109,5 +125,45 @@ const renderItemSplit = ({ split }) => {
     </View>
   );
 };
+
+const styles = {
+  containerStyle: {
+    flex: 1,
+    paddingHorizontal: 5,
+  },
+  topStyle: {
+    flex: 0.2,
+    marginVertical: 5,
+    backgroundColor: 'whitesmoke',
+    borderRadius: 5,
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+  },
+  listStyle: {
+    flex: 0.6,
+    marginBottom: 5,
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
+  bottomStyle: {
+    flex: 0.2,
+    flexDirection: 'row',
+    backgroundColor: 'whitesmoke',
+    borderRadius: 5,
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+    paddingHorizontal: 10,
+  },
+  itemStyle: {
+    backgroundColor: 'white',
+    padding: 10,
+    marginBottom: 2,
+    borderWidth: 1,
+    borderColor: '#ddd',
+  }
+};
+
 
 export default BillDetails;

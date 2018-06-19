@@ -128,11 +128,12 @@ class DrawerContent extends React.Component {
             styles.barStyleActive : styles.barStyle}
           onPress={Actions.transactionHistory}
         >
-          <Icon name="list-alt" size={20} style={styles.iconStyle} />
+          <Icon name="exchange" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Transaction History</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={Actions.currentScene === 'billHistory' ?
+          style={(Actions.currentScene === 'billHistory'
+          || Actions.currentScene === 'billDetails') ?
             styles.barStyleActive : styles.barStyle}
           onPress={Actions.billHistory}
         >

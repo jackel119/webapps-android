@@ -7,7 +7,7 @@ const TransactionDetails = ({ transaction }) => {
   const { cardStyle, amountStyle, timeStyle, descriptionStyle, rightStyle, leftStyle } = styles;
 
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       onPress={() => Actions.billDetails({ billDetails })}
       style={cardStyle}
     >
@@ -31,7 +31,7 @@ const styles = {
     paddingHorizontal: 20,
     flexDirection: 'row',
     height: 70,
-    borderBottomWidth: 0.4,
+    borderBottomWidth: 1,
     borderColor: 'white',
     backgroundColor: '#0a0809'
   },
