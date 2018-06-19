@@ -129,5 +129,5 @@ const loginUserFail = (dispatch) => {
 
 const loginUserSucess = (dispatch, user) => {
   dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
-  Actions.graph();
+  Actions.homepage();
 };
