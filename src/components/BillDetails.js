@@ -16,14 +16,14 @@ class BillDetails extends Component {
   componentWillMount() {
     console.log('bill details', this.props.billDetails);
     const { author, description, groupID, items,
-      payee, split, timestamp, totalPrice } = this.props.billDetails;
+      payee, split, billDate, totalPrice } = this.props.billDetails;
     this.state = {
       author,
       description,
       groupID,
       payee,
       totalPrice,
-      timestamp,
+      billDate,
       items,
       split
     };

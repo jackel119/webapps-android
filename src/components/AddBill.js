@@ -3,7 +3,7 @@ import { View, ScrollView, Text, TextInput, TouchableOpacity } from 'react-nativ
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Button, Input } from './common';
+import { Input } from './common';
 import { transactionUpdate, addItem, initialiseState,
   updateTotal, updateDescription, updateDate } from '../actions';
 

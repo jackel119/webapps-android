@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ImageBackground, View, Text, TextInput, StatusBar, TouchableOpacity } from 'react-native';
+import { ImageBackground, View, Text, TextInput, StatusBar, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Spinner } from './common';
@@ -55,7 +55,7 @@ class LoginForm extends Component {
 				<View style={{ justifyContent: 'center', alignItems: 'center', flex: 0.6 }}>
 					<Text style={{ fontSize: 50, color: 'white', fontWeight: 'bold' }}>SHARETrack</Text>
 				</View>
-				<View style={styles.loginStyle}>
+				<KeyboardAvoidingView style={styles.loginStyle} behavior="padding">
 					<StatusBar barStyle="dark-content" />
 					<View style={{ borderRadius: 10 }}>
 					<View style={styles.cardStyle}>
@@ -91,7 +91,7 @@ class LoginForm extends Component {
 						<Text style={{ fontSize: 20, color: 'black', fontWeight: 'bold' }}>Sign Up</Text>
 					</TouchableOpacity>
 					</View>
-				</View>
+				</KeyboardAvoidingView>
 			</View>
 			</ImageBackground>
 		);

@@ -13,6 +13,7 @@ class BillHistory extends Component {
   componentWillMount() {
     Storages.get(Global.EMAIL).then(result => {
       this.setState({ bills: result.bills.map(res => res.bdata) });
+      console.log('billlllls', this.state.bills);
     });
   }
 
