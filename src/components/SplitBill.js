@@ -180,7 +180,11 @@ class SplitBill extends Component {
     result.author = Global.EMAIL;
     result.payee = Global.EMAIL;
     result.timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    result.billDate = this.props.billDate;
+    if (this.props.billDate === undefined || this.props.billDate == '') {
+      result.billDate = new Date().toLocaleDateString("en-GB");
+    } else {
+      result.billDate = this.props.billDate;
+    }
 
     console.log('client sent: ', result);
     socket.emit('addBill', result);
