@@ -28,11 +28,14 @@ class SplitBill extends Component {
     };
 
     console.log(this.props);
+    console.log(this.props.items);
+    console.log(this.props.items.length);
+    console.log(this.props.items[0]);
 
     Storages.get(Global.EMAIL).then(res => {
       let result = [];
       result.push({
-        id: Global.EMAIL,
+        id: Global.EMAIL, 
         name: 'Me',
         isGroup: false
       });
@@ -57,9 +60,10 @@ class SplitBill extends Component {
 
     //update modalVisible for each item
     var i;
-    for (i = 0; i < this.state.items.length; i++) {
+    for (i = 0; i < this.props.items.length; i++) {
       this.setModalVisibility(i, false);
       this.state.total += parseFloat(this.state.items[i].price);
+      console.log('PRINTING AMOUNT', this.state.total);
     }
   }
 
@@ -339,6 +343,7 @@ class SplitBill extends Component {
         name: this.props.description,
         price: this.props.total
       });
+      this.state.total = this.props.total;
     }
     const renderData = this.state.items.map((data, index) => {
       return (

@@ -48,6 +48,7 @@ export function loginUser({ email, password }) {
         });
 
         socket.on('allBills', async bills => {
+          Storages.set(Global.EMAIL, { bills: bills });
           console.log('bills', bills);
           var transactionBillMap = []; 
           for (const bill of bills) {
