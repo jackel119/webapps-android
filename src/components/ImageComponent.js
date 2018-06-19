@@ -95,7 +95,7 @@ export default class ImageComponent extends Component {
     var offset = 0;
 
     for (i = 0; i < prices.length - 1; i++) {
-      if (items[items.length - i - 2 - offset].match(/[\u3400-\u9FBF]/) || items[items.length - i - 2 - offset] == '*') {
+      if (items[items.length - i - 2 - offset].match(/[\u3400-\u9FBF]/) || items[items.length - i - 2 - offset] == '*' ) {
         offset += 1;
       }
       result.unshift({
