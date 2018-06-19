@@ -69,7 +69,6 @@ export function loginUser({ email, password }) {
               for (const spliter of bill.bdata.split) {
 
                 if (spliter.user !== Global.EMAIL) {
-                  console.log(spliter);
                   await Storages.getFriendByEmail(Global.EMAIL, spliter.user)
                     .then(friend => myfriend = friend);
                   const transaction = {
@@ -78,7 +77,7 @@ export function loginUser({ email, password }) {
                     toFirstName: myfriend.first_name,
                     toLastName: myfriend.last_name,
                     amount: '+' + spliter.splitAmount,
-                    time: bill.bdata.timestamp,
+                    time: bill.bdata.billDate,
                     description: bill.bdata.description,
                     shareWith: 'Paid for ' + myfriend.first_name,
                     billDetails: bill.bdata
@@ -90,7 +89,7 @@ export function loginUser({ email, password }) {
                     fromEmail: Global.EMAIL, 
                     toEmail: Global.EMAIL,
                     amount: ' ' + spliter.splitAmount,
-                    time: bill.bdata.timestamp,
+                    time: bill.bdata.billDate,
                     description: bill.bdata.description,
                     shareWith: 'Paid for myself',
                     billDetails: bill.bdata
@@ -111,7 +110,7 @@ export function loginUser({ email, password }) {
                     fromLastName: myfriend.last_name,
                     toEmail: Global.EMAIL,
                     amount: '-' + spliter.splitAmount,
-                    time: bill.bdata.timestamp,
+                    time: bill.bdata.billDate,
                     description: bill.bdata.description,
                     shareWith: 'Paid by ' + myfriend.first_name,
                     billDetails: bill.bdata

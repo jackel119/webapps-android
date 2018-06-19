@@ -153,7 +153,7 @@ class SplitBill extends Component {
     for (var temp of this.state.items) {
       for (var res of temp.split) {
         var objIndex = people.findIndex((obj => obj.user == res.user));
-        if (objIndex == -1) {
+        if (objIndex === -1) {
           people.push({
             user: res.user,
             splitAmount: res.splitAmount
@@ -175,7 +175,7 @@ class SplitBill extends Component {
       name: res.name,
       price: res.price,
       split: res.split
-    }));
+    })); 
     result.split = people;
     result.totalPrice = this.state.total;
     result.currency = 0;
@@ -186,9 +186,44 @@ class SplitBill extends Component {
 
     console.log('client sent: ', result);
     socket.emit('addBill', result);
-    socket.on('newBill', data => {
+    socket.on('newBill', async data => {
       console.log('backend sent: ', data);
       this.setState({ submitVisible: true });
+      var transactionBillMap = [];
+      for (const spliter of data.bill.split) {
+        console.log('spliter', spliter);
+        var transaction = {}; 
+        var myfriend = null; 
+        if (spliter.user !== Global.EMAIL) {
+          console.log(spliter);
+          await Storages.getFriendByEmail(Global.EMAIL, spliter.user)
+            .then(friend => myfriend = friend);
+          transaction = {
+            fromEmail: Global.EMAIL, 
+            toEmail: myfriend.email,
+            toFirstName: myfriend.first_name,
+            toLastName: myfriend.last_name,
+            amount: '+' + spliter.splitAmount,
+            time: data.bill.billDate,
+            description: data.bill.description,
+            shareWith: 'Paid for ' + myfriend.first_name,
+            billDetails: data.bill
+          }; 
+        } else {
+          transaction = {
+            fromEmail: Global.EMAIL, 
+            toEmail: Global.EMAIL,
+            amount: ' ' + spliter.splitAmount,
+            time: data.bill.billDate,
+            description: data.bill.description,
+            shareWith: 'Paid for myself',
+            billDetails: data.bill
+          };
+        }
+        transactionBillMap.push(transaction);
+      }
+      console.log('transactionBillMap', transactionBillMap);
+      await Storages.addBill(Global.EMAIL, transactionBillMap);
     });
   }
 

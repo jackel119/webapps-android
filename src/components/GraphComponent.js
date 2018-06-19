@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { StockLine } from 'react-native-pathjs-charts'
+import { StockLine } from 'react-native-pathjs-charts';
 
 const styles = StyleSheet.create({
   container: {

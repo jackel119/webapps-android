@@ -96,5 +96,3 @@ export const updateDate = (value) => {
     payload: value
   };
 };
-
-

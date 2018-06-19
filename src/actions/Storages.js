@@ -17,7 +17,7 @@ class Storages {
     try {
       return await AsyncStorage.setItem(key, JSON.stringify(value)).done();
     } catch (error) {
-      console.log('set() error');
+      console.log('init() error');
     }
   };
 
@@ -26,9 +26,10 @@ class Storages {
     try {
       return await AsyncStorage.mergeItem(key, JSON.stringify(value));
     } catch (error) {
-      console.log('setTxs() error');
+      console.log('set() error');
     }
-  }
+  };
+
 
   static delete = async (key) => {
     try {
@@ -52,6 +53,13 @@ class Storages {
     } catch (error) {
       console.log('clearAll() error');
     } 
+  }; 
+
+  static addBill = async(key, newBill) => {
+    Storages.get(key).then(res => {
+      const newMap = (newBill).concat(res.transactionBillMap);
+      Storages.set(key, { transactionBillMap: newMap });
+    }).catch(() => console.log('addBill() error'));
   };
 
   static getFriendByEmail = async(key, email) => {
@@ -64,20 +72,7 @@ class Storages {
       }
     }).catch(() => console.log('getFriendByEmail() error'));
     return myfriend;
-  }
-
-  // static getFriendUID = async (key, email) => {
-  //   await Storages.get(key).then(res => {
-  //     console.log('getting FriendUID');
-  //     const friendList = res.friends;
-  //     for (const friend of friendList) {
-  //       if (friend.email === email) {
-  //         return friend.uid;
-  //       }
-  //     }
-  //     console.log('You dont have this friend!');
-  //   }).catch(() => console.log(''));
-  // };
+  };
 
   static getTotalAmount = async (key) => {
     var total = 0;
