@@ -157,6 +157,14 @@ class DrawerContent extends React.Component {
           <Text style={styles.textStyle}>Groups</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          style={Actions.currentScene === 'Graphs' ?
+            styles.barStyleActive : styles.barStyle}
+          onPress={Actions.graph}
+        >
+          <Icon name="cog" size={20} style={styles.iconStyle} />
+          <Text style={styles.textStyle}>Graph</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           style={Actions.currentScene === 'setting' ?
             styles.barStyleActive : styles.barStyle}
           onPress={Actions.setting}

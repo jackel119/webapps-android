@@ -15,6 +15,7 @@ import SplitBill from './components/SplitBill';
 import BillDetails from './components/BillDetails';
 import BillHistory from './components/BillHistory';
 import CameraRollComponent from './components/CameraRollComponent';
+import GraphComponent from './components/GraphComponent';
 
 const RouterComponent = () => {
   return (
@@ -123,6 +124,13 @@ const RouterComponent = () => {
               key="cameraRoll"
               component={CameraRollComponent}
               title="CameraRoll"
+            />
+
+            <Scene
+              //initial
+              key="graph"
+              component={GraphComponent}
+              title="Graph"
             />
 
           </Scene>
