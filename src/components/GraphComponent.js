@@ -34,7 +34,16 @@ class GraphComponent extends Component {
       var j = 0;
       (res.transactionBillMap).map(tx => {
         if (tx.amount[0] === '+') {
-          inls.push({ date: i, amount: parseFloat(tx.amount) });
+          var id = parseInt(tx.time.substring(0, 2));
+          var index = inls.findIndex(obj => obj.date == id);
+          if (index == -1) {
+            inls.push({
+              date: id,
+              amount: parseFloat(tx.amount)
+            });
+          } else {
+            inls[index].amount = inls[index].amount;
+          }
           i++;
         } else if (tx.amount[0] === '-') {
           outls.push({ date: j, amount: tx.amount });
@@ -49,6 +58,21 @@ class GraphComponent extends Component {
   }
 
   render() {
+    var tickValues = [];
+    for (i = 1; i <= 20; i++) {
+      var bool = ((i - 1) % 7 == 0);  
+      if (bool) {
+        tickValues.push({
+          value: i + '/06/2018'
+        });
+      } else {
+        tickValues.push({
+          value: ''
+        });
+      }
+    }
+
+    console.log(tickValues);
     let options = {
       width: 300,
       height: 300,
@@ -68,8 +92,9 @@ class GraphComponent extends Component {
         showLines: true,
         showLabels: true,
         showTicks: true,
-        zeroAxis: false,
+        //zeroAxis: false,
         orient: 'bottom',
+        tickValues: tickValues,
         label: {
           fontFamily: 'Arial',
           fontSize: 12,
