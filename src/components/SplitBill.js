@@ -191,6 +191,19 @@ class SplitBill extends Component {
     socket.on('newBill', async data => {
       console.log('backend sent: ', data);
       this.setState({ submitVisible: true });
+      for (const item of data.bdata.items) {
+        for (var spliter1 of item.split) {
+          if (spliter1.user === Global.EMAIL) {
+            spliter1.user = { email: Global.EMAIL, first_name: 'Me', last_name: '' };
+          } else {
+            await Storages.getFriendByEmail(Global.EMAIL, spliter1.user)
+              .then(friend => {
+                spliter1.user = friend;
+              });
+          }
+        }
+      }
+      data.bdata.payeeName = 'Me';
       var transactionBillMap = [];
       for (const spliter of data.bdata.split) {
         console.log('spliter', spliter);
@@ -200,18 +213,20 @@ class SplitBill extends Component {
           console.log(spliter);
           await Storages.getFriendByEmail(Global.EMAIL, spliter.user)
             .then(friend => myfriend = friend);
+          spliter.user = myfriend;
           transaction = {
             fromEmail: Global.EMAIL, 
             toEmail: myfriend.email,
             toFirstName: myfriend.first_name,
             toLastName: myfriend.last_name,
             amount: '+' + spliter.splitAmount,
-            time: data.bdata.billDate,
+            time : data.bdata.billDate,
             description: data.bdata.description,
             shareWith: 'Paid for ' + myfriend.first_name,
             billDetails: data.bdata
           };
         } else {
+          spliter.user = { email: Global.EMAIL, first_name: 'Me', last_name: '' };
           transaction = {
             fromEmail: Global.EMAIL, 
             toEmail: Global.EMAIL,

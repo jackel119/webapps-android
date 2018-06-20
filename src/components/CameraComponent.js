@@ -24,7 +24,7 @@ class CameraComponent extends Component {
           }}
           style={styles.cameraStyle}
           type={RNCamera.Constants.Type.back}
-          //autoFocus={RNCamera.Constants.AutoFocus.off}
+          autoFocus={RNCamera.Constants.AutoFocus.off}
           //flashMode={RNCamera.Constants.FlashMode.on}
         >
           <View style={{ flex: 0.8 }} />
