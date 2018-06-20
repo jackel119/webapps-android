@@ -11,13 +11,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    //backgroundColor: '#f7f7f7',
+    backgroundColor: 'white',
   },
   card: {
+    borderRadius: 5,
     backgroundColor: 'white',
-    padding: 30,
-    borderBottomWidth: 1,
+    padding: 20,
+    borderWidth: 1,
     borderColor: '#ddd',
+    marginHorizontal: 10,
   }
 });
 
@@ -60,7 +62,7 @@ class GraphComponent extends Component {
   render() {
     var tickValues = [];
     for (i = 1; i <= 20; i++) {
-      var bool = ((i - 1) % 7 == 0);  
+      var bool = ((i - 1) % 7 == 0);
       if (bool) {
         tickValues.push({
           value: i + '/06/2018'
@@ -78,7 +80,7 @@ class GraphComponent extends Component {
       height: 300,
       color: '#2980B9',
       margin: {
-        top: 10,
+        top: 40,
         left: 50,
         bottom: 30,
         // right: 10
@@ -121,9 +123,21 @@ class GraphComponent extends Component {
     };
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.card}>
-          <StockLine data={this.state.inls} options={options} xKey='date' yKey='amount' />
-          <StockLine data={this.state.inls} options={options} xKey='date' yKey='amount' />
+        <ScrollView>
+          <View style={{ justifyContent: 'center', paddingVertical: 10 }}>
+            <Text style={{ fontSize: 20, textAlign: 'center', fontWeight: 'bold' }}>
+              Spending in June
+            </Text>
+          </View>
+          <View style={styles.card}>
+            <View style={{ marginBottom: -20 }}>
+              <Text style={{ color: '#34495E', fontWeight: 'bold' }}>Amount</Text>
+            </View>
+            <StockLine data={this.state.inls} options={options} xKey='date' yKey='amount' />
+            <View style={{ marginTop: -29 }}>
+              <Text style={{ textAlign: 'right', color: '#34495E', fontWeight: 'bold' }}>Date</Text>
+            </View>
+          </View>
         </ScrollView>
       </View>
     );
