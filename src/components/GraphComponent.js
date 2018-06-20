@@ -11,8 +11,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f7f7f7',
+    //backgroundColor: '#f7f7f7',
   },
+  card: {
+    backgroundColor: 'white',
+    padding: 30,
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  }
 });
 
 class GraphComponent extends Component {
@@ -49,7 +55,7 @@ class GraphComponent extends Component {
       color: '#2980B9',
       margin: {
         top: 10,
-        left: 35,
+        left: 50,
         bottom: 30,
         // right: 10
       },
@@ -66,7 +72,7 @@ class GraphComponent extends Component {
         orient: 'bottom',
         label: {
           fontFamily: 'Arial',
-          fontSize: 8,
+          fontSize: 12,
           fontWeight: true,
           fill: '#34495E'
         }
@@ -81,7 +87,7 @@ class GraphComponent extends Component {
         tickValues: [],
         label: {
           fontFamily: 'Arial',
-          fontSize: 8,
+          fontSize: 12,
           fontWeight: true,
           fill: '#34495E'
         }
@@ -90,7 +96,7 @@ class GraphComponent extends Component {
     };
     return (
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView style={styles.card}>
           <StockLine data={this.state.inls} options={options} xKey='date' yKey='amount' />
           <StockLine data={this.state.inls} options={options} xKey='date' yKey='amount' />
         </ScrollView>
