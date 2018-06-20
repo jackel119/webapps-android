@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
 import { StockLine } from 'react-native-pathjs-charts';
 import Storages from './../actions/Storages';
@@ -45,7 +45,7 @@ class GraphComponent extends Component {
   render() {
     let options = {
       width: 300,
-      height: 250,
+      height: 300,
       color: '#2980B9',
       margin: {
         top: 10,
@@ -90,12 +90,13 @@ class GraphComponent extends Component {
     };
     return (
       <View style={styles.container}>
-        <StockLine data={this.state.inls} options={options} xKey='date' yKey='amount' />
-        <StockLine data={this.state.inls} options={options} xKey='date' yKey='amount' />
+        <ScrollView>
+          <StockLine data={this.state.inls} options={options} xKey='date' yKey='amount' />
+          <StockLine data={this.state.inls} options={options} xKey='date' yKey='amount' />
+        </ScrollView>
       </View>
     );
   }
 }
 
 export default GraphComponent;
-

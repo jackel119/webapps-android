@@ -172,13 +172,13 @@ class DrawerContent extends React.Component {
           <Text style={styles.textStyle}>Groups</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={Actions.currentScene === 'Graphs' ?
+          style={Actions.currentScene === 'graph' ?
             styles.barStyleActive : styles.barStyle}
           onPress={Actions.graph}
         >
           <Icon name="line-chart" size={20} style={styles.iconStyle} />
           <Text style={styles.textStyle}>Graph</Text>
-        </TouchableOpacity> 
+        </TouchableOpacity>
         <TouchableOpacity
           style={Actions.currentScene === 'setting' ?
             styles.barStyleActive : styles.barStyle}
