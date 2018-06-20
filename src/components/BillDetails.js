@@ -29,8 +29,8 @@ class BillDetails extends Component {
 
   renderSplit() {
     return this.state.split.map(split =>
-      <View 
-        style={{ flexDirection: 'row', justifyContent: 'space-between' }} 
+      <View
+        style={{ flexDirection: 'row', justifyContent: 'space-between' }}
         key={split.user.email}
       >
         <Text>{split.user.first_name} {split.user.last_name}</Text>
@@ -52,7 +52,7 @@ class BillDetails extends Component {
             <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
               <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'peru' }}>Total Price: </Text>
               <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'peru' }}>
-                {this.state.totalPrice}
+                {parseFloat(this.state.totalPrice).toFixed(2)}
               </Text>
             </View>
           </View>
